@@ -83,6 +83,9 @@ Required params:
 * starttime: seconds from the epoch
 * endtime: seconds from the epoch, must be AFTER starttime
 
+Optional params:
+* label: one of: \[yellow green blue orange red purple\]
+* tags: comma separated list (Allowed chars: A-Za-z0-9_)
 
 CURL Command:
 {% highlight sh %}
@@ -115,7 +118,7 @@ Update
 
 CURL Command:
 {% highlight sh %}
-curl -s -XPUT -u myapikey:U http://api.staging.cuegg.net/v2/annotations/7.json -d 'endtime=1342119990'
+curl -s -XPUT -u myapikey:U http://api.copperegg.com/v2/annotations/7.json -d 'endtime=1342119990'
 {% endhighlight %}
 
 CURL Response:
@@ -144,7 +147,7 @@ Destroy
 
 CURL Command:
 {% highlight sh %}
-curl -s -XDELETE -u myapikey:U http://api.staging.cuegg.net/v2/annotations/7.json
+curl -s -XDELETE -u myapikey:U http://api.copperegg.com/v2/annotations/7.json
 
 {% endhighlight %}
 
