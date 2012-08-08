@@ -5,6 +5,7 @@ title: RevealUptime - Tags
 
 Index
 -----
+List all defined RevealUptime tags.
 
 CURL Command:
 {% highlight sh %}
