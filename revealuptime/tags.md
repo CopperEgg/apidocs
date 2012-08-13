@@ -67,7 +67,7 @@ Response is JSON with an array of structures containing details of all probes as
       "description" : "Hires probe",
       "destination" : "http://mywebsite.com",
       "frequency" : "15",
-      "label" : "my_website-hires",
+      "label" : "my_website_hires",
       "type" : "GET"
     },
     "created_at" : 1341782097,
@@ -84,7 +84,7 @@ Response is JSON with an array of structures containing details of all probes as
       "description" : "Lowres probe",
       "destination" : "https://mywebsite.com",
       "frequency" : "60",
-      "label" : "my_website-lowres",
+      "label" : "my_website_lowres",
       "type" : "GET"
     },
     "created_at" : 1342482449,
