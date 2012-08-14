@@ -113,55 +113,245 @@ Show
 ----
 Show in-depth information about a single issue.
 
-Required Parameters: the tag of interest; in the example below, the tag is "atlanta_group".
+Required Parameters: the id of the issue of interest; in the example below, the id is 188.
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U https://api.copperegg.com/v2/revealuptime/tags/atlanta_group.json
-curl -u pxAJ7BSmPXXl3k9W:U https://api.copperegg.com/v2/alerts/issues/50183b776cc66909b7758065.json
+curl -u pxAJ7BSmPXXl3k9W:U https://api.copperegg.com/v2/alerts/issues/188.json
 {% endhighlight %}
 
 CURL Response:
 
-Response is JSON with an array of structures containing details of all probes associated with the specified tag:
+Response is JSON with a structure containing details of the specified issue:
+{% highlight javascript %}
+{
+  "id":188,
+  "state":"notified",
+  "short_msg":"fastapi-7c-1: Memory Use - High (Active Memory 0.958 >= 0.95)",
+  "attr_description":"Additional Information",
+  "attrs":{
+    "aws_profile":"default-paravirtual",
+    "hostname":"fastapi-7c-1",
+    "aws_availability_zone":"us-east-1b",
+    "linux_distro":"Ubuntu 12.04 LTS \\n \\l\n",
+    "aws_public_hostname":"ec2-174-129-80-99.compute-1.amazonaws.com",
+    "aws_reservation_id":"r-fa90679e",
+    "aws_inst_type":"c1.xlarge",
+    "aws_hostname":"ip-10-42-90-138.ec2.internal",
+    "aws_public_ipv4":"174.129.80.99",
+    "aws_ami_id":"ami-0674d66f",
+    "aws_sec_group":"API Server",
+    "aws_local_hostname":"ip-10-42-90-138.ec2.internal",
+    "aws_inst_id":"i-941c58ec",
+    "aws_mac_addr":"12:31:38:1F:74:7C",
+    "aws_local_ipv4":"10.42.90.138",
+    "aws_kernel_id":"aki-825ea7eb"
+  },
+  "type":"ce_revealcloud",
+  "created_at":1344521344,
+  "updated_at":0,
+  "cleared_at":0,
+  "notified_at":1344521506,
+  "ignore_until":1344521349,
+  "annotation_id":"",
+  "obj_idv":"d16b38d742a8ada6ccc7b8b33d5eb7dd|"
+}
+
+{% endhighlight %}
+
+
+
+Update 
+----
+Update a single issue.
+
+Required Parameters: the id of the issue of interest; in the example below, the id is 188.
+
+CURL Command:
+{% highlight sh %}
+curl -XPUT https://EUBJAOOIUHmFsMdl:U@api.copperegg.com/v2/alerts/issues/188.json -d "state=cleared"
+{% endhighlight %}
+
+CURL Response:
 
 {% highlight javascript %}
+{
+}
+{% endhighlight %}
+
+
+Remove
+----
+Remove a single issue.
+
+Required Parameters: the id of the issue of interest; in the example below, the id is 188.
+
+CURL Command:
+{% highlight sh %}
+curl -XPUT https://EUBJAOOIUHmFsMdl:U@api.copperegg.com/v2/alerts/issues/188.json -d "state=deleted"
+{% endhighlight %}
+
+CURL Response:
+
+{% highlight javascript %}
+{
+}
+{% endhighlight %}
 
 
 
+The Issue structure:
+{% highlight sh %}
+{ 
 
-Create issue?
-
-Is it permisssable to create an issue? Requires an alertid. How do I come up with a 
-new, unique alertid?
-
-
-Update Issue?
-
-Remove Issue?
+{% endhighlight %}
 
 
-Detail the Issues structure
+Definition of fields in the Issue structure:
+* "id":"188" :          Unique id for this issue structure. Read-only string.
 
-Issue structure
+* "state":"cleared"     Current state of this issue. "active", "notified", cleared", 
+                        and "deleted". Read / Write string. Writing is limited to 
+                        Updating, and only for writoing "cleared and "deleted". Any other 
+                        value writtne will be silently ignored.
+
+* "short_msg":"DBServer: CPU-total (CPU Total Usage 0.945 > 0.9)" 
+                        This string is a human-readable description of what triggered
+                        this specific alert. Read-only.
+
+* "attr_description":"Additional Information"           
+                        A string describing the contents of the following 'attrs' field,
+                        which may be useful for parsing its contents. Read-only.
+
+* "attrs":{ "hostname","DBtier-s1",  "label","DBServer" }           
+                        A hash containing information pertinent to the issue. This 
+                        information may be different for different hosts. Read-only.
+  
+* "type":"ce_revealcloud"   Type of issue, "ce_revealcloud" or "ce_revealuptime". 
+                            Read-only, string.
+
+* "created_at":1344631403       Time of alert & issue creation, UTC -> unix timestamp
+* "updated_at":1344632039       Time of most recent update.
+* "cleared_date":0,             Time when the issue was cleared, or 0.
+* "notified_date":1344631404    Time when notified, or 0.
+* "ignore_until":1344631408,    *** don't know *** 
+* "annotation_id":"",           Associated annotation, if any.
+* "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"     Ignore this field.
+
+
 
 {
-  "id":"5025726b4e2e14dba7924ffb",
-  "state":"cleared",
-  "short_msg":"DBServer: CPU-total (CPU Total Usage 0.145 > 0.01)",
-  "attr_description":"Additional Information",
-  "attrs":[
-    ["hostname","scott-johnsons-MacBook-Pro-2.local"],
+    "id":"502940cafbaa0e9224a3d1f3",
+    "state":"cleared",
+    "short_msg":"Herkoku-app: Slow Response Time (Response Time 110 ms >= 40.0 ms) ",
+    "attr_description":"Additional Information",
+    "attrs":[
+      ["label","Herkoku-app"],
+      ["description","Herkoku-app"],
+      ["destination","http://peaceful-lake-1814.herokuapp.com"],
+      ["frequency","15"],["type","GET"]
+    ],
+    "type":"ce_revealuptime",
+    "created_at":1344880840,
+    "updated_at":1344880853,
+    "cleared_date":1344880853,
+    "notified_date":1344880842,
+    "ignore_until":1344880845,
+    "annotation_id":"",
+    "obj_idv":"50271cebd9106a2208000004|bjiRJTlKgfnOLq5ecb3jxaA3OmrGGqMt|"
+  }
+
+
+
+{
+  "id":"188",                                  // Unique id for this issue
+  "state":"cleared",                           // current state of the issue
+  "short_msg":"DBServer: CPU-total (CPU Total Usage 0.945 > 0.9)",
+  "attr_description":"Additional Information",  
+  "attrs":[                                    // attributes may differ by host
+    ["hostname","DBtier-server1.local"],
     ["label","DBServer"]
   ],
-  "type":"ce_revealcloud",
-  "created_at":1344631403,
-  "updated_at":1344632039,
-  "cleared_date":1344632039,
-  "notified_date":1344631404,
-  "ignore_until":1344631408,
+  "type":"ce_revealcloud",                     // type of issue, system or website
+  "created_at":1344631403,                     // time of alert & issue creation 
+  "updated_at":1344632039,                     // time of most recent update
+  "cleared_date":1344632039,                   // time when cleared, or 0
+  "notified_date":1344631404,                  // time when notified, or 0
+  "ignore_until":1344631408,                   // *** don't know *** 
+  "annotation_id":"",                          // associated annotation, if any
+  "obj_idv":"ac1f5ef85c1177ef97596f334f877370|" // ignore this field
+}
+{
+  "id":"188",                                  // Unique id for this issue
+  "state":"cleared",                           // current state of the issue
+  "short_msg":"DBServer: CPU-total (CPU Total Usage 0.945 > 0.9)",
+  "attr_description":"Additional Information",  
+  "attrs":[                                    // attributes may differ by host
+    ["hostname","DBtier-server1.local"],
+    ["label","DBServer"]
+  ],
+  "type":"ce_revealcloud",                     // type of issue, system or website
+  "created_at":1344631403,                     // time of alert & issue creation 
+  "updated_at":1344632039,                     // time of most recent update
+  "cleared_date":1344632039,                   // time when cleared, or 0
+  "notified_date":1344631404,                  // time when notified, or 0
+  "ignore_until":1344631408,                   // *** don't know *** 
+  "annotation_id":"",                          // associated annotation, if any
+  "obj_idv":"ac1f5ef85c1177ef97596f334f877370|" // ignore this field
+}
+
+
+
+
+
+
+
+{
+  "id":"188",                                  // Unique id for this issue
+  "state":"cleared",                           // current state of the issue
+  "short_msg":"DBServer: CPU-total (CPU Total Usage 0.945 > 0.9)",
+  "attr_description":"Additional Information",  
+  "attrs":[                                    // attributes may differ by host
+    ["hostname","DBtier-server1.local"],
+    ["label","DBServer"]
+  ],
+  "type":"ce_revealcloud",                     // type of issue, system or website
+  "created_at":1344631403,                     // time of alert & issue creation 
+  "updated_at":1344632039,                     // time of most recent update
+  "cleared_date":1344632039,                   // time when cleared, or 0
+  "notified_date":1344631404,                  // time when notified, or 0
+  "ignore_until":1344631408,                   // *** don't know *** 
+  "annotation_id":"",                          // associated annotation, if any
+  "obj_idv":"ac1f5ef85c1177ef97596f334f877370|" // ignore this field
+}
+{% endhighlight %}
+
+
+Fields that may be updated, and content allowd:
+* state .... may set to "cleared" or "deleted";  an other values are not allowed
+  
+Any other updates to the Issue structure will be quietly ignored.
+
+
+{
+  "id":"502940cafbaa0e9224a3d1f3",
+  "state":"cleared",
+  "short_msg":"Herkoku-app: Slow Response Time (Response Time 110 ms >= 40.0 ms) ",
+  "attr_description":"Additional Information",
+  "attrs":[
+    ["label","Herkoku-app"],
+    ["description","Herkoku-app"],
+    ["destination","http://peaceful-lake-1814.herokuapp.com"],
+    ["frequency","15"],["type","GET"]
+  ],
+  "type":"ce_revealuptime",
+  "created_at":1344880840,
+  "updated_at":1344880853,
+  "cleared_date":1344880853,
+  "notified_date":1344880842,
+  "ignore_until":1344880845,
   "annotation_id":"",
-  "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
+  "obj_idv":"50271cebd9106a2208000004|bjiRJTlKgfnOLq5ecb3jxaA3OmrGGqMt|"
 }
 
 
@@ -173,5 +363,42 @@ Issue structure
 
 
 
+
+
+
+
+
+{
+  "id":188,
+  "state":"cleared",
+  "short_msg":"fastapi-7c-1: Memory Use - High (Active Memory 0.958 >= 0.95)",
+  "attr_description":"Additional Information",
+  "attrs":{
+    "aws_profile":"default-paravirtual",
+    "hostname":"fastapi-7c-1",
+    "aws_availability_zone":"us-east-1b",
+    "linux_distro":"Ubuntu 12.04 LTS \\n \\l\n",
+    "aws_public_hostname":"ec2-174-129-80-99.compute-1.amazonaws.com",
+    "aws_reservation_id":"r-fa90679e",
+    "aws_inst_type":"c1.xlarge",
+    "aws_hostname":"ip-10-42-90-138.ec2.internal",
+    "aws_public_ipv4":"174.129.80.99",
+    "aws_ami_id":"ami-0674d66f",
+    "aws_sec_group":"API Server",
+    "aws_local_hostname":"ip-10-42-90-138.ec2.internal",
+    "aws_inst_id":"i-941c58ec",
+    "aws_mac_addr":"12:31:38:1F:74:7C",
+    "aws_local_ipv4":"10.42.90.138",
+    "aws_kernel_id":"aki-825ea7eb"
+  },
+  "type":"ce_revealcloud",
+  "created_at":1344521344,
+  "updated_at":0,
+  "cleared_at":1344527743,
+  "notified_at":1344521506,
+  "ignore_until":1344521349,
+  "annotation_id":"",
+  "obj_idv":"d16b38d742a8ada6ccc7b8b33d5eb7dd|"
+}
 
 
