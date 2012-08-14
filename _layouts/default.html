@@ -39,15 +39,36 @@
         <div class="well sidebar-nav">
           <ul class="nav nav-list">
             <li {% if page.url == '/index.html' %}class="active"{% endif %}><a href="/">Introduction</a></li>
+            <li {% if page.url == '/sessions.html' %}class="active"{% endif %}><a href="/">Sessions</a></li>
+            <li {% if page.url == '/site.html' %}class="active"{% endif %}><a href="/">Site</a></li>
+
+            <li class="nav-header">Alerts</li>
+            <ul class="nav nav-list">
+              <li {% if page.url == '/alerts/definitions.html' %}class="active"{% endif %}><a href="/alerts/definitions.html">Definitions</a></li>
+              <li {% if page.url == '/alerts/issues.html' %}class="active"{% endif %}><a href="/alerts/issues.html">Issues</a></li>
+            </ul>
 
             <li class="nav-header">RevealEngine</li>
-            <li {% if page.url == '/revealengine/annotations.html' %}class="active"{% endif %}><a href="/revealengine/annotations.html">Annotations</a></li>
-            <li {% if page.url == '/revealengine/tags.html' %}class="active"{% endif %}><a href="/revealengine/tags.html">Tags</a></li>
+            <ul class="nav nav-list">
+              <li {% if page.url == '/revealengine/samples.html' %}class="active"{% endif %}><a href="/revealengine/samples.html">Samples</a></li>
+              <li {% if page.url == '/revealengine/objects.html' %}class="active"{% endif %}><a href="/revealengine/objects.html">Objects</a></li>
+              <li {% if page.url == '/revealengine/definitions.html' %}class="active"{% endif %}><a href="/revealengine/definitions.html">Definitions</a></li>
+              <li {% if page.url == '/revealengine/annotations.html' %}class="active"{% endif %}><a href="/revealengine/annotations.html">Annotations</a></li>
+            </ul>
             
             <li class="nav-header">RevealCloud</li>
-            <li {% if page.url == '/revealcloud/systems.html' %}class="active"{% endif %}><a href="/revealcloud/systems.html">Systems</a></li>
+            <ul class="nav nav-list">
+              <li {% if page.url == '/revealcloud/systems.html' %}class="active"{% endif %}><a href="/revealcloud/systems.html">Systems</a></li>
+              <li {% if page.url == '/revealcloud/samples.html' %}class="active"{% endif %}><a href="/revealcloud/samples.html">Samples</a></li>
+              <li {% if page.url == '/revealcloud/tags.html' %}class="active"{% endif %}><a href="/revealcloud/tags.html">Tags</a></li>
+            </ul>
+
             <li class="nav-header">RevealUptime</li>
-            <li {% if page.url == '/revealuptime/probe.html' %}class="active"{% endif %}><a href="/revealuptime/probes.html">Probes</a></li>
+            <ul class="nav nav-list">
+              <li {% if page.url == '/revealuptime/probes.html' %}class="active"{% endif %}><a href="/revealuptime/probes.html">Probes</a></li>
+              <li {% if page.url == '/revealuptime/samples.html' %}class="active"{% endif %}><a href="/revealuptime/samples.html">Samples</a></li>
+              <li {% if page.url == '/revealuptime/tags.html' %}class="active"{% endif %}><a href="/revealuptime/tags.html">Tags</a></li>
+            </ul>
           </ul>
         </div>
       </div>
