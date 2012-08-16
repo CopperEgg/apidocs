@@ -8,7 +8,7 @@ Index
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U https://api.copperegg.com/v2/annotations.json
+curl -u APIKEY:U https://api.copperegg.com/v2/annotations.json
 {% endhighlight %}
 
 CURL Response:
@@ -52,7 +52,7 @@ Show
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U https://api.copperegg.com/v2/annotations/2.json
+curl -u APIKEY:U https://api.copperegg.com/v2/annotations/2.json
 {% endhighlight %}
 
 CURL Response:
@@ -89,7 +89,7 @@ Optional params:
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U -XPOST https://api.copperegg.com/v2/annotations.json -d 'note=API&starttime=1342119638&endtime=1342119950'
+curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/annotations.json -d 'note=API&starttime=1342119638&endtime=1342119950'
 {% endhighlight %}
 
 CURL Response:
@@ -118,7 +118,7 @@ Update
 
 CURL Command:
 {% highlight sh %}
-curl -s -XPUT -u myapikey:U http://api.copperegg.com/v2/annotations/7.json -d 'endtime=1342119990'
+curl -s -XPUT -u APIKEY:U http://api.copperegg.com/v2/annotations/7.json -d 'endtime=1342119990'
 {% endhighlight %}
 
 CURL Response:
@@ -147,7 +147,7 @@ Destroy
 
 CURL Command:
 {% highlight sh %}
-curl -s -XDELETE -u myapikey:U http://api.copperegg.com/v2/annotations/7.json
+curl -s -XDELETE -u APIKEY:U http://api.copperegg.com/v2/annotations/7.json
 
 {% endhighlight %}
 

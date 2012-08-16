@@ -9,7 +9,7 @@ List all defined RevealUptime tags.
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U https://api.copperegg.com/v2/revealuptime/tags.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags.json
 {% endhighlight %}
 
 CURL Response:
@@ -53,7 +53,7 @@ Required Parameters: the tag of interest; in the example below, the tag is "atla
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U https://api.copperegg.com/v2/revealuptime/tags/atlanta_group.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags/atlanta_group.json
 {% endhighlight %}
 
 CURL Response:
@@ -105,16 +105,19 @@ Create
 ------
 Add a new tag to one or more defined probed.
 
-Required params:
-* a tag
-* one or more probe_ids to which the tag will be applied
-* if specifying more than one probe_id, use a comma-separated list
+Required params:  
+
+* a tag ( tags may contain a-z, A-Z, 0-9, - and _)  
+
+* one or more probe_ids to which the tag will be applied  
+
+* if specifying more than one probe_id, use a comma-separated list  
 
 In the following example, a tag labelled "app_group" will be applied to two existing probes, with probe_ids of 4ff9f8512ca1fc338d00000e and 5004a884b0175d20c00000be.
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U -XPOST https://api.copperegg.com/v2/revealuptime/tags.json -d 'id=app_group&probe_ids=4ff9f8512ca1fc338d00000e,5004a884b0175d20c00000be'
+curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealuptime/tags.json -d 'id=app_group&probe_ids=4ff9f8512ca1fc338d00000e,5004a884b0175d20c00000be'
 {% endhighlight %}
 
 CURL Response:
@@ -139,7 +142,7 @@ In the following example, a tag labelled "app_group" will be removed from the pr
 
 CURL Command:
 {% highlight sh %}
-curl -s -XDELETE -u myapikey:U https://api.copperegg.com/v2/revealuptime/tags/app_group/4ff9f8512ca1fc338d00000e.json
+curl -s -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags/app_group/4ff9f8512ca1fc338d00000e.json
 {% endhighlight %}
 
 CURL Response:

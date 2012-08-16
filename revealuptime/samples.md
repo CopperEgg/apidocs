@@ -10,17 +10,17 @@ The API call for obtaining samples has a fair amount of detail, unlike many of t
   
   
   
-###Parameters:
-ids (required) => At least one probe id must be specified. Up to 20 probe ids can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids[]”.
+###Parameters:  
+* ids (required) => At least one probe id must be specified. Up to 20 probe ids can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”  
 
-starttime =>  An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)
+* starttime =>  An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
 
-endtime => An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)
+* endtime => An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
 
-keys => A list of keys you want to include (see "key reference").  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys[]".  Default: "l_l, l_s, l_u, l_h".
+* keys => A list of keys you want to include (see "key reference").  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"  
 
-sample_size => Override the default sample size that is determined by the
-starttime/endtime range.  This will only work if you specify a sample_size larger than what is automatically calculated for the time range.  If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are 15 and 60.
+* sample_size => Override the default sample size that is determined by the
+starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are 15 and 60.  
   
   
       
@@ -62,12 +62,12 @@ Obtain samples from one probe, specifying only the probe_id.
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U "https://api.copperegg.com/v2/revealuptime/samples.json?ids 4ff9f8512ca1fc338d00000e"
+curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?ids 4ff9f8512ca1fc338d00000e"
 {% endhighlight %}
 
-CURL Response:
+CURL Response:  
 
-Response is JSON with an array of probe sample data:
+Response is JSON with an array of probe sample data:  
 
 {% highlight javascript %}
 [
@@ -120,13 +120,13 @@ Response is JSON with an array of probe sample data:
     
   
   
-Example 2
+Example 2  
 ---------
-Obtain samples from two probes, specifying sample_size of 60. Default keys.
+Obtain samples from two probes, ( with PROBEID's of 4ff9f8512ca1fc338d00000e and 5004a81187517319f4000238) specifying sample_size of 60. Default keys.  
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e,5004a81187517319f4000238"
+curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e,5004a81187517319f4000238"
 {% endhighlight %}
 
 CURL Response:
@@ -206,11 +206,11 @@ Response is JSON with a 2-element array of probe sample data, in this case, with
   
 Example 3
 ---------
-Obtain samples from a single probe, specifying starttime, endtime and sample_size of 60 seconds. Default keys.
+Obtain samples from a single probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying starttime, endtime and sample_size of 60 seconds. Default keys.
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U "https://api.copperegg.com/v2/revealuptime/samples.json?starttime=1344195713&endtime=1344195893&sample_size=60&ids=4ff9f8512ca1fc338d00000e"
+curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?starttime=1344195713&endtime=1344195893&sample_size=60&ids=4ff9f8512ca1fc338d00000e"
 {% endhighlight %}
 
 CURL Response:
@@ -267,11 +267,11 @@ Response is JSON with an array of probe sample data:
   
 Example 4
 ---------
-Obtain samples from one probe, specifying sample_size of 60. Default keys.
+Obtain samples from one probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60. Default keys.
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e"
+curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e"
 {% endhighlight %}
 
 CURL Response:
@@ -319,11 +319,11 @@ Response is JSON with an array of probe sample data:
   
 Example 5
 ---------
-Obtain samples from one probe, specifying sample_size of 60, and the keys l, lp, l_s, u, l_h and l_ss.
+Obtain samples from one probe, (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60, and the keys l, lp, l_s, u, l_h and l_ss.
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e&keys=l,lp,l_s,u,l_h,l_ss"
+curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e&keys=l,lp,l_s,u,l_h,l_ss"
 {% endhighlight %}
 
 CURL Response:
@@ -370,12 +370,12 @@ Note: Latency percent arrays contain only three values, connect, time to first b
   
 Example 6
 ---------
-Obtain all station data from one probe, specifying sample_size of 60, and the keys s_l, s_s, s_u and s_h.
+Obtain all station data from one probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60, and the keys s_l, s_s, s_u and s_h.
 
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e&keys=s_l,s_s,s_u,s_h"
+curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e&keys=s_l,s_s,s_u,s_h"
 {% endhighlight %}
 
 CURL Response:

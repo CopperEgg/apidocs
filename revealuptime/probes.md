@@ -3,96 +3,84 @@ layout: default
 title: RevealUptime - Probes
 ---
 
+Overview
+--------
+
+Each of the API commands described here relate to the set of all probes that have been created at your site.
+
+Each probe is completely described by a Probe hash. The key-value pairs within this hash are described in detail in the Create section.
+
+
+
 Index
 -----
 List all defined RevealUptime probes.
 
-CURL Command:
+CURL Command:  
 {% highlight sh %}
-curl -u myapikey:U https://api.copperegg.com/v2/revealuptime/probes.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/probes.json
 {% endhighlight %}
 
-CURL Response:
+CURL Response:  
 
-Response is JSON with an array of probe structures for defined RevealUptime probes.
+Response is a JSON array of probe hashes.
 
 {% highlight javascript %}
 [
-  { "alert_def_id" : "",
-    "checkcontents" : "",
-    "contentmatch" : "",
-    "created_at" : 1341782097,
-    "frequency" : "15",
+  {
     "id" : "4ff9f8512ca1fc338d00000e",
-    "probe_data" : "",
+    "alert_def_id" : "",
     "probe_desc" : "Hires probe",
     "probe_dest" : "http://mywebsite.com",
-    "retries" : 1,
-    "state" : "enabled",
-    "stations" : [ "atl" ],
-    "tags" : [ "atlanta_group" ],
-    "timeout" : 10000,
-    "type" : "GET",
-    "updated_at" : 1344385807
-  },
-  { "alert_def_id" : "",
+    "probe_data" : "",
     "checkcontents" : "",
     "contentmatch" : "",
-    "created_at" : 1342482449,
     "frequency" : "15",
+    "timeout" : 10000,
+    "retries" : 1,
+    "type" : "GET",
+    "created_at" : 1341782097,
+    "updated_at" : 1344385807
+    "state" : "enabled",
+    "tags" : [ "atlanta_group" ],
+    "stations" : [ "atl" ]
+  },
+  { 
     "id" : "5004a81187517319f4000238",
-    "probe_data" : "",
+    "alert_def_id" : "",
     "probe_desc" : "Lowres probe",
     "probe_dest" : "https://mywebsite.com",
-    "retries" : 1,
-    "state" : "enabled",
-    "stations" : [ "atl"],
-    "tags" : [ "atlanta_group" ],
+    "probe_data" : "",
+    "checkcontents" : "",
+    "contentmatch" : "",
+    "frequency" : "15",
     "timeout" : 10000,
+    "retries" : 1,
     "type" : "GET",
+    "created_at" : 1342482449,
     "updated_at" : 1344378245
+    "state" : "enabled",
+    "tags" : [ "atlanta_group" ],
+    "stations" : [ "atl"],
   }
 ]
 {% endhighlight %}
 
 
-Definition of fields in the probe structure:
-
-{% highlight sh %}
-"id":"4ff9f8512ca1fc338d00000e",      // unique identifier for this probe
-"alert_def_id":"",                    //
-"probe_desc":"Hires probe",           // Label in 'Create a Probe' dialogue
-"probe_dest":"http://mywebsite.com",  // URL in the 'Create a Probe' dialogues
-"probe_data":"",                      //
-"checkcontents":"",                   // used for GET with content check
-"contentmatch":"",                    // used for GET with content check
-"frequency":"15",                     // probe frequency, in secs. default is 60
-"timeout":10000,                      // timeout in ms, default is 10000
-"retries":1,                          // default 1
-"type":"GET",                         // GET or POST probe
-"created_at":1341782097,              // timestamp of probe creation
-"updated_at":1344385807,              // timestamp last updated
-"state":"enabled",                    // enabled, disabled, deleted
-"tags":["atlanta_group"],             // array of associated tags
-"stations":["atl"]                    // array of probe stations
-{% endhighlight %}
-
-
-
 Show
 ----
-Show in-depth information about a single RevealUptime probe.
+Show in-depth information about a single RevealUptime probe.  
 
-Required parameters: ... probe id as part of the path
+Required parameter ... probe id as part of the path.
 
-CURL Command:
+CURL Command:  
 {% highlight sh %}
-curl -u myapikey:U https://api.copperegg.com/v2/revealuptime/probes/50200c55d9106a232e000041.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/probes/PROBEID.json
 {% endhighlight %}
 
 CURL Response:
 
-Response is JSON with an single probe structure, containing all details of the specified probe.
+Response is JSON with an single probe hash, containing all details of the specified probe.
 
 {% highlight javascript %}
 {
@@ -118,44 +106,67 @@ Response is JSON with an single probe structure, containing all details of the s
 
 Create
 ------
-Create a new RevealUptime probe.
+Create a new RevealUptime probe.  
 
-Required parameters:
-* probe_desc    a short text identifier of your choice
-* probe_dest    the URL to probe
-* type          GET or POST probe
+####Required parameters:  
+You must include a string describing the probe, the type of the probe, (GET or POST) and the URL to probe.
+   
+* probe_desc  
+    Your short text description of the probe (string); e.g., "probe_desc":"MyWebsite".  
 
-Optional parameters:
-* check_contents
-*               null: no content check is made
-*               'match': true if the string in 'contentmatch' is found
-*               'notmatch': true if the string in 'contentmatch' is NOT found
-* contentmatch  the string used if 'check_contents' is not null
-* frequency     frequency of probing; null: 60 seconds; can be 15 or 60
-* timeout       GET or POST request timout, in milliseconds
-*               null: will default to 10000 ms (10 seconds)
-* retries       times to retry the opertion; null: defaults to 1
-* tags          tags to apply to this probe; null: no tags will be applied
-* stations      stations to probe the specified URL; null: all stations
+* type  
+    A string that may be "GET" or "POST" (website alert); e.g., "type":"GET". 
+
+* probe_dest   
+    The URL to probe, formatted as a string; e.g., "probe_dest":"http://mywebsite.com"   
 
 
-Create Example 1: create a new probe using only the required parameters, to demonstrate defaults.
+####Optional parameters:  
 
-CURL Command:
+* check_contents  
+    A string parameter used to enable / disable GET content-checking, and to specify the type of content check made. check_contents may have one of three values:      
+  * null: no content check is made  
+  * "match": true if the string in 'contentmatch' is found  
+  * "notmatch": true if the string in 'contentmatch' is NOT found  
+
+* contentmatch  
+    The string used for comparison if 'check_contents' is not null.  
+
+* frequency     
+    Frequency of probing; if not specified, the default of 60 seconds will be used; may be set to 15 or 60 (number). NOTE: 'frequency' is a misnomer ... you are actually specifying the probe interval, or period in seconds. A 15 sec period means a probe frequency of 4 times/minute; 60 sec period means 1 probe/minute.  
+
+* timeout       
+    GET or POST request timout, in milliseconds; if not specified, will defaut to 10000 ms, or 10 seconds.  
+
+* retries
+    Number of times to retry the opertion; if not specified, defaults to 1.
+
+* tags 
+    Tags to apply to this probe; null: no tags will be applied.  
+
+* stations
+    Specify which stations will probe the destination URL; if not specified, all stations will probe.  
+  
+
+####Create Example 1: create a new probe using only the required parameters, to demonstrate defaults.  
+  
+
+CURL Command:  
 {% highlight sh %}
-curl -u myapikey:U -XPOST https://api.copperegg.com/v2/revealuptime/probes.json -d 'probe_desc=newsite&probe_dest=http://mynewsite.com&type=GET'
+curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealuptime/probes.json -d 'probe_desc=MyWebsite&probe_dest=http://mywebsite.com&type=GET'
 {% endhighlight %}
+  
 
 CURL Response:
 
-Response is JSON with a probe structure:
+Response is a JSON Probe hash:  
 
 {% highlight javascript %}
 {
   "id":"50203ddf35d58d034500000f",
   "alert_def_id":"",
-  "probe_desc":"newsite",
-  "probe_dest":"http:/mynewsite.com",
+  "probe_desc":"MyWebsite",
+  "probe_dest":"http:/mywebsite.com",
   "probe_data":"",
   "checkcontents":"",
   "contentmatch":"",
@@ -170,25 +181,27 @@ Response is JSON with a probe structure:
   "stations":["dal","tok","nrk","fre","atl","lon"]
 }
 {% endhighlight %}
-
-
-Create Example 2: create a new probe monitored every 15 seconds from London and Tokyo.
+  
+  
+####Create Example 2: create a new probe monitored every 15 seconds from London and Tokyo.  
+  
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U -XPOST https://api.copperegg.com/v2/revealuptime/probes.json -d 'probe_desc=newsite&probe_dest=http://mynewsite.com&type=GET&frequency=15&stations=lon,tok'
+curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealuptime/probes.json -d 'probe_desc=MyWebsite&probe_dest=http://mywebsite.com&type=GET&frequency=15&stations=lon,tok'
 {% endhighlight %}
+  
 
-CURL Response:
-
-Response is JSON with a new probe structure:
+CURL Response:  
+  
+Response is a JSON a Probe hash:  
 
 {% highlight javascript %}
 {
   "id":"50203ddf35d58d034500000f",
   "alert_def_id":"",
-  "probe_desc":"newsite",
-  "probe_dest":"http:/mynewsite.com",
+  "probe_desc":"MyWebsite",
+  "probe_dest":"http:/mywebsite.com",
   "probe_data":"",
   "checkcontents":"",
   "contentmatch":"",
@@ -209,20 +222,18 @@ Update
 ------
 Update an existing RevealUptime probe.
 
-Required parameters:
-* probe_desc  ... a short text identifier of your choice
-* probe_dest  ... the URL to probe
-* type  ......... GET or POST probe
-* probe_id  ..... as part of the path
+Required parameters:    
+    same as described for :create
 
-Optional parameters:  ... same as described for :create
+Optional parameters:  
+    same as described for :create
 
 
-Example: change checking frequency of the probe created above to every 60 seconds.
+####Update Example: change checking frequency of the probe created above to every 60 seconds.  (where PROBEID = 50203ddf35d58d034500000f)
 
 CURL Command:
 {% highlight sh %}
-curl -u myapikey:U -XPUT https://api.copperegg.com/v2/revealuptime/probes/50203ddf35d58d034500000f.json  -d 'probe_desc=newsite&probe_dest=http://mynewsite.com&type=GET&frequency=60'
+curl -u APIKEY:U -XPUT https://api.copperegg.com/v2/revealuptime/probes/PROBEID.json  -d 'probe_desc=MyWebsite&probe_dest=http://mywebsite.com&type=GET&frequency=60'
 {% endhighlight %}
 
 CURL Response:
@@ -233,8 +244,8 @@ Response is JSON with the updated probe structure:
 {
   "id":"50203ddf35d58d034500000f",
   "alert_def_id":"",
-  "probe_desc":"newsite",
-  "probe_dest":"http:/mynewsite.com",
+  "probe_desc":"MyWebsite",
+  "probe_dest":"http:/mywebsite.com",
   "probe_data":"",
   "checkcontents":"",
   "contentmatch":"",
@@ -243,7 +254,7 @@ Response is JSON with the updated probe structure:
   "retries":1,
   "type":"GET",
   "created_at":1344290271,
-  "updated_at":1344290271,
+  "updated_at":1344293871,
   "state":"enabled",
   "tags":[],
   "stations":["lon","tok"]
@@ -257,11 +268,11 @@ Remove the specified probe.
 
 Required params:  ... probe_id as part of the path
 
-Example: remove the probe created above.
+####Destroy Example: remove the probe created above. (where PROBEID = 50203ddf35d58d034500000f)
 
 CURL Command:
 {% highlight sh %}
-curl  -u myapikey:U -XDELETE  https://api.copperegg.com/v2/revealuptime/probes/50203ddf35d58d034500000f.json
+curl  -u APIKEY:U -XDELETE  https://api.copperegg.com/v2/revealuptime/probes/PROBEID.json
 {% endhighlight %}
 
 CURL Response:
@@ -273,6 +284,4 @@ Response is Status 200, empty JSON:
 
 }
 {% endhighlight %}
-
-
 
