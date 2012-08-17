@@ -81,23 +81,23 @@ Response is a JSON array of all non-deleted issues. In this example, there are t
     "annotation_id":"",
     "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
   }
-]
-{% endhighlight %}
-
-
+]  
+{% endhighlight %}  
+  
+  
 Show
 ----
-Show in-depth information about a single issue.
-
-Required Parameters: the id of the issue of interest.
-
+Show in-depth information about a single issue.  
+  
+Required Parameters: the id of the issue of interest.  
+  
 CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U https://api.copperegg.com/v2/alerts/issues/ISSUEID.json
 {% endhighlight %}
 
-CURL Response:
-
+CURL Response:  
+  
 Response is a JSON hash containing details of the specified issue; in this case, id 188:
 {% highlight javascript %}
 {
@@ -132,7 +132,6 @@ Response is a JSON hash containing details of the specified issue; in this case,
   "annotation_id":"",
   "obj_idv":"d16b38d742a8ada6ccc7b8b33d5eb7dd|"
 }
-
 {% endhighlight %}
 
 
@@ -249,21 +248,21 @@ The JSON-formatted Issue hash has the following structure:
     Time and Date when notified, or 0. UTC -> unix timestamp
 
 * "ignore_until":1344631408
-    CopperEgg Internal use. 
+    CopperEgg internal use. 
 
 * "annotation_id":""
     The id of an annotation created by the same alert as this issue, or null.
 
 * "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
-    CopperEgg Internal use.     
+    CopperEgg internal use.     
 
 
 ###Definition of key:value pairs in a Website Issue hash:
-The keys are the same as for the System Issue. The difference between the two hashes can be found in the values of the following key:value pairs:
-
-
-* "short_msg":"MyWebsite: Slow Response Time (Response Time 110 ms >= 40.0 ms)"
-    This string is a human-readable description of the website alert that triggered the creation of this issue.
+The keys are the same as for the System Issue. The difference between the two hashes can be found in the values of the following key:value pairs:  
+  
+  
+* "short_msg":"MyWebsite: Slow Response Time (Response Time 110 ms >= 40.0 ms)"  
+    This string is a human-readable description of the website alert that triggered the creation of this issue.  
           
 * "attrs":{
     "label":"my_website", 
@@ -271,9 +270,9 @@ The keys are the same as for the System Issue. The difference between the two ha
     "destination":"http://mywebsite.com",
     "frequency","60",
     "type","GET"
-  }
-  A hash containing information pertinent to this issue. The Additional Information provided for website issues is of course different than that for system issues.
- 
+  }  
+  A hash containing information pertinent to this issue. The Additional Information provided for website issues is of course different than that for system issues.  
+  
 * "type":"ce_revealuptime"   
     Type of issue, "ce_revealuptime" indicating a website (AKA probe) issue.  
 

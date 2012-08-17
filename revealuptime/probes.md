@@ -6,9 +6,9 @@ title: RevealUptime - Probes
 Overview
 --------
 
-Each of the API commands described here relate to the set of all probes that have been created at your site.
-
-Each probe is completely described by a Probe hash. The key-value pairs within this hash are described in detail in the Create section.
+Each of the API commands described here relate to the set of all probes that have been created at your site.    
+  
+Each probe is completely described by a Probe hash. The key-value pairs within this hash are described in detail in the Create section.  
 
 
 
@@ -23,7 +23,7 @@ curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/probes.json
 
 CURL Response:  
 
-Response is a JSON array of probe hashes.
+Response is a JSON array of Probe hashes.
 
 {% highlight javascript %}
 [
@@ -71,8 +71,11 @@ Show
 ----
 Show in-depth information about a single RevealUptime probe.  
 
-Required parameter ... probe id as part of the path.
-
+###Required parameters   
+  
+* You must include the PROBEID URL as part of the path.  
+  
+  
 CURL Command:  
 {% highlight sh %}
 curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/probes/PROBEID.json
@@ -222,11 +225,15 @@ Update
 ------
 Update an existing RevealUptime probe.
 
-Required parameters:    
-    same as described for :create
+####Required parameters    
+    
+* same as described for :create  
+  
+  
+####Optional parameters   
+  
+* same as described for :create  
 
-Optional parameters:  
-    same as described for :create
 
 
 ####Update Example: change checking frequency of the probe created above to every 60 seconds.  (where PROBEID = 50203ddf35d58d034500000f)

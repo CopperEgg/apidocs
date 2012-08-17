@@ -10,17 +10,25 @@ The API call for obtaining samples has a fair amount of detail, unlike many of t
   
   
   
-###Parameters:  
-* ids (required) => At least one probe id must be specified. Up to 20 probe ids can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”  
-
-* starttime =>  An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
-
-* endtime => An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
-
-* keys => A list of keys you want to include (see "key reference").  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"  
-
-* sample_size => Override the default sample size that is determined by the
-starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are 15 and 60.  
+###Required Parameters:  
+    
+* ids  
+    At least one probe id must be specified. Up to 20 probe ids can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”  
+    
+  
+###Optional Parameters:  
+  
+* starttime  
+    An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
+  
+* endtime  
+    An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
+  
+* keys  
+    A list of keys you want to include (see "key reference").  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"  
+  
+* sample_size  
+Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are 15 and 60.  
   
   
       
@@ -36,7 +44,7 @@ state_string          ss, l_ss
 {% endhighlight %}
 Note:
 * the prefacing ‘l_’ means ‘latest’; return most recent sample data.
-* the prefacing ‘s_’ means 'stations'; return all individual station data.
+* the prefacing ‘s_’ means 'separated'; return data from individual components  
   
   
     
@@ -52,9 +60,7 @@ probe_id              'id'
 uptime                'u'
 status codes          's'  
 {% endhighlight %}  
-    
-    
-    
+        
     
 Example 1
 ---------  

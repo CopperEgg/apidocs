@@ -99,10 +99,10 @@ You must include a string describing the alert (defn_desc), the type of the aler
    
 * defn_desc  
     Your short text description of the alert (string); e.g., "defn_desc":"MyAlert".  
-
+  
 * type  
-    A string that may be "ce_revealcloud" (system alert), or "ce_revealuptime" (website alert); e.g., "type":"ce_revealcloud". 
-
+    A string that may be "ce_revealcloud" (system alert), or "ce_revealuptime" (website alert); e.g., "type":"ce_revealcloud".  
+  
 * comparison parameters  
   Refer to 'Specifying Comparison parameters' for the following parameters:     
   * comp_func  
