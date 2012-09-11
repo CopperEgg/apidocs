@@ -139,10 +139,10 @@ You must include a string describing the probe, the type of the probe, (GET or P
     Frequency of probing; if not specified, the default of 60 seconds will be used; may be set to 15 or 60 (number). NOTE: 'frequency' is a misnomer ... you are actually specifying the probe interval, or period in seconds. A 15 sec period means a probe frequency of 4 times/minute; 60 sec period means 1 probe/minute.  
 
 * timeout       
-    GET or POST request timout, in milliseconds; if not specified, will defaut to 10000 ms, or 10 seconds.  
+    GET or POST request time-out, in milliseconds; if not specified, will default to 10000 ms, or 10 seconds.  
 
 * retries
-    Number of times to retry the opertion; if not specified, defaults to 1.
+    Number of times to retry the operation; if not specified, defaults to 1.
 
 * tags 
     Tags to apply to this probe; null: no tags will be applied.  
@@ -269,13 +269,13 @@ Response is JSON with the updated probe structure:
 {% endhighlight %}
 
 
-Destroy
+Remove
 -------
 Remove the specified probe.
 
 Required params:  ... probe_id as part of the path
 
-####Destroy Example: remove the probe created above. (where PROBEID = 50203ddf35d58d034500000f)
+####Remove Example: remove the probe created above. (where PROBEID = 50203ddf35d58d034500000f)
 
 CURL Command:
 {% highlight sh %}
@@ -287,8 +287,6 @@ CURL Response:
 Response is Status 200, empty JSON:
 
 {% highlight javascript %}
-{
-
-}
+removed
 {% endhighlight %}
 

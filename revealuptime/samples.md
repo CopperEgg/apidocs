@@ -75,7 +75,7 @@ CURL Response:
 
 Response is JSON with an array of probe sample data:  
 
-{% highlight javascript %}
+{% highlight sh %}
 [
   {
     "_ts" : 1344195720,
@@ -139,7 +139,7 @@ CURL Response:
 
 Response is JSON with a 2-element array of probe sample data, in this case, with 60 second data:
 
-{% highlight javascript %}
+{% highlight sh %}
 [
   {
     "a":{
@@ -223,7 +223,7 @@ CURL Response:
 
 Response is JSON with an array of probe sample data:
 
-{% highlight javascript %}
+{% highlight sh %}
 [
   {
     "a":{
@@ -284,7 +284,7 @@ CURL Response:
 
 Response is JSON with an array of probe sample data:
 
-{% highlight javascript %}
+{% highlight sh %}
 [
   {
     "a":{
@@ -336,7 +336,7 @@ CURL Response:
 
 Response is JSON with an array of probe sample data:
 
-{% highlight javascript %}
+{% highlight sh %}
 [
   {
     "a":{
@@ -388,7 +388,7 @@ CURL Response:
 
 Response is JSON with an array of probe sample data:
 
-{% highlight javascript %}
+{% highlight sh %}
 [
   {
     "a":{

@@ -24,10 +24,10 @@ CURL Response:
   
 Response is a JSON array of System hashes.  
   
-{% highlight javascript %}
+{% highlight sh %}
 [
   {
-    "a": {                        # baked attributes
+    "a": {                      # baked attributes
       "p": 1345146730,          # last_updated (timestamp)
       "c": 1341108555,          # created_at (timestamp)
       "h": "1.0",               # health index 0..1
@@ -55,22 +55,26 @@ Response is a JSON array of System hashes.
 {% endhighlight %}
   
   
-Show  
-----
-Show in-depth information about a single system.  
-  
-###Required parameters  
-  
-* At least one system uuid. In the following example, the UUID spcified is ac1f5ef85c1177ef97596f334f877370. (see above)
+Remove
+-------
+Remove the specified system.
 
-CURL Command:  
+Required params:  ... uuid as part of the path
+
+####Remove Example: remove the system above, with UUID = ac1f5ef85c1177ef97596f334f877370
+
+CURL Command:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealcloud/systems.json?uuids=UUID  
+curl  -u APIKEY:U -XDELETE  https://api.copperegg.com/v2/revealcloud/uuids/ac1f5ef85c1177ef97596f334f877370.json -X DELETE
 {% endhighlight %}
 
 CURL Response:
 
-Response is JSON with an single System hash, containing all details of the specified system. The result will be the same as above.
+Response is Status 200, "removed"
+
+{% highlight sh %}
+removed
+{% endhighlight %}
 
  
 

@@ -15,35 +15,30 @@ CURL Response:
 
 Response is JSON with an array of annotations.
 
-{% highlight javascript %}
+{% highlight sh %}
 [
-    {
-        "id": 2,
-        "note": "Annotations are sweet!",
-        "starttime": 1341515302,
-        "endtime": 1341517702,
-        "label": null,
-        "tags": [
-            "www"
-        ],
-        "created_by": "devguy@example.com",
-        "created_at": 1341518331,
-        "updated_at": 1341518331
-    },
-    {
-        "id": 5,
-        "note": "Deploy to master",
-        "starttime": 1342119638,
-        "endtime": 1342119838,
-        "label": null,
-        "tags": [
-            "deploy",
-            "www"
-        ],
-        "created_by": "build@example.com",
-        "created_at": 1342123890,
-        "updated_at": 1342123890
-    }
+  {
+    "id": 2,
+    "note": "Annotations are sweet!",
+    "starttime": 1341515302,
+    "endtime": 1341517702,
+    "label": null,
+    "tags": ["www"],
+    "created_by": "devguy@example.com",
+    "created_at": 1341518331,
+    "updated_at": 1341518331
+  },
+  {
+    "id": 5,
+    "note": "Deploy to master",
+    "starttime": 1342119638,
+    "endtime": 1342119838,
+    "label": null,
+    "tags": ["deploy","www"],
+    "created_by": "build@example.com",
+    "created_at": 1342123890,
+    "updated_at": 1342123890
+  }
 ]
 {% endhighlight %}
 
@@ -59,19 +54,17 @@ CURL Response:
 
 Response is JSON with details of the requested annotation:
 
-{% highlight javascript %}
+{% highlight sh %}
 {
-    "id": 2,
-    "note": "Annotations are sweet!",
-    "starttime": 1341515302,
-    "endtime": 1341517702,
-    "label": null,
-    "tags": [
-        "www"
-    ],
-    "created_by": "devguy@example.com",
-    "created_at": 1341518331,
-    "updated_at": 1341518331
+  "id": 2,
+  "note": "Annotations are sweet!",
+  "starttime": 1341515302,
+  "endtime": 1341517702,
+  "label": null,
+  "tags": ["www"],
+  "created_by": "devguy@example.com",
+  "created_at": 1341518331,
+  "updated_at": 1341518331
 }
 {% endhighlight %}
 
@@ -96,16 +89,14 @@ CURL Response:
 
 Response is JSON with details of the requested annotation:
 
-{% highlight javascript %}
+{% highlight sh %}
 {
   "id": 7,
   "note": "API",
   "starttime": 1342119638,
   "endtime": 1342119950,
   "label": null,
-  "tags": [
-
-  ],
+  "tags": [],
   "created_by": "devguy@sample.com",
   "created_at": 1342126787,
   "updated_at": 1342126787
@@ -125,16 +116,14 @@ CURL Response:
 
 Response is JSON with details of the requested annotation:
 
-{% highlight javascript %}
+{% highlight sh %}
 {
   "id": 7,
   "note": "API",
   "starttime": 1342119638,
   "endtime": 1342119990,
   "label": null,
-  "tags": [
-
-  ],
+  "tags": [],
   "created_by": "devguy@sample.com",
   "created_at": 1342126787,
   "updated_at": 1342126978
@@ -142,7 +131,7 @@ Response is JSON with details of the requested annotation:
 {% endhighlight %}
 
 
-Destroy
+Remove
 -------
 
 CURL Command:
@@ -155,7 +144,7 @@ CURL Response:
 
 Response is Status 200, empty JSON:
 
-{% highlight javascript %}
+{% highlight sh %}
 {
 
 }
