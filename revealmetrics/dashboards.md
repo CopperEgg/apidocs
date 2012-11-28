@@ -202,9 +202,9 @@ Response is a JSON-formatted Dashboard hash.
       "0":{
         "type":"metric",
         "style":"value",
-        "match":"tag",
+        "match":"select",
         "metric":["ce_probe_summary_v1","6","health"],
-        "match_param":"cloud"
+        "match_param":PROBE_ID
       }
     },
     "order":["0"]
@@ -246,16 +246,16 @@ Response is a JSON-formatted Dashboard hash.
       "0":{
         "type":"metric",
         "style":"value",
-        "match":"tag",
+        "match":"select",
         "metric":["ce_probe_summary_v1","6","health"],
-        "match_param":"cloud"
+        "match_param":PROBE_ID1
       },
       "1":{
         "type":"metric",
         "style":"value",
         "match":"tag",
         "metric":["ce_probe_summary_v1","6","health"],
-        "match_param":"onprem"
+        "match_param":PROBE_ID2
       }
     },
     "order":["0","1"]

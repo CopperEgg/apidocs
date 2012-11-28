@@ -81,7 +81,7 @@ None.
 
 CURL Command:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com//v2/revealmetrics/metric_groups.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
 {% endhighlight %}
 
 CURL Response:
@@ -90,7 +90,7 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
 {% highlight sh %}
 [
   {
-    "id":"redis",               # unique identifier assigned by RevealMetrics
+    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by RevealMetrics
     "name":"redis",             # user-defined metric group name
     "idp":"custom|",            # internal use only
     "label":"Redis Metrics",    # metric group label; optionally may be user-defined
@@ -98,7 +98,7 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
     "metrics":[                 # the array of metrics in this group
       {
         "type":"ce_counter",    # metric types are defined in the Create section
-        "name":"uptime",        # user-defined unique metric name
+        "name":"uptime",        # user-defined unique METRICNAME
         "position":0,           # index of this element in the metrics array, assigned by RevealMetrics
         "label":"Uptime",       # metric label that will appear in the UI and reports; optionally may be user-defined
         "unit":"Seconds"        # the units of this metric
@@ -156,7 +156,7 @@ None.
 
 CURL Command:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com//v2/revealmetrics/metric_groups/METRIC_GROUP_ID.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups/METRIC_GROUP_ID.json
 {% endhighlight %}
 
 CURL Response:
@@ -165,7 +165,7 @@ Response is single Metric Group hash. In this example, the metric group is the s
 {% highlight sh %}
 [
   {
-    "id":"redis",               # unique identifier assigned by RevealMetrics
+    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by RevealMetrics
     "name":"redis",             # user-defined metric group name
     "idp":"custom|",            # internal use only
     "label":"Redis Metrics",    # metric group label; optionally may be user-defined
@@ -258,13 +258,13 @@ Now do an Index command, and see what we've created:
 
 CURL Command:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com//v2/revealmetrics/metric_groups.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
 {% endhighlight %}
 
 In the response you will find:
 {% highlight sh %}
   {
-    "id":"myredis",         # the id assigned
+    "id":"myredis",         # METRICGROUP_ID, a unique identifier assigned by RevealMetrics
     "name":"myredis",       # the name string we passed-in
     "idp":"custom|",
     "label":"Myredis",      # the default label created by RevealMetrics
@@ -310,7 +310,7 @@ Now do an Index command, and see what we've created:
 
 CURL Command:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com//v2/revealmetrics/metric_groups.json
+curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
 {% endhighlight %}
 
 In the response you will find:
