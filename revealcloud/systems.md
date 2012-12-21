@@ -83,7 +83,7 @@ Hide the specified system.
 
 Required params:  ... uuid as part of the path
 
-####Remove Example: hide the system above, with UUID = ac1f5ef85c1177ef97596f334f877370
+####Hide Example: hide the system above, with UUID = ac1f5ef85c1177ef97596f334f877370
 
 CURL Command:
 {% highlight sh %}
