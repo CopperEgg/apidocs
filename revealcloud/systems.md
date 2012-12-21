@@ -77,10 +77,26 @@ removed
 {% endhighlight %}
 
  
+Hide
+-------
+Hide the specified system.
 
+Required params:  ... uuid as part of the path
 
+####Remove Example: hide the system above, with UUID = ac1f5ef85c1177ef97596f334f877370
 
+CURL Command:
+{% highlight sh %}
+curl  -u APIKEY:U -XPOST  https://api.copperegg.com/v2/revealcloud/uuids/ac1f5ef85c1177ef97596f334f877370/hide.json
+{% endhighlight %}
 
+CURL Response:
+
+Response is Status 200, "hidden"
+
+{% highlight sh %}
+hidden
+{% endhighlight %}
 
 
 
