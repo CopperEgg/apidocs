@@ -1,27 +1,27 @@
 ---
 layout: default
-title: RevealUptime - Probes
+title:  Probes
 ---
 
 Overview
 --------
 
-Each of the API commands described here relate to the set of all probes that have been created at your site.    
-  
-Each probe is completely described by a Probe hash. The key-value pairs within this hash are described in detail in the Create section.  
+Each of the API commands described here relate to the set of all probes that have been created at your site.
+
+Each probe is completely described by a Probe hash. The key-value pairs within this hash are described in detail in the Create section.
 
 
 
 Index
 -----
-List all defined RevealUptime probes.
+List all monitored Probes.
 
-CURL Command:  
+CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/probes.json
 {% endhighlight %}
 
-CURL Response:  
+CURL Response:
 
 Response is a JSON array of Probe hashes.
 
@@ -45,7 +45,7 @@ Response is a JSON array of Probe hashes.
     "tags" : [ "atlanta_group" ],
     "stations" : [ "atl" ]
   },
-  { 
+  {
     "id" : "5004a81187517319f4000238",
     "alert_def_id" : "",
     "probe_desc" : "Lowres probe",
@@ -69,14 +69,14 @@ Response is a JSON array of Probe hashes.
 
 Show
 ----
-Show in-depth information about a single RevealUptime probe.  
+Show in-depth information about a single Probe.
 
-###Required parameters   
-  
-* You must include the PROBEID URL as part of the path.  
-  
-  
-CURL Command:  
+###Required parameters
+
+* You must include the PROBEID URL as part of the path.
+
+
+CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/probes/PROBEID.json
 {% endhighlight %}
@@ -109,60 +109,60 @@ Response is JSON with an single probe hash, containing all details of the specif
 
 Create
 ------
-Create a new RevealUptime probe.  
+Create a new Probe.
 
-####Required parameters:  
+####Required parameters:
 You must include a string describing the probe, the type of the probe, (GET or POST) and the URL to probe.
-   
-* probe_desc  
-    Your short text description of the probe (string); e.g., "probe_desc":"MyWebsite".  
 
-* type  
-    A string that may be "GET" or "POST" (website alert); e.g., "type":"GET". 
+* probe_desc
+    Your short text description of the probe (string); e.g., "probe_desc":"MyWebsite".
 
-* probe_dest   
-    The URL to probe, formatted as a string; e.g., "probe_dest":"http://mywebsite.com"   
+* type
+    A string that may be "GET" or "POST" (website alert); e.g., "type":"GET".
+
+* probe_dest
+    The URL to probe, formatted as a string; e.g., "probe_dest":"http://mywebsite.com"
 
 
-####Optional parameters:  
+####Optional parameters:
 
-* check_contents  
-    A string parameter used to enable / disable GET content-checking, and to specify the type of content check made. check_contents may have one of three values:      
-  * null: no content check is made  
-  * "match": true if the string in 'contentmatch' is found  
-  * "notmatch": true if the string in 'contentmatch' is NOT found  
+* check_contents
+    A string parameter used to enable / disable GET content-checking, and to specify the type of content check made. check_contents may have one of three values:
+  * null: no content check is made
+  * "match": true if the string in 'contentmatch' is found
+  * "notmatch": true if the string in 'contentmatch' is NOT found
 
-* contentmatch  
-    The string used for comparison if 'check_contents' is not null.  
+* contentmatch
+    The string used for comparison if 'check_contents' is not null.
 
-* frequency     
-    Frequency of probing; if not specified, the default of 60 seconds will be used; may be set to 15 or 60 (number). NOTE: 'frequency' is a misnomer ... you are actually specifying the probe interval, or period in seconds. A 15 sec period means a probe frequency of 4 times/minute; 60 sec period means 1 probe/minute.  
+* frequency
+    Frequency of probing; if not specified, the default of 60 seconds will be used; may be set to 15 or 60 (number). NOTE: 'frequency' is a misnomer ... you are actually specifying the probe interval, or period in seconds. A 15 sec period means a probe frequency of 4 times/minute; 60 sec period means 1 probe/minute.
 
-* timeout       
-    GET or POST request time-out, in milliseconds; if not specified, will default to 10000 ms, or 10 seconds.  
+* timeout
+    GET or POST request time-out, in milliseconds; if not specified, will default to 10000 ms, or 10 seconds.
 
 * retries
     Number of times to retry the operation; if not specified, defaults to 1.
 
-* tags 
-    Tags to apply to this probe; null: no tags will be applied.  
+* tags
+    Tags to apply to this probe; null: no tags will be applied.
 
 * stations
-    Specify which stations will probe the destination URL; if not specified, all stations will probe.  
-  
+    Specify which stations will probe the destination URL; if not specified, all stations will probe.
 
-####Create Example 1: create a new probe using only the required parameters, to demonstrate defaults.  
-  
 
-CURL Command:  
+####Create Example 1: create a new probe using only the required parameters, to demonstrate defaults.
+
+
+CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealuptime/probes.json -d 'probe_desc=MyWebsite&probe_dest=http://mywebsite.com&type=GET'
 {% endhighlight %}
-  
+
 
 CURL Response:
 
-Response is a JSON Probe hash:  
+Response is a JSON Probe hash:
 
 {% highlight javascript %}
 {
@@ -184,20 +184,20 @@ Response is a JSON Probe hash:
   "stations":["dal","tok","nrk","fre","atl","lon"]
 }
 {% endhighlight %}
-  
-  
-####Create Example 2: create a new probe monitored every 15 seconds from London and Tokyo.  
-  
+
+
+####Create Example 2: create a new probe monitored every 15 seconds from London and Tokyo.
+
 
 CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealuptime/probes.json -d 'probe_desc=MyWebsite&probe_dest=http://mywebsite.com&type=GET&frequency=15&stations=lon,tok'
 {% endhighlight %}
-  
 
-CURL Response:  
-  
-Response is a JSON a Probe hash:  
+
+CURL Response:
+
+Response is a JSON a Probe hash:
 
 {% highlight javascript %}
 {
@@ -223,16 +223,16 @@ Response is a JSON a Probe hash:
 
 Update
 ------
-Update an existing RevealUptime probe.
+Update an existing Probe.
 
-####Required parameters    
-    
-* same as described for :create  
-  
-  
-####Optional parameters   
-  
-* same as described for :create  
+####Required parameters
+
+* same as described for :create
+
+
+####Optional parameters
+
+* same as described for :create
 
 
 

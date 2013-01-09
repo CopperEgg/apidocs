@@ -1,6 +1,6 @@
 ---
 layout: default
-title: RevealEngine - Annotations
+title: Annotations
 ---
 
 Index

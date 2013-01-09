@@ -1,40 +1,40 @@
 ---
 layout: default
-title: RevealCloud - Samples
+title: Systems - Samples
 ---
 
 
 
 Overview
 --------
-The API call for obtaining samples has a fair amount of detail, unlike many of the other CopperEgg API calls. The calling parameters and abbreviations that appear in the data structures are documented at the outset. The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys and abbreviations when necessary, once you have gotten a feel for using the API.  
-  
-  
-###Required Parameters:  
-  
-  
-* uuids  
-    You must specify at least one system uuid. Up to 20 uuids can be specified in each request. Multiple uuids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “uuids\[ \]”  
-      
-  
+The API call for obtaining samples has a fair amount of detail, unlike many of the other CopperEgg API calls. The calling parameters and abbreviations that appear in the data structures are documented at the outset. The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys and abbreviations when necessary, once you have gotten a feel for using the API.
 
-###Optional Parameters:  
-  
-* starttime  
-    An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)  
-  
-* endtime  
-    An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)  
-  
-* keys  
-    A list of keys you want to include (see "key reference"). This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_u,l_r,l_b,l_l,m,s,c,i,d".  
-  
-* sample_size  
-    Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are: 5, 15, 60, 300, 900, 3600, 21600, 86400.  
-  
-  
-          
-###RevealCloud Keys
+
+###Required Parameters:
+
+
+* uuids
+    You must specify at least one system uuid. Up to 20 uuids can be specified in each request. Multiple uuids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “uuids\[ \]”
+
+
+
+###Optional Parameters:
+
+* starttime
+    An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)
+
+* endtime
+    An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)
+
+* keys
+    A list of keys you want to include (see "key reference"). This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_u,l_r,l_b,l_l,m,s,c,i,d".
+
+* sample_size
+    Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are: 5, 15, 60, 300, 900, 3600, 21600, 86400.
+
+
+
+###Systems Sample Keys
 {% highlight sh %}
 key name           valid combinations
 uptime                   l_u
@@ -52,33 +52,33 @@ processes             p, l_p
 {% endhighlight %}
 Note:
 * the prefacing ‘l_’ means ‘latest’; return most recent sample data.
-* the prefacing ‘s_’ means 'separated'; return data from individual components 
-   
+* the prefacing ‘s_’ means 'separated'; return data from individual components
 
-    
-###Other RevealCloud Abbreviations
+
+
+###Other Systems Sample Abbreviations
 {% highlight sh %}
 term               abbreviation
 timestamp             '_ts'
 attributes            'a'
 system uuid           'uuid'
-{% endhighlight %}  
-        
+{% endhighlight %}
+
 
-    
-Example 1  
----------  
+
+Example 1
+---------
 Obtain samples from one system, specifying only the UUID. This will demonstrate the default set of data returned when no keys are included in the command, and he starttime and endtime are not specified.
-As noted above, the default keys are "l_u,l_r,l_b,l_l,m,s,c,i,d".  
+As noted above, the default keys are "l_u,l_r,l_b,l_l,m,s,c,i,d".
 
 CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U "http://api.copperegg.com/v2/revealcloud/samples.json?uuids=UUID"
 {% endhighlight %}
 
-CURL Response:  
+CURL Response:
 
-Response is a JSON array of default system Sample hash.   
+Response is a JSON array of default System Sample hash.
 
 {% highlight sh %}
 [
@@ -90,51 +90,51 @@ Response is a JSON array of default system Sample hash.
     "l_u":62813,                                  # last uptime (in seconds)
     "l_r":1,                                      # last number of running processes
     "l_b":0,                                      # last number of blocked processes
-    "l_l":[1.04,1.68,1.79],                       # last load (short, mid, long)  
+    "l_l":[1.04,1.68,1.79],                       # last load (short, mid, long)
     "m":{                                         # memory samples indexed by sample timestamp, (buffer MB, cached MB, free mb, used MB)
       "0":[10.64,17711.86,5493.46,37490.69],
       "5":[10.64,17703.81,5490.33,37501.88],
-      "10":[10.65,17716.04,5471.98,37507.98],  
-                    .... ,  
-      "300":[11.0,17777.67,5170.44,37747.55],  
+      "10":[10.65,17716.04,5471.98,37507.98],
+                    .... ,
+      "300":[11.0,17777.67,5170.44,37747.55],
       "305":[11.01,17804.17,5123.29,37768.18]      # last memory sample
     },
     "s":{                                          # swap samples indexed by sample timestamp, (swap used MB, swap free MB)
       "0":[0.0,0.0],
-      "5":[0.0,0.0],  
-          .... ,  
-      "300":[0.0,0.0],  
+      "5":[0.0,0.0],
+          .... ,
+      "300":[0.0,0.0],
       "305":[0.0,0.0]                              # last swap sample
     },
-    "c":{                                          # last aggregated cpu sample in % (active, iowait, user, nice, system, irq, softirq, steal, guest) 
+    "c":{                                          # last aggregated cpu sample in % (active, iowait, user, nice, system, irq, softirq, steal, guest)
       "0":[0.0721,0.0001,0.0241,0.0,0.0393,0.0,0.0033,0.0054,0.0],    # note that 1-active = idle.  everything else is the breakdown of active.
       "5":[0.2616,0.0011,0.1671,0.0,0.0786,0.0,0.0046,0.0101,0.0],    # also note, these may not exactly add up due to rounding error
-                    .... ,  
+                    .... ,
       "300":[0.1301,0.0001,0.0665,0.0,0.0526,0.0,0.004,0.0069,0.0],
       "305":[0.2106,0.0013,0.1236,0.0,0.0723,0.0,0.0054,0.0081,0.0]   # last cpu sample
     },
     "i":{                                          # aggregated network interface samples indexed by sample timestamp,
       "0":[145110.824,171367.119],                 # (rx KB/s average, tx KB/s average)
       "5":[145122.128,171381.055],
-                .... ,  
+                .... ,
       "300":[145801.064,172177.116],
       "305":[145813.101,172190.545]                # last network interface sample
     },
     "d":{                                          # aggregated diskio samples indexed by sample timestamp
-      "0":[3686,3665510],    
+      "0":[3686,3665510],
       "5":[124518,19208192],
-               .... ,  
+               .... ,
       "300":[3276,8188723],
       "305":[6553,10753228]                        # last diskio sample
     }
   }
 ]
-{% endhighlight %}  
+{% endhighlight %}
 
-  
-Example 2  
+
+Example 2
 ---------
-Obtain samples from a single system (with UUID 15e30940c372590c25df341af1fb7eed, same as above), specifying sample_size of 60 seconds. Default keys.  
+Obtain samples from a single system (with UUID 15e30940c372590c25df341af1fb7eed, same as above), specifying sample_size of 60 seconds. Default keys.
 
 CURL Command:
 {% highlight sh %}
@@ -143,7 +143,7 @@ curl -u APIKEY:U "http://api.copperegg.com/v2/revealcloud/samples.json?sample_si
 
 CURL Response:
 
-Response is a JSON array of system Sample hashes, same as default except for 60 second samples.   
+Response is a JSON array of system Sample hashes, same as default except for 60 second samples.
 
 {% highlight sh %}
 [
@@ -188,23 +188,23 @@ Response is a JSON array of system Sample hashes, same as default except for 60 
     }
   }
 ]
-{% endhighlight %}  
+{% endhighlight %}
 
-  
+
 Example 3
 ---------
-Obtain samples from a single system (with UUID 15e30940c372590c25df341af1fb7eed, same as above), specifying sample_size of 60 seconds, and separate network interface metrics. 
-  
+Obtain samples from a single system (with UUID 15e30940c372590c25df341af1fb7eed, same as above), specifying sample_size of 60 seconds, and separate network interface metrics.
+
 
 CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U "http://api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=UUID&keys=s_i"
 {% endhighlight %}
-  
 
-CURL Response:  
-  
-Response is a JSON array of Sample hashes, one for each network interface. Notice that as specified, the sample sizes returned at 60 seconds. 
+
+CURL Response:
+
+Response is a JSON array of Sample hashes, one for each network interface. Notice that as specified, the sample sizes returned at 60 seconds.
 
 {% highlight sh %}
 [
@@ -229,27 +229,27 @@ Response is a JSON array of Sample hashes, one for each network interface. Notic
     }
   }
 ]
-{% endhighlight %}  
+{% endhighlight %}
 
 Example 4
 ---------
 Obtain samples from a single system (with UUID 15e30940c372590c25df341af1fb7eed, same as above), focusing only on processes.
-  
+
 CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U "http://api.copperegg.com/v2/revealcloud/samples.json?uuids=UUID&keys=l_p,l_r,l_b"
 {% endhighlight %}
-  
-The format of the process and user arrays are described below. The examples are from the example below, with escape characters removed.  
+
+The format of the process and user arrays are described below. The examples are from the example below, with escape characters removed.
 
 {% highlight sh %}
-Process array: 
+Process array:
 [
   "bash",       # process name (string, case sensitive)
   null,         # internal use
   53479,        # PID (number)
   "1001",       # UID (number formatted as a string)
-  "S",          # state 
+  "S",          # state
   0,            # CPU % User, this process     (number, range 0 to 1)
   0,            # CPU % System, this process   (number, range 0 to 1)
   0,            # CPU % Total, this process    (number, range 0 to 1)
@@ -257,9 +257,9 @@ Process array:
   27881472,     # Memory Virtual, this process  (number, in bytes)
   9695232,      # Memory Resident, this process (number, in bytes)
   0             # internal use
-]  
-  
-User array: 
+]
+
+User array:
 [
   501,          # UID (number)
   0.051497,     # CPU % User, this user    (number, range 0 to 1)
@@ -267,29 +267,29 @@ User array:
   0.056938,     # CPU % Total, this user   (number, range 0 to 1)
   0,            # internal use
   212672065536, # Memory Virtual, this user  (number, in bytes)
-  4214882304,   # Memory Resident, this user (number, in bytes) 
+  4214882304,   # Memory Resident, this user (number, in bytes)
   0             # internal use
-]  
-  
-  
-Additional notes:  
-* state   
-  The state is given by a sequence of characters, where the first character indicates the run state of the process.  
-The state symbol is passed from the OS, without translation. If a symbol appears that is not included below, please check your OS documentation.  
-  
+]
+
+
+Additional notes:
+* state
+  The state is given by a sequence of characters, where the first character indicates the run state of the process.
+The state symbol is passed from the OS, without translation. If a symbol appears that is not included below, please check your OS documentation.
+
   * I       Marks a process that is idle (sleeping for longer than about 20 seconds).
   * R       Marks a runnable process.
   * S       Marks a process that is sleeping for less than about 20 seconds.
   * T       Marks a stopped process.
   * U       Marks a process in uninterruptible wait.
   * Z       Marks a dead process (a ``zombie'').
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-CURL Response:  
-  
-Response is a JSON array of sample hashes, containing the most recent process data. The response is an array of hashes because more than one uuid may be included in a single command. In this particular example, the returned array contains a single Sample hash.  
-  
+
+CURL Response:
+
+Response is a JSON array of sample hashes, containing the most recent process data. The response is an array of hashes because more than one uuid may be included in a single command. In this particular example, the returned array contains a single Sample hash.
+
 {% highlight sh %}
 [
   {
@@ -331,7 +331,7 @@ Response is a JSON array of sample hashes, containing the most recent process da
   }
 ]
 {% endhighlight %}
-  
-  
+
+
 
 

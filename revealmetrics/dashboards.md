@@ -1,12 +1,12 @@
 ---
 layout: default
-title: RevealMetrics - Dashboards
+title: Custom Metrics - Dashboards
 ---
 
 
 Overview
 --------
-These are the API calls for listing, creating, updating and deleting RevealMetrics Dashboards.
+These are the API calls for listing, creating, updating and deleting Custom Metrics Dashboards.
 
 
 Creating a Dashboard and populating it with Widgets
@@ -15,7 +15,7 @@ Creating a Dashboard and populating it with Widgets
 A Dashboard is specified by creating a Dashboard hash, which contains one or more Widget hashes. We'll start by describing how to specify a widget, then circle back to including them on a dashboard.
 
 A Widget is an object that is characterized by a Widget hash. There a variety of widgets available for you to choose from today, with more on the way. All multi-metric widgets can be used to display one or more metrics. Single-metric widgets display one.
-Also note that today there are 3 widget sizes; let's refer to them as 1x, .5x and 2x. A 1X widget is the size of the widgets used in RevealCloud and RevealUptime dashboards. The .5x widget is sized such that 2 of them fit in the same space as a 1x widget. Likewise, a 2x widget consumes the same amount of space as two 1x widgets. (At CopperEgg, we refer to the 2x as a 'doublewide'.)
+Also note that today there are 3 widget sizes; let's refer to them as 1x, .5x and 2x. A 1X widget is the size of the widgets used in Systems (RevealCloud) and Probes (RevealUptime) dashboards. The .5x widget is sized such that 2 of them fit in the same space as a 1x widget. Likewise, a 2x widget consumes the same amount of space as two 1x widgets. (At CopperEgg, we refer to the 2x as a 'doublewide'.)
 
 A complete widget hash is presented here for your convenience:
 
@@ -65,7 +65,7 @@ For multi-metric widgets, the widget 'match' and 'match_param' keys are used to 
 As you can see in the above Widget Hash, there is a 'metric' key, with a value consisting of a three-element array:
   "metric"=>["ce_probe_summary_v1","6","health"]
 The 3 array elements are [METRICGROUP_ID, METRICGROUP_INDEX, UNIT_STRING]
- * The METRICGROUP_ID is the unique identifier assigned by RevealMetrics for a defined metric group.
+ * The METRICGROUP_ID is the unique identifier assigned by CopperEgg for a defined metric group.
  * The METRICGROUP_INDEX is the value of the 'position' key in the specified metric group.
  * The UNIT_STRING describes the units of this metric, string.
 
@@ -77,11 +77,11 @@ A single-widget Dashboard hash is provided below, for easy reference:
 {% highlight sh %}
 Dashboard Hash
   {
-    "id":80,                      # unique dashboard id assigned by RevealMetrics
+    "id":80,                      # unique dashboard id assigned by CopperEgg
     "name":"SingleProbe",         # the display name of this dashboard, string
     "data":{                      # the widget data hash, containing two key-value pairs
       "widgets":{                 # a hash of widgets,
-        "1":{                     # each hash has a unique, RevealMetrics-provided numeric key
+        "1":{                     # each hash has a unique, CopperEgg-provided numeric key
           "type":"metric",                                        #
           "style":"value",                                        #
           "label":"TestProbe",                                    # a widget hash,as defined above
@@ -100,7 +100,7 @@ Dashboard Hash
 
 Index
 -----
-List all defined RevealMetrics Custom Dashboards.
+List all defined Custom Metrics Custom Dashboards.
 
 ####Required parameters:
 None.
@@ -119,7 +119,7 @@ Response is a JSON array of Dashboard hashes. In this example, there is one dash
 {% highlight sh %}
 [
   {
-    "id":61,                                              # unique dashboard ID, assigned by RevealMetrics
+    "id":61,                                              # unique dashboard ID, assigned by CopperEgg
     "name":"Service Monitoring",                          # Dashboard name, string
     "data":{                                              # the data hash consists of two key-value pairs, widgets and order
       "widgets":{                                         # array of widgets
@@ -176,7 +176,7 @@ Create a new Dashboard
 
 ####Optional parameters:
 * order array, for laying out the widgets
-  if not included, RevealMetrics will order them automatically.
+  if not included, CopperEgg will order them automatically.
 * label
   if not included, a default label will be created. Be descriptive!!!
 

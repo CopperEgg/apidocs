@@ -1,12 +1,12 @@
 ---
 layout: default
-title: RevealCloud - Tags
+title: Systems - Tags
 ---
 
 
 Index
 -----
-List all defined RevealCloud tags.
+List all monitored Systems tags.
 
 CURL Command:
 {% highlight sh %}
@@ -15,10 +15,10 @@ curl -u APIKEY:U https://api.copperegg.com/v2/revealcloud/tags.json
 
 CURL Response:
 
-Response is JSON with an array of hashes, one hash per RevealCloud tag.
+Response is JSON with an array of hashes, one hash per System tag.
 
 {% highlight sh %}
-[  
+[
   {
     "id":"amazon",
     "uuids":["e0cdba3789d38f412aadec6480c286b7","49d012aea603be267441bd22da4bf803"]
@@ -40,26 +40,26 @@ Response is JSON with an array of hashes, one hash per RevealCloud tag.
     "uuids":["ac1f5ef85c1177ef97596f334f877370"]
   }
 ]
-{% endhighlight %}   
-   
+{% endhighlight %}
+
 In the example above: five tags are returned by the Index command; "App1", "App2", "mac", "local" and "amazon". Note that each tag hash contains a single tag "id", which is the Label for the tag, and an array of "uuids", one for each monitored system with the tag of reference.
-   
-   
-   
+
+
+
 Show
 ----
-Show in-depth information about a single RevealCloud tag.
+Show in-depth information about a single System tag.
 
 Required Parameters: the tag of interest, as part of the path.
 
 CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U https://api.copperegg.com/v2/revealcloud/tags/TAG.json
-{% endhighlight %}   
-    
-CURL Response:   
-   
-Response is JSON with an array of hashes containing details of all systems associated with the specified tag. 
+{% endhighlight %}
+
+CURL Response:
+
+Response is JSON with an array of hashes containing details of all systems associated with the specified tag.
 
 In the example below, the tag "amazon" was provided:
 
@@ -86,7 +86,7 @@ In the example below, the tag "amazon" was provided:
       "hostname":"ip-10-86-210-174",                              # hostname provided by cloud service provider
       "version_checked_at":"2012-09-10 21:39:43 -0500",           # time of last collector version check
       "aws_availability_zone":"us-east-1b",                       # cloud service provider availability zone
-      "uts_version":"#1 SMP Wed Aug 22 03:09:00 UTC 2012",                                    # OS uts version 
+      "uts_version":"#1 SMP Wed Aug 22 03:09:00 UTC 2012",                                    # OS uts version
       "rc_args":"-a api.copperegg.com -k yakCgQewmwKtywGH -P /usr/local/revealcloud/run ",    # command line arguments when collectore was started
       "rc_health_index":"0.93",                                                               # current helath index
       "uts_nodename":"ip-10-86-210-174",                                  # uts node name
@@ -104,7 +104,7 @@ In the example below, the tag "amazon" was provided:
     "state":2,                                # current state of this system hash
     "tags":["App1","amazon"],                 # tags associated with this system
     "id":null,                                # internal use
-    "uuid":null,                              # internal use  
+    "uuid":null,                              # internal use
     "published_rc_version":"v3-43-geefad79",  # RevealCloud version
     "health":0                                # internal use
   },
@@ -226,32 +226,32 @@ In the example below, the tag "amazon" was provided:
     "health":0
   }
 ]
-{% endhighlight %}   
-   
-Note: the results above indicate that the tag 'amazon' is associated with two systems.   
-   
-   
+{% endhighlight %}
+
+Note: the results above indicate that the tag 'amazon' is associated with two systems.
+
+
 Create
 ------
 Add a new tag to one or more defined systems.
 
-Required params:  
-   
-* a tag ( tags may contain a-z, A-Z, 0-9, - and _)  
-   
-* one or more uuids to which the tag will be applied  
-   
-* if specifying more than one uuid, use a comma-separated list  
-   
+Required params:
+
+* a tag ( tags may contain a-z, A-Z, 0-9, - and _)
+
+* one or more uuids to which the tag will be applied
+
+* if specifying more than one uuid, use a comma-separated list
+
 In the following example, a tag labelled "systemtest" will be applied to two existing systems, with uuids of e0cdba3789d38f412aadec6480c286b7 and ac1f5ef85c1177ef97596f334f877370.
-   
+
 CURL Command:
 {% highlight sh %}
 curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealcloud/tags.json -d 'id=systemtest&uuids=e0cdba3789d38f412aadec6480c286b7,ac1f5ef85c1177ef97596f334f877370'
-{% endhighlight %}   
-    
-   
-   
+{% endhighlight %}
+
+
+
 Remove
 -------
 Remove a tag from one system.
@@ -263,24 +263,24 @@ Required params:
 CURL Command:
 {% highlight sh %}
 curl -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealcloud/tags/TAG/UUID.json
-{% endhighlight %}   
-   
+{% endhighlight %}
+
 CURL Response:
 
-Response is Status 200, empty JSON:   
-   
+Response is Status 200, empty JSON:
+
 {% highlight sh %}
 {
 
 }
-{% endhighlight %}   
-   
-   
+{% endhighlight %}
+
+
 In the following example, the tag labelled "amazon" will be removed from one of the two systems, (see the Show example). Specifically, the system with uuid = e0cdba3789d38f412aadec6480c286b7.
-   
-   
+
+
 CURL Command:
 {% highlight sh %}
 curl -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealcloud/tags/amazon/e0cdba3789d38f412aadec6480c286b7.json
-{% endhighlight %}   
-   
+{% endhighlight %}
+

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: RevealCloud - Systems
+title: Systems
 ---
 
 
@@ -13,17 +13,17 @@ Each system is completely described by a System hash, which is essentially the m
 
 Index
 -----
-List all defined RevealCloud systems.  
-  
-CURL Command:  
+List all monitored Systems.
+
+CURL Command:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com//v2/revealcloud/systems.json 
+curl -u APIKEY:U https://api.copperegg.com//v2/revealcloud/systems.json
 {% endhighlight %}
-  
-CURL Response:   
-  
-Response is a JSON array of System hashes.  
-  
+
+CURL Response:
+
+Response is a JSON array of System hashes.
+
 {% highlight sh %}
 [
   {
@@ -38,9 +38,9 @@ Response is a JSON array of System hashes.
       "pv": "v3-43-geefad79",
       "n": "MacBook-Pro",       # hostname
       "t"=>[                    # tags applied to this system
-        "jambalaya", 
+        "jambalaya",
         "alligator"
-      ],        
+      ],
       "us": "[",
       "bs": "1",
       "ls": ",",
@@ -53,8 +53,8 @@ Response is a JSON array of System hashes.
   }
 ]
 {% endhighlight %}
-  
-  
+
+
 Remove
 -------
 Remove the specified system.
@@ -76,7 +76,7 @@ Response is Status 200, "removed"
 removed
 {% endhighlight %}
 
- 
+
 Hide
 -------
 Hide the specified system.

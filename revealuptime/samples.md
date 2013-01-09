@@ -1,38 +1,38 @@
 ---
 layout: default
-title: RevealUptime - Samples
+title: Probes- Samples
 ---
 
 
 Overview
 --------
 The API call for obtaining samples has a fair amount of detail, unlike many of the other CopperEgg API calls. The calling parameters and abbreviations that appear in the data structures are documented at the outset. The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys and abbreviations when necessary, once you have gotten a feel for using the API.
-  
-  
-  
-###Required Parameters:  
-    
-* ids  
-    At least one probe id must be specified. Up to 20 probe ids can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”  
-    
-  
-###Optional Parameters:  
-  
-* starttime  
-    An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
-  
-* endtime  
-    An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)  
-  
-* keys  
-    A list of keys you want to include (see "key reference").  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"  
-  
-* sample_size  
-Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are 15 and 60.  
-  
-  
-      
-###RevealUptime Keys
+
+
+
+###Required Parameters:
+
+* ids
+    At least one probe id must be specified. Up to 20 probe ids can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”
+
+
+###Optional Parameters:
+
+* starttime
+    An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)
+
+* endtime
+    An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)
+
+* keys
+    A list of keys you want to include (see "key reference").  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"
+
+* sample_size
+Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are 15 and 60.
+
+
+
+###Probe Sample Keys
 {% highlight sh %}
 key name           valid combinations
 latency               l, l_l, s_l
@@ -44,11 +44,11 @@ state_string          ss, l_ss
 {% endhighlight %}
 Note:
 * the prefacing ‘l_’ means ‘latest’; return most recent sample data.
-* the prefacing ‘s_’ means 'separated'; return data from individual components  
-  
-  
-    
-###RevealUptime Abbreviations
+* the prefacing ‘s_’ means 'separated'; return data from individual components
+
+
+
+###Probe Sample Abbreviations
 {% highlight sh %}
 term               abbreviation
 timestamp             '_ts'
@@ -58,12 +58,12 @@ probe name or label   'n'
 health                'h'
 probe_id              'id'
 uptime                'u'
-status codes          's'  
-{% endhighlight %}  
-        
-    
+status codes          's'
+{% endhighlight %}
+
+
 Example 1
----------  
+---------
 Obtain samples from one probe, specifying only the probe_id.
 
 CURL Command:
@@ -71,9 +71,9 @@ CURL Command:
 curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?ids 4ff9f8512ca1fc338d00000e"
 {% endhighlight %}
 
-CURL Response:  
+CURL Response:
 
-Response is JSON with an array of probe sample data:  
+Response is JSON with an array of probe sample data:
 
 {% highlight sh %}
 [
@@ -123,12 +123,12 @@ Response is JSON with an array of probe sample data:
   }
 ]
 {% endhighlight %}
-    
-  
-  
-Example 2  
+
+
+
+Example 2
 ---------
-Obtain samples from two probes, ( with PROBEID's of 4ff9f8512ca1fc338d00000e and 5004a81187517319f4000238) specifying sample_size of 60. Default keys.  
+Obtain samples from two probes, ( with PROBEID's of 4ff9f8512ca1fc338d00000e and 5004a81187517319f4000238) specifying sample_size of 60. Default keys.
 
 CURL Command:
 {% highlight sh %}
@@ -207,9 +207,9 @@ Response is JSON with a 2-element array of probe sample data, in this case, with
   }
 ]
 {% endhighlight %}
-    
-  
-  
+
+
+
 Example 3
 ---------
 Obtain samples from a single probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying starttime, endtime and sample_size of 60 seconds. Default keys.
@@ -268,9 +268,9 @@ Response is JSON with an array of probe sample data:
 ]
 {% endhighlight %}
 
-  
-  
-  
+
+
+
 Example 4
 ---------
 Obtain samples from one probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60. Default keys.
@@ -320,9 +320,9 @@ Response is JSON with an array of probe sample data:
   }
 ]
 {% endhighlight %}
-  
-  
-  
+
+
+
 Example 5
 ---------
 Obtain samples from one probe, (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60, and the keys l, lp, l_s, u, l_h and l_ss.
@@ -371,9 +371,9 @@ Response is JSON with an array of probe sample data:
 {% endhighlight %}
 
 Note: Latency percent arrays contain only three values, connect, time to first byte, and transfer.
-  
-  
-  
+
+
+
 Example 6
 ---------
 Obtain all station data from one probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60, and the keys s_l, s_s, s_u and s_h.

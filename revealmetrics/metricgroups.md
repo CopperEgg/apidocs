@@ -1,6 +1,6 @@
 ---
 layout: default
-title: RevealMetrics - Metric Groups
+title: Custom Metrics - Metric Groups
 ---
 
 
@@ -18,7 +18,7 @@ A Metric for the purposes of this document is simply a quantity that we want to 
 Metric Hash
   { "type"=> METRICTYPE,              # today, "ce_counter", "ce_gauge" or "ce_gauge_f"
     "name" => METRICNAME,             # built-in or user-defined, string
-    "position" => METRIC_ARRAYINDEX,  # position is an array index, assigned by RevealMetrics
+    "position" => METRIC_ARRAYINDEX,  # position is an array index, assigned by CopperEgg
     "label" => METRICLABEL,           # meaningful text describing the metric, string
     "unit" => METRICUNITS             # the units being measured, string
   }
@@ -39,7 +39,7 @@ In fact, a Metric Group is an object characterized by a hash:
 {% highlight sh %}
 Metric Group Hash
   {
-    "id"=>METRICGROUP_ID,         # a unique Metric Group ID, assigned by RevealMetrics
+    "id"=>METRICGROUP_ID,         # a unique Metric Group ID, assigned by CopperEgg
     "name"=>METRICGROUP_NAME,     # a unique name, built-in or user-defined, string
     "idp"=>INTERNAL_USE,          # internal use
     "label"=>METRICGROUP_LABEL,   # meaningful text describing the metric group, string
@@ -71,7 +71,7 @@ Summing up:
 
 Index
 -----
-List all defined RevealMetrics Metric Groups.
+List all defined Custom Metrics Metric Groups.
 
 ####Required parameters:
 None.
@@ -90,7 +90,7 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
 {% highlight sh %}
 [
   {
-    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by RevealMetrics
+    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by CopperEgg
     "name":"redis",             # user-defined metric group name
     "idp":"custom|",            # internal use only
     "label":"Redis Metrics",    # metric group label; optionally may be user-defined
@@ -99,7 +99,7 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
       {
         "type":"ce_counter",    # metric types are defined in the Create section
         "name":"uptime",        # user-defined unique METRICNAME
-        "position":0,           # index of this element in the metrics array, assigned by RevealMetrics
+        "position":0,           # index of this element in the metrics array, assigned by CopperEgg
         "label":"Uptime",       # metric label that will appear in the UI and reports; optionally may be user-defined
         "unit":"Seconds"        # the units of this metric
       },
@@ -165,7 +165,7 @@ Response is single Metric Group hash. In this example, the metric group is the s
 {% highlight sh %}
 [
   {
-    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by RevealMetrics
+    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by CopperEgg
     "name":"redis",             # user-defined metric group name
     "idp":"custom|",            # internal use only
     "label":"Redis Metrics",    # metric group label; optionally may be user-defined
@@ -264,10 +264,10 @@ curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
 In the response you will find:
 {% highlight sh %}
   {
-    "id":"myredis",         # METRICGROUP_ID, a unique identifier assigned by RevealMetrics
+    "id":"myredis",         # METRICGROUP_ID, a unique identifier assigned by CopperEgg
     "name":"myredis",       # the name string we passed-in
     "idp":"custom|",
-    "label":"Myredis",      # the default label created by RevealMetrics
+    "label":"Myredis",      # the default label created by CopperEgg
     "frequency":60,         # the default polling interval
     "metrics":[
       {

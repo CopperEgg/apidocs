@@ -1,17 +1,17 @@
 ---
 layout: default
-title: RevealMetrics - Samples
+title: Custom Metrics - Samples
 ---
 
 
 Overview
 --------
-These are the API calls for storing and retrieving data samples to/from RevealMetrics.
+These are the API calls for storing and retrieving data samples to/from CopperEgg Custom Metrics.
 
 
 Storing a data sample
 ---------
-To store a data sample, you POST the new value, referencing it using the metric name and metric group.
+To store a data sample, you POST the new value, referencing it using the metric name, metric group and identifier.
 
 ####Required parameters:
 * the METRICGROUP_ID is specified as part of the path
@@ -36,8 +36,32 @@ null
 {% endhighlight %}
 
 
+###As an example, the following Store Sample JSON structure was captured using the CopperEgg-powershell scripts:
 
-Reading one or more metrics from RevealMetrics
+{% highlight sh %}
+{
+  "values":  {
+    "System_File_Write_Operations_per_sec":  79.43018242417115,
+    "System_File_Control_Operations_per_sec":  180.70366501498935,
+    "System_Context_Switches_per_sec":  861.817479302257,
+    "System_System_Calls_per_sec":  10713.145854460083,
+    "System_Processor_Queue_Length":  0,
+    "System_Processes":  64,
+    "System_Exception_Dispatches_per_sec":  91.344709787796816,
+    "System_File_Read_Operations_per_sec":  131.05980099988238,
+    "Paging_File_total_Percent_Usage_Peak":  9.2311083323008827,
+    "System_System_Up_Time":  7398.4709609,
+    "Paging_File_total_Percent_Usage":  9.05506366132578,
+    "System_Threads":  754
+  },
+  "timestamp":  1357760740,
+  "identifier":  "WIN-1M8N94S69C8"              # this identifier is a server hostname
+}
+{% endhighlight %}
+
+
+
+Reading one or more metrics from Custom Metrics
 ---------
 
 ####Required parameters:
@@ -50,7 +74,7 @@ Reading one or more metrics from RevealMetrics
 
 CURL Command:
 {% highlight sh %}
-curl -u APIKEY:U -XGET "https://api.copperegg.com/v2/revealmetrics/samples.json" -H "Content-Type: application/json" -d '{"queries":{"METRICGROUP_ID":[{"metrics":["METRICNAME"]}]}}'
+curl -u APIKEY:U -XGET "https://api.copperegg.com/v2//samples.json" -H "Content-Type: application/json" -d '{"queries":{"METRICGROUP_ID":[{"metrics":["METRICNAME"]}]}}'
 {% endhighlight %}
 
 

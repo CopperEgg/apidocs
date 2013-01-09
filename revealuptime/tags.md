@@ -1,11 +1,11 @@
 ---
 layout: default
-title: RevealUptime - Tags
+title: Probes - Tags
 ---
 
 Index
 -----
-List all defined RevealUptime tags.
+List all Probe tags.
 
 CURL Command:
 {% highlight sh %}
@@ -14,7 +14,7 @@ curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags.json
 
 CURL Response:
 
-Response is JSON with an array of all defined RevealUptime tags.
+Response is JSON with an array of all Probe tags.
 
 {% highlight sh %}
 [
@@ -47,7 +47,7 @@ In the example above, two tags are returned by the Index command; "dallas_group"
 
 Show
 ----
-Show in-depth information about a single RevealUptime tag.
+Show in-depth information about a single Probe tag.
 
 Required Parameters: the tag of interest; in the example below, the tag is "atlanta_group".
 
@@ -97,20 +97,20 @@ Response is JSON with an array of structures containing details of all probes as
     "uuid" : null
   }
 ]
-{% endhighlight %}   
-    
-   
+{% endhighlight %}
+
+
 Create
 ------
 Add a new tag to one or more defined probed.
 
-Required params:  
+Required params:
 
-* a tag ( tags may contain a-z, A-Z, 0-9, - and _)  
+* a tag ( tags may contain a-z, A-Z, 0-9, - and _)
 
-* one or more probe_ids to which the tag will be applied  
+* one or more probe_ids to which the tag will be applied
 
-* if specifying more than one probe_id, use a comma-separated list  
+* if specifying more than one probe_id, use a comma-separated list
 
 In the following example, a tag labelled "app_group" will be applied to two existing probes, with probe_ids of 4ff9f8512ca1fc338d00000e and 5004a884b0175d20c00000be.
 
@@ -126,21 +126,21 @@ Response is Status 200, empty JSON:
 {
 
 }
-{% endhighlight %}   
-   
-    
-   
+{% endhighlight %}
+
+
+
 Create
 ------
 Add a new tag to one or more defined probes.
 
-Required params:  
+Required params:
 
-* a tag ( tags may contain a-z, A-Z, 0-9, - and _)  
+* a tag ( tags may contain a-z, A-Z, 0-9, - and _)
 
-* one or more probe_ids to which the tag will be applied  
+* one or more probe_ids to which the tag will be applied
 
-* if specifying more than one probe_id, use a comma-separated list  
+* if specifying more than one probe_id, use a comma-separated list
 
 In the following example, a tag labelled "app_group" will be applied to two existing probes, with probe_ids of 4ff9f8512ca1fc338d00000e and 5004a884b0175d20c00000be.
 
@@ -156,10 +156,10 @@ Response is Status 200, empty JSON:
 {
 
 }
-{% endhighlight %}   
-   
-   
-   
+{% endhighlight %}
+
+
+
 Remove
 -------
 Remove a tag from a probe.
@@ -171,12 +171,12 @@ Required params:
 CURL Command:
 {% highlight sh %}
 curl -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags/TAG/PROBEID.json
-{% endhighlight %}   
-   
+{% endhighlight %}
+
 CURL Response:
 
-Response is Status 200, empty JSON:   
-   
+Response is Status 200, empty JSON:
+
 {% highlight sh %}
 {
 
