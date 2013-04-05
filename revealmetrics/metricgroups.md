@@ -4,13 +4,13 @@ title: Custom Metrics - Metric Groups
 ---
 
 
-Overview
---------
+##Overview
+----
 These are the API calls for listing, creating, updating and deleting Metric Groups.
 
 
-Definitions of Metric and Metric Group
---------
+###Definitions of Metric and Metric Group
+----
 
 A Metric for the purposes of this document is simply a quantity that we want to measure, record, chart and alert on. Each metric, whether 'built-in' or user-defined, is an object, characterized by a hash:
 
@@ -69,7 +69,7 @@ Summing up:
 
 
 
-Index
+##Index
 -----
 List all defined Custom Metrics Metric Groups.
 
@@ -79,12 +79,12 @@ None.
 ####Optional parameters:
 None.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
+curl -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is a JSON array of Metric Group hashes. In this example, there is one metric group defined, which contains 6 metrics.
 {% highlight sh %}
@@ -144,24 +144,25 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
 {% endhighlight %}
 
 
-Show
+##Show
 -----
-Show all details of a single Metric Group.
+##Show all details of a single Metric Group.
 
-####Required parameters:
-* metric group id, provided as part of the path name
+####Required parameters:  
+
+METRIC_GROUP_ID as part of the path
 
 ####Optional parameters:
 None.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups/METRIC_GROUP_ID.json
+curl -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/metric_groups/METRIC_GROUP_ID.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is single Metric Group hash. In this example, the metric group is the same as that returned in the Index example.
+Response is single Metric Group Hash. In this example, the metric group is the same as that returned in the Index example.
 {% highlight sh %}
 [
   {
@@ -219,9 +220,9 @@ Response is single Metric Group hash. In this example, the metric group is the s
 {% endhighlight %}
 
 
-Create Metric Group
+##Create Metric Group
 ------
-Create a new Metric Group.
+##Create a new Metric Group.
 
 ####Required parameters:
 * You must include a metric group "name" string and an array of metrics.
@@ -240,13 +241,14 @@ Create a new Metric Group.
 ####Create Example 1: create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'myredis'.
 We'll also use the bare minimum required parameters, to demonstrate the defaults.
 
-CURL Command:
+
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"myredis","metrics":[{"type":"ce_counter","name":"uptime","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
+curl -u <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"myredis","metrics":[{"type":"ce_counter","name":"uptime","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
 {% endhighlight %}
 
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 
@@ -256,9 +258,9 @@ Response is Status 200, empty JSON:
 
 Now do an Index command, and see what we've created:
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
+curl -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
 {% endhighlight %}
 
 In the response you will find:
@@ -293,12 +295,12 @@ In the response you will find:
 This time we'll specify frequency and labels.
 
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"newredis","frequency":15,"label":"Well-Labelled Redis","metrics":[{"type":"ce_counter","name":"uptime","label":"UPTIME","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
+curl -u <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"newredis","frequency":15,"label":"Well-Labelled Redis","metrics":[{"type":"ce_counter","name":"uptime","label":"UPTIME","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 
@@ -308,9 +310,9 @@ Response is Status 200, empty JSON:
 
 Now do an Index command, and see what we've created:
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
+curl -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
 {% endhighlight %}
 
 In the response you will find:
@@ -341,13 +343,13 @@ In the response you will find:
 {% endhighlight %}
 
 
-Update
+##Update
 ------
-Update an existing Metric Group.
+##Update an existing Metric Group.
 
 ####Required parameters
 
-* Metric Group id, returned from an Index command
+METRIC_GROUP_ID as part of the path  
 
 
 ####Optional parameters
@@ -361,12 +363,12 @@ Update an existing Metric Group.
 
 ####Update Example 1: change frequency of the metric group created above to every 15 seconds.  (where id="myredis4")
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/myredis4.json -d '{"frequency":60}'
+curl -u <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/myredis4.json -d '{"frequency":60}'
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 
@@ -378,9 +380,9 @@ Response is Status 200, empty JSON:
 ####Update Example 2: Add a metric to the metric group. (where id="myredis4")
 NOTE: You don't need to repeat the already-existing metrics.
 
-curl -u APIKEY:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/myredis4.json -d '{"metrics":[{"type":"ce_gauge","name":"connected_slaves","unit":"Slaves"}]}'
+curl -u <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/myredis4.json -d '{"metrics":[{"type":"ce_gauge","name":"connected_slaves","unit":"Slaves"}]}'
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 
@@ -390,25 +392,25 @@ Response is Status 200, empty JSON:
 
 
 
-Remove
+Delete
 -------
-Remove the specified Metric Group.
+Delete the specified Metric Group.
 
 ####Required parameters
 
-* Metric Group id, as part of the path
+METRIC_GROUP_ID as part of the path
 
 
 ####Optional parameters
 None
 
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl  -u APIKEY:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/metric_groups/METRICGROUP_ID.json
+curl  -u <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/metric_groups/METRICGROUP_ID.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 

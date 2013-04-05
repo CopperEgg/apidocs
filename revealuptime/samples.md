@@ -6,30 +6,29 @@ title: Probes- Samples
 
 Overview
 --------
-The API call for obtaining samples has a fair amount of detail, unlike many of the other CopperEgg API calls. The calling parameters and abbreviations that appear in the data structures are documented at the outset. The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys and abbreviations when necessary, once you have gotten a feel for using the API.
+There is a single API call for retrieving Probe data samples.
 
 
+###Required Parameters:  
 
-###Required Parameters:
-
-* ids
-    At least one probe id must be specified. Up to 20 probe ids can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”
+ids
+: At least one PROBE_ID must be specified. Up to 20 PROBE_IDs can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”
 
 
 ###Optional Parameters:
 
-* starttime
-    An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)
+starttime
+: An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe.  
+If starttime and endtime are not both provided, the last 5 minutes of samples are returned.
 
-* endtime
-    An integer unix timestamp (seconds since epoch) representing the end of your query timeframe. (NOTE: if starttime and endtime are not both provided, the last 5 minutes of samples are returned)
+endtime
+: An integer unix timestamp (seconds since epoch) representing the end of your query timeframe.  
+  
+keys
+: A list of keys you want to include (see 'Probe Sample Keys' below).  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"
 
-* keys
-    A list of keys you want to include (see "key reference").  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"
-
-* sample_size
-Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Valid sample size values are 15 and 60.
-
+sample_size
+: Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than that automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used.
 
 
 ###Probe Sample Keys
@@ -52,6 +51,7 @@ Note:
 {% highlight sh %}
 term               abbreviation
 timestamp             '_ts'
+actual sample size    '_bs'
 attributes            'a'
 probe URL             'c'
 probe name or label   'n'
@@ -62,309 +62,140 @@ status codes          's'
 {% endhighlight %}
 
 
-Example 1
----------
-Obtain samples from one probe, specifying only the probe_id.
+####Example 1
+----
+Obtain samples from one probe, specifying only the PROBE_ID.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?ids 4ff9f8512ca1fc338d00000e"
+curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealuptime/samples.json?ids=<PROBE_ID>"
+
+curl -s  "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?ids=<PROBE_ID>"
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is JSON with an array of probe sample data:
+Response is JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [
   {
-    "_ts" : 1344195720,
-    "a" : {
-      "c" : "GET http://mywebsite.com",
-      "n" : "Hires probe"
-    },
-    "h" : {
-      "0" : 100,
-      "105" : 100,
-      "135" : 100,
-      "15" : 100,
-      "165" : 100,
-      "60" : 100,
-      "75" : 100
-    },
-    "id" : "4ff9f8512ca1fc338d00000e",
-    "l" : {
-      "0" : [ 5,3,1, 9 ],
-      "105" : [ 23,23,1,47 ],
-      "135" : [ 48,50,0,98 ],
-      "15" : [ 44,45,1,90 ],
-      "165" : [ 2,2,1,5 ],
-      "60" : [ 1,2,1,4 ],
-      "75" : [ 43, 122,1,166 ]
-    },
-    "s" : {
-      "0" : { "200" : 1 },
-      "105" : { "200" : 1 },
-      "135" : { "200" : 1 },
-      "15" : { "200" : 3 },
-      "165" : { "200" : 1 },
-      "60" : { "200" : 1 },
-      "75" : { "200" : 1 }
-    },
-    "u" : {
-      "0" : 100,
-      "105" : 100,
-      "135" : 100,
-      "15" : 100,
-      "165" : 100,
-      "60" : 100,
-      "75" : 100
-    }
+    "a":{"n":"site1","c":"GET http://site1.com/"},
+    "id":"4ff8da3a2ca1fc10a20001e7",
+    "_ts":1365135660,
+    "_bs":5,
+    "l":{"0":[143,143,0,286],"60":[152,153,0,305],"120":[146,150,0,296],"180":[158,162,0,320]},
+    "s":{"0":{"301":2},"60":{"301":3},"120":{"301":3},"180":{"301":4}},
+    "h":{"0":100,"60":100,"120":100,"180":100},
+    "u":{"0":100,"60":100,"120":100,"180":100}
   }
 ]
 {% endhighlight %}
 
 
 
-Example 2
----------
-Obtain samples from two probes, ( with PROBEID's of 4ff9f8512ca1fc338d00000e and 5004a81187517319f4000238) specifying sample_size of 60. Default keys.
+####Example 2
+----
+Obtain samples from two probes, specifying sample_size of 60. Default keys.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e,5004a81187517319f4000238"
+curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=<PROBE_ID>,<PROBE_ID>"
+
+curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=<PROBE_ID>,<PROBE_ID>"
 {% endhighlight %}
 
-CURL Response:
 
-Response is JSON with a 2-element array of probe sample data, in this case, with 60 second data:
+####CURL Response:
+
+Response is JSON-encoded array of Probe Sample Hashes, in this case, with 60 second data:
 
 {% highlight sh %}
 [
   {
-    "a":{
-      "n":"Hires probe    ",
-      "c":"GET http://mywebsite.com      "
-    },
-    "id":"4ff9f8512ca1fc338d00000e",
-    "_ts":1344449340,
-    "l":{
-      "0":[ 59,40,6,105 ],
-      "60":[ 34,61,1,96 ],
-      "120":[ 41,53,0,94 ],
-      "180":[ 40,44,0,84 ]
-    },
-    "s":{
-      "0":{ "200":35 },
-      "60":{ "200":33 },
-      "120":{ "200":24 },
-      "180":{ "200":33 }
-    },
-    "h":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100
-    },
-    "u":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100
-    }
+    "a":{"n":"site1","c":"GET http://site1.com/"},
+    "id":"4ff7e3122ca1fc02a00002f7",
+    "_ts":1365136440,
+    "_bs":60,
+    "l":{"0":[45,389,4,438],"60":[53,381,5,439],"120":[29,876,6,911]},
+    "s":{"0":{"200":18},"60":{"200":21},"120":{"200":18}},
+    "h":{"0":100,"60":100,"120":98},
+    "u":{"0":100,"60":100,"120":100}
   },
   {
-    "a":{
-      "n":"Lores probe",
-      "c":"GET http://mywebsite.com"
-    },
-    "id":"5004a81187517319f4000238",
-    "_ts":1344449340,
-    "l":{
-      "0":[ 59,40,6,105 ],
-      "60":[ 34,61,1,96 ],
-      "120":[ 41,53,0,94 ],
-      "180":[ 40,44,0,84 ]
-    },
-    "s":{
-      "0":{ "200":35 },
-      "60":{ "200":33 },
-      "120":{ "200":24 },
-      "180":{ "200":33 }
-    },
-    "h":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100
-    },
-    "u":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100
-    }
+    "a":{"n":"site2","c":"GET http://site2.com/"},
+    "id":"4ff8da3a2ca1fc10a20001e7",
+    "_ts":1365136440,
+    "_bs":60,
+    "l":{"0":[160,161,0,321],"60":[160,152,0,312],"120":[155,161,0,316]},
+    "s":{"0":{"301":4},"60":{"301":3},"120":{"301":4}},
+    "h":{"0":100,"60":100,"120":100},
+    "u":{"0":100,"60":100,"120":100}
   }
 ]
 {% endhighlight %}
 
 
 
-Example 3
----------
-Obtain samples from a single probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying starttime, endtime and sample_size of 60 seconds. Default keys.
+####Example 3
+----
+Obtain samples from a single probe, specifying starttime, endtime and sample_size of 60 seconds. Default keys.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?starttime=1344195713&endtime=1344195893&sample_size=60&ids=4ff9f8512ca1fc338d00000e"
+curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealuptime/samples.json?starttime=1344195713&endtime=1344195893&sample_size=60&ids=<PROBE_ID>"
+
+curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?starttime=1344195713&endtime=1344195893&sample_size=60&ids=<PROBE_ID>"
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is JSON with an array of probe sample data:
+Response is JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [
   {
-    "a":{
-      "n":"Hires probe",
-      "c":"GET http://mywebsite.com"
-    },
-    "id":"4ff9f8512ca1fc338d00000e",
-    "_ts":1344195600,
-    "l":{
-      "0":[ 40,43,0,83 ],
-      "60":[ 24,54,1,79 ],
-      "120":[ 34,35,1,70 ],
-      "180":[ 22,49,1,72 ],
-      "240":[ 25,26,0,51 ],
-      "300":[ 44,114,1,159 ]
-    },
-    "s":{
-      "0":{ "200":5 },
-      "60":{ "200":2 },
-      "120":{ "200":4 },
-      "180":{ "200":3 },
-      "240":{ "200":2 },
-      "300":{ "200":1 }
-    },
-    "h":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100,
-      "240":100,
-      "300":100
-    },
-    "u":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100,
-      "240":100,
-      "300":100
-    }
+    "a":{"n":"site1","c":"GET http://site1.com/"},
+    "id":"4ff8da3a2ca1fc10a20001e7",
+    "_ts":1344195713,
+    "_bs":5,
+    "l":{"0":[143,143,0,286],"60":[152,153,0,305],"120":[146,150,0,296],"180":[158,162,0,320]},
+    "s":{"0":{"301":2},"60":{"301":3},"120":{"301":3},"180":{"301":4}},
+    "h":{"0":100,"60":100,"120":100,"180":100},
+    "u":{"0":100,"60":100,"120":100,"180":100}
   }
 ]
 {% endhighlight %}
 
 
 
+####Example 4
+----
+Obtain samples from one probe, specifying sample_size of 60, and the keys l, lp, l_s, u, l_h and l_ss.
 
-Example 4
----------
-Obtain samples from one probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60. Default keys.
-
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e"
+curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=<PROBE_ID>&keys=l,lp,l_s,u,l_h,l_ss"
+
+curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=<PROBE_ID>&keys=l,lp,l_s,u,l_h,l_ss"
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is JSON with an array of probe sample data:
+Response is JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [
   {
-    "a":{
-      "n":"Hires probe",
-      "c":"GET http://mywebsite.com"
-    },
-    "id":"4ff9f8512ca1fc338d00000e",
-    "_ts":1344449340,
-    "l":{
-      "0":[ 59,40,6,105 ],
-      "60":[ 34,61,1,96 ],
-      "120":[ 41,53,0,94 ],
-      "180":[ 40,44,0,84 ]
-    },
-    "s":{
-      "0":{ "200":35 },
-      "60":{ "200":33 },
-      "120":{ "200":24 },
-      "180":{ "200":33 }
-    },
-    "h":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100
-    },
-    "u":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100
-    }
-  }
-]
-{% endhighlight %}
-
-
-
-Example 5
----------
-Obtain samples from one probe, (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60, and the keys l, lp, l_s, u, l_h and l_ss.
-
-CURL Command:
-{% highlight sh %}
-curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e&keys=l,lp,l_s,u,l_h,l_ss"
-{% endhighlight %}
-
-CURL Response:
-
-Response is JSON with an array of probe sample data:
-
-{% highlight sh %}
-[
-  {
-    "a":{
-      "n":"Hires probe",
-      "c":"GET http://mywebsite.com"
-    },
+    "a":{"n":"Hires probe","c":"GET http://mywebsite.com"},
     "id":"4ff9f8512ca1fc338d00000e",
     "_ts":1344451560,
-    "l":{
-      "0":[ 30,36,0,66 ],
-      "60":[ 40,47,0,87 ],
-      "120":[ 32,53,1,86 ],
-      "180":[ 34,35,1,70 ]
-    },
-    "lp":{
-      "0":[ 0.4545, 1.0,1.0 ],
-      "60":[ 0.4598,1.0,1.0 ],
-      "120":[ 0.3721,0.9884,1.0 ],
-      "180":[ 0.4857,0.9857,1.0 ]
-    },
+    "_bs":60,
+    "l":{"0":[ 30,36,0,66 ],"60":[ 40,47,0,87 ],"120":[ 32,53,1,86 ],"180":[ 34,35,1,70 ]},
+    "lp":{"0":[ 0.4545, 1.0,1.0 ],"60":[ 0.4598,1.0,1.0 ],"120":[ 0.3721,0.9884,1.0 ],"180":[ 0.4857,0.9857,1.0 ]},
     "l_s":{ "200":28 },
     "l_h":100,
-    "u":{
-      "0":100,
-      "60":100,
-      "120":100,
-      "180":100
-    },
+    "u":{"0":100,"60":100, "120":100, "180":100},
     "l_ss":{ "s":28 }
   }
 ]
@@ -374,84 +205,44 @@ Note: Latency percent arrays contain only three values, connect, time to first b
 
 
 
-Example 6
+####Example 5
 ---------
-Obtain all station data from one probe (with PROBEID 4ff9f8512ca1fc338d00000e), specifying sample_size of 60, and the keys s_l, s_s, s_u and s_h.
+Obtain all station data for one probe, specifying sample_size of 60, and the keys s_l, s_s, s_u and s_h.
 
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=4ff9f8512ca1fc338d00000e&keys=s_l,s_s,s_u,s_h"
+curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=<PROBE_ID>&keys=s_l,s_s,s_u,s_h"
+
+curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?sample_size=60&ids=<PROBE_ID>&keys=s_l,s_s,s_u,s_h"
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is JSON with an array of probe sample data:
+Response is JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [
   {
-    "a":{
-      "n":"CuEgg home",
-      "c":"GET http://copperegg.com"
-    },
+    "a":{"n":"site1 home", "c":"GET http://site1.net"},
     "id":"4ff9f8512ca1fc338d00000e",
     "_ts":1344453360,
+    "_bs":60,
     "s_l":{
-      "atl":{
-        "0":[21,47,1,69],
-        "60":[21,23,0,44],
-        "120":[21,24,1,46],
-        "180":[62,23,1,86]
-      },
-      "dal":{
-        "0":[39,3,1,43],
-        "60":[4,3,1,8],
-        "120":[3,3,0,6],
-        "180":[11,3,1,15]
-      }
+      "atl":{"0":[21,47,1,69],"60":[21,23,0,44],"120":[21,24,1,46],"180":[62,23,1,86]},
+      "dal":{"0":[39,3,1,43],"60":[4,3,1,8],"120":[3,3,0,6],"180":[11,3,1,15]}
     },
     "s_s":{
-      "atl":{
-        "0":{"200":3},
-        "60":{"200":4},
-        "120":{"200":3},
-        "180":{"200":3}
-      },
-      "dal":{
-        "0":{"200":3},
-        "60":{"200":4},
-        "120":{"200":3},
-        "180":{"200":4}
-      }
+      "atl":{"0":{"200":3},"60":{"200":4},"120":{"200":3},"180":{"200":3}},
+      "dal":{"0":{"200":3},"60":{"200":4},"120":{"200":3},"180":{"200":4}}
     },
     "s_h":{
-      "atl":{
-        "0":100,
-        "60":100,
-        "120":100,
-        "180":100
-      },
-      "dal":{
-        "0":100,
-        "60":100,
-        "120":100,
-        "180":100
-      }
+      "atl":{"0":100,"60":100,"120":100,"180":100},
+      "dal":{"0":100,"60":100,"120":100,"180":100}
     },
     "s_u":{
-      "atl":{
-        "0":100,
-        "60":100,
-        "120":100,
-        "180":100
-      },
-      "dal":{
-        "0":100,
-        "60":100,
-        "120":100,
-        "180":100
-      }
+      "atl":{"0":100,"60":100,"120":100,"180":100},
+      "dal":{"0":100,"60":100,"120":100,"180":100}
     }
   }
 ]

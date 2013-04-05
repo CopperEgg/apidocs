@@ -3,29 +3,37 @@ layout: default
 title: Probes - Tags
 ---
 
-Index
------
-List all Probe tags.
+##Overview
 
-CURL Command:
+Each of the API commands described here relate to listing, creating, editing and deleting tags that have been associated with Probes at your site.
+
+
+##Index
+-----
+Retrieve an array of all Probe Tag Hashes.  
+
+
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags.json
+curl -su <APIKEY>:U https://api.copperegg.com/v2/revealuptime/tags.json
+
+curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/tags.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is JSON with an array of all Probe tags.
+Response is a JSON-encoded array of all Probe Tag Hashes.
 
 {% highlight sh %}
 [
-  { "id":"dallas_group",
+  { "id":"dallas_group",                         # PROBE_TAG ... is the tag itself. AKA, tag 'id'
     "probe_ids":[
-      "4fefc0b82ca1fc060d000403|atl",
+      "4fefc0b82ca1fc060d000403|atl",            # PROBE_ID's
       "4fefc0b82ca1fc060d000403|nrk",
       "4fefc0b82ca1fc060d000403|MT8twxayLJjGajVVLXYnEEbMNPHmJacq|"
     ]
   },
-  { "id":"atlanta_group",
+  { "id":"atlanta_group",                        # PROBE_TAG ... is the tag itself. AKA, tag 'id'
     "probe_ids":[
       "ac1f5ef85c1177ef97596f334f877370|en0|",
       "ac1f5ef85c1177ef97596f334f877370|",
@@ -42,23 +50,28 @@ Response is JSON with an array of all Probe tags.
 ]
 {% endhighlight %}
 
-In the example above, two tags are returned by the Index command; "dallas_group" and "atlanta_group". Note that each tag structure contains a single "id", which is the Label for the tag, and an array of "probe_ids", which are unique for each probe defined at your site.
+In the example above, two Probe Tag Hashes are returned by the Index command; "dallas_group" and "atlanta_group".  
+Note that each tag structure contains an 'id', which is the tag itself, and an array of "probe_ids", one for each probe to which the tag is attached.
 
 
-Show
+##Show
 ----
-Show in-depth information about a single Probe tag.
+Retrieve details about each Probe with the specified tag.  
 
-Required Parameters: the tag of interest; in the example below, the tag is "atlanta_group".
 
-CURL Command:
+####Required Parameters:  
+PROBE_TAG as part of the path.
+
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags/atlanta_group.json
+curl -su <APIKEY>:U https://api.copperegg.com/v2/revealuptime/tags/<PROBE_TAG>.json
+
+curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/tags/<PROBE_TAG>.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is JSON with an array of structures containing details of all probes associated with the specified tag:
+Response is a JSON-encoded array of Probe Hashes, each containing details and status of a probe associated with the specified tag:
 
 {% highlight sh %}
 [
@@ -100,80 +113,53 @@ Response is JSON with an array of structures containing details of all probes as
 {% endhighlight %}
 
 
-Create
-------
-Add a new tag to one or more defined probed.
-
-Required params:
-
-* a tag ( tags may contain a-z, A-Z, 0-9, - and _)
-
-* one or more probe_ids to which the tag will be applied
-
-* if specifying more than one probe_id, use a comma-separated list
-
-In the following example, a tag labelled "app_group" will be applied to two existing probes, with probe_ids of 4ff9f8512ca1fc338d00000e and 5004a884b0175d20c00000be.
-
-CURL Command:
-{% highlight sh %}
-curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealuptime/tags.json -d 'id=app_group&probe_ids=4ff9f8512ca1fc338d00000e,5004a884b0175d20c00000be'
-{% endhighlight %}
-
-CURL Response:
-
-Response is Status 200, empty JSON:
-{% highlight sh %}
-{
-
-}
-{% endhighlight %}
-
-
-
-Create
+##Create
 ------
 Add a new tag to one or more defined probes.
 
-Required params:
+####Required params:
 
-* a tag ( tags may contain a-z, A-Z, 0-9, - and _)
+tag   
+: a text string. Tags may contain a-z, A-Z, 0-9, - and _
 
-* one or more probe_ids to which the tag will be applied
+probe_ids  
+: one or more probes to which the tag will be applied. if specifying more than one probe_id, use a comma-separated list.
 
-* if specifying more than one probe_id, use a comma-separated list
+In the following example, a tag labelled "app_group" will be applied to two existing probes.
 
-In the following example, a tag labelled "app_group" will be applied to two existing probes, with probe_ids of 4ff9f8512ca1fc338d00000e and 5004a884b0175d20c00000be.
-
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealuptime/tags.json -d 'id=app_group&probe_ids=4ff9f8512ca1fc338d00000e,5004a884b0175d20c00000be'
+curl -su <APIKEY>:U -XPOST https://api.copperegg.com/v2/revealuptime/tags.json -d 'id=app_group&probe_ids=<PROBE_ID>,<PROBE_ID>'
+
+curl -s <APIKEY>:U -XPOST https://api.copperegg.com/v2/revealuptime/tags.json -d 'id=app_group&probe_ids=<PROBE_ID>,<PROBE_ID>'
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 {% highlight sh %}
 {
-
 }
 {% endhighlight %}
 
 
 
-Remove
+Delete
 -------
-Remove a tag from a probe.
+Delete a tag from a probe.
 
 Required params:
-* a tag
-* a probe_id from which the tag will be removed; probe_id is part of the path
+* PROBE_TAG
+* PROBE_ID as part of the path
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags/TAG/PROBEID.json
+curl -XDELETE -su <APIKEY>:U https://api.copperegg.com/v2/revealuptime/tags/PROBE_TAG/PROBE_ID.json
+
+curl -XDELETE -s https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/tags/app_group/<PROBE_ID>.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 
@@ -182,13 +168,4 @@ Response is Status 200, empty JSON:
 
 }
 {% endhighlight %}
-
-
-In the following example, a tag labelled "app_group" will be removed from the probe with probe_id 4ff9f8512ca1fc338d00000e.
-
-CURL Command:
-{% highlight sh %}
-curl -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealuptime/tags/app_group/4ff9f8512ca1fc338d00000e.json
-{% endhighlight %}
-
 

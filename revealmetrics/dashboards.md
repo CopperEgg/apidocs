@@ -4,23 +4,22 @@ title: Custom Metrics - Dashboards
 ---
 
 
-Overview
---------
-These are the API calls for listing, creating, updating and deleting Custom Metrics Dashboards.
+##Overview
+----
+These are the API calls for retrieving, creating, updating and deleting Custom Metrics Dashboards.
 
 
-Creating a Dashboard and populating it with Widgets
---------
+####Creating a Dashboard and populating it with Widgets
+----
 
-A Dashboard is specified by creating a Dashboard hash, which contains one or more Widget hashes. We'll start by describing how to specify a widget, then circle back to including them on a dashboard.
+A Dashboard is specified by creating a Dashboard Hash, which contains one or more Widget Hashes. We'll start by describing how to specify a widget, then circle back to including them on a dashboard.
 
-A Widget is an object that is characterized by a Widget hash. There a variety of widgets available for you to choose from today, with more on the way. All multi-metric widgets can be used to display one or more metrics. Single-metric widgets display one.
+A Widget is an object that is characterized by a Widget Hash. There a variety of widgets available for you to choose from today, with more on the way. All multi-metric widgets can be used to display one or more metrics. Single-metric widgets display one.
 Also note that today there are 3 widget sizes; let's refer to them as 1x, .5x and 2x. A 1X widget is the size of the widgets used in Systems (RevealCloud) and Probes (RevealUptime) dashboards. The .5x widget is sized such that 2 of them fit in the same space as a 1x widget. Likewise, a 2x widget consumes the same amount of space as two 1x widgets. (At CopperEgg, we refer to the 2x as a 'doublewide'.)
 
-A complete widget hash is presented here for your convenience:
+A complete Widget Hash is presented here for your convenience:
 
 {% highlight sh %}
-Widget Hash
   {
     "type"=>"metric_list",           # the type and style define which widget is used
     "style"=>"list",                 # this is a mult-metric widget
@@ -41,7 +40,7 @@ These widgets are large enough to be readable from a distance. There are three s
 
 In single-metric widgets, you will specify the source of the metric as follows:
  * assign the value 'select' to the 'match' key
- * assign the value 'object_id' to the 'match_param' key. The object_id my be a SYSTEM_ID, a PROBE_ID or a METRICGROUP_ID.
+ * assign the value 'object_id' to the 'match_param' key. The object_id my be a UUID, a PROBE_ID or a METRICGROUP_ID.
 
 #### Multi-metric widgets
 Widget type 'metric_list', style 'list'
@@ -72,10 +71,9 @@ The 3 array elements are [METRICGROUP_ID, METRICGROUP_INDEX, UNIT_STRING]
 
 The Dashboard Hash
 As you can see below, the dashboard hash is an object that contains a hash of widget hashes, along with some metadata.
-A single-widget Dashboard hash is provided below, for easy reference:
+A single-widget Dashboard Hash is provided below, for easy reference:
 
 {% highlight sh %}
-Dashboard Hash
   {
     "id":80,                      # unique dashboard id assigned by CopperEgg
     "name":"SingleProbe",         # the display name of this dashboard, string
@@ -98,7 +96,7 @@ Dashboard Hash
 {% endhighlight %}
 
 
-Index
+##Index
 -----
 List all defined Custom Metrics Custom Dashboards.
 
@@ -108,14 +106,14 @@ None.
 ####Optional parameters:
 None.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/dashboards.json
+curl -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/dashboards.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is a JSON array of Dashboard hashes. In this example, there is one dashboard defined, which displays 4 widgets.
+Response is a JSON-encoded array of Dashboard Hashes. In this example, there is one dashboard defined, which displays 4 widgets.
 {% highlight sh %}
 [
   {
@@ -165,7 +163,7 @@ Response is a JSON array of Dashboard hashes. In this example, there is one dash
 {% endhighlight %}
 
 
-Create Dashboard
+##Create Dashboard
 ------
 Create a new Dashboard
 
@@ -175,23 +173,24 @@ Create a new Dashboard
 * Each widget hash must include 'type', 'style', 'match', 'match_param' and a 'metric' value array.
 
 ####Optional parameters:
-* order array, for laying out the widgets
-  if not included, CopperEgg will order them automatically.
-* label
-  if not included, a default label will be created. Be descriptive!!!
+* order array, for laying out the widgets   
+if not included, CopperEgg will order them automatically.   
+
+* label  
+if not included, a default label will be created. Be descriptive!!!  
 
 
 ####Create Example; Create a new dashboard with a single widget. The dashboard will be named "My First Dash".
 We'll also use a metric group named "ce_probe_summary_v1" which is a 'built-in' metric group. (You may have noticed this metric group in the Index example).
 
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/dashboards.json -d '{"name":"My New Dash","data":{"widgets":{"0":{"type":"metric","style":"value","match":"tag","metric":["ce_probe_summary_v1","6","health"],"match_param":"cloud"}},"order":["0"]}}'
+curl -u <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/dashboards.json -d '{"name":"My New Dash","data":{"widgets":{"0":{"type":"metric","style":"value","match":"tag","metric":["ce_probe_summary_v1","6","health"],"match_param":"cloud"}},"order":["0"]}}'
 {% endhighlight %}
 
-CURL Response:
-Response is a JSON-formatted Dashboard hash.
+####CURL Response:
+Response is a JSON-encoded Dashboard Hash.
 
 {% highlight sh %}
 {
@@ -214,7 +213,7 @@ Response is a JSON-formatted Dashboard hash.
 }
 {% endhighlight %}
 
-Update
+##Update
 ------
 Update an existing Dashboard and/or the widgets it displays.
 
@@ -229,12 +228,12 @@ Update an existing Dashboard and/or the widgets it displays.
 
 ####Update Example: Add a widget to the dashboard created above.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/dashboards/89.json -d '{"name":"My New Dash","data":{"widgets":{"0":{"type":"metric","style":"value","match":"tag","metric":["ce_probe_summary_v1","6","health"],"match_param":"cloud"},"1":{"type":"metric","style":"value","match":"tag","metric":["ce_probe_summary_v1","6","health"],"match_param":"onprem"}},"order":["0","1"]}}'
+curl -u <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/dashboards/89.json -d '{"name":"My New Dash","data":{"widgets":{"0":{"type":"metric","style":"value","match":"tag","metric":["ce_probe_summary_v1","6","health"],"match_param":"cloud"},"1":{"type":"metric","style":"value","match":"tag","metric":["ce_probe_summary_v1","6","health"],"match_param":"onprem"}},"order":["0","1"]}}'
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 Response is a JSON-formatted Dashboard hash.
 
 {% highlight javascript %}
@@ -266,9 +265,9 @@ Response is a JSON-formatted Dashboard hash.
 {% endhighlight %}
 
 
-Remove
+Delete
 -------
-Remove the specified Dashboard.
+Delete the specified Dashboard.
 
 ####Required parameters
 * Dashboard id, as part of the path
@@ -277,12 +276,12 @@ Remove the specified Dashboard.
 None
 
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl  -u APIKEY:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/dashboards/DASHBOARD_ID.json
+curl  -u <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/dashboards/DASHBOARD_ID.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 

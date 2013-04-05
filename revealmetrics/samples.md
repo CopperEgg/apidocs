@@ -4,13 +4,13 @@ title: Custom Metrics - Samples
 ---
 
 
-Overview
---------
+##Overview
+-----
 These are the API calls for storing and retrieving data samples to/from CopperEgg Custom Metrics.
 
 
-Storing a data sample
----------
+####Storing a data sample
+----
 To store a data sample, you POST the new value, referencing it using the metric name, metric group and identifier.
 
 ####Required parameters:
@@ -23,12 +23,12 @@ To store a data sample, you POST the new value, referencing it using the metric 
 None
 
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/samples/METRICGROUP_ID.json -d '{"identifier": YOURIDENTIFIER,"timestamp": UNIXTIMESTAMP, "values": { METRICNAME: METRICVALUE}'
+curl -u <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/samples/METRICGROUP_ID.json -d '{"identifier": YOURIDENTIFIER,"timestamp": UNIXTIMESTAMP, "values": { METRICNAME: METRICVALUE}'
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 A null response is returned
 
 {% highlight sh %}
@@ -61,8 +61,8 @@ null
 
 
 
-Reading one or more metrics from Custom Metrics
----------
+####Reading one or more metrics from Custom Metrics
+-----
 
 ####Required parameters:
 * a "queries" hash, containing one or more metric group queries, where one or more metrics are requested from each metric group.
@@ -72,13 +72,13 @@ Reading one or more metrics from Custom Metrics
 * duration: the length of time for which data samples are being requested, in seconds. Default is 300 seconds.
 * sample_size: Override the default sample size that is determined by the starttime/duration range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Default is 15s.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -XGET "https://api.copperegg.com/v2//samples.json" -H "Content-Type: application/json" -d '{"queries":{"METRICGROUP_ID":[{"metrics":["METRICNAME"]}]}}'
+curl -u <APIKEY>:U -XGET "https://api.copperegg.com/v2//samples.json" -H "Content-Type: application/json" -d '{"queries":{"METRICGROUP_ID":[{"metrics":["METRICNAME"]}]}}'
 {% endhighlight %}
 
 
-CURL Response:
+####CURL Response:
 A Hash containing the requested data.
 
 {% highlight sh %}

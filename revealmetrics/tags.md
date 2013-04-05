@@ -3,24 +3,23 @@ layout: default
 title: Custom Metrics - Tags
 ---
 
-
-Index
+##Index
 -----
-List all defined Custom Metrics tags.
+Retrieve all defined Custom Metrics tags.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/tags.json
+curl -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/tags.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
-Response is JSON with an array of hashes, one hash per Custom Metrics tag.
+Response is a JSON-encoded array of hashes, one hash per Custom Metrics tag.
 
 {% highlight sh %}
 [
   {
-    "id":"Win2008r2",                              # tag ID
+    "id":"Win2008r2",                              # TAG_ID
     "objects":[                                    # objects associated with this tag
       {
         "idp":"custom|",                           # will always be "custom" for custom metrics
@@ -55,26 +54,26 @@ Response is JSON with an array of hashes, one hash per Custom Metrics tag.
     ]
   }
 ]
-
 {% endhighlight %}
 
 In the example above: three tags are returned by the Index command; "Win2008r2", "netclr" and "aspnet".
-Note that each tag hash contains a single tag "id", and an array of objects, one or more for each object with the tag of reference.
+Note that each tag hash contains a single TAG_ID ("id"), and an array of objects, one or more for each object with the tag of reference.
 
 
 
-Show
+##Show
 ----
 Show in-depth information about a single custom metric tag.
 
-Required Parameters: the tag of interest, as part of the path.
+####Required Parameters:  
+TAG_ID as part of the path.
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/tags/TAGID.json
+curl -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/tags/TAG_ID.json
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is JSON with an array of hashes containing details of all custom objects associated with the specified tag.
 
@@ -105,7 +104,7 @@ Continuing with the Index example, here we pass the tag "Win2008r2":
 
 
 
-Create / Update
+##Create / Update
 ---------------
 Add a new tag to one or more defined custom objects.
 
@@ -120,55 +119,53 @@ Required params:
 In the following example, a tag named "ElasticBeanstalk" will be applied to one existing custom object, with idv of AMAZONA-TS5KSQ6.
 
 Note: the format of the Custom Object Create Tag API call is somewhat different than the Create Tag calls for System and Probe.
-  The tag is specified 'tag=TAGID', and the custom object ids are specified at 'ids=CUSTOMOBJECTID1,CUSTOMOBJECTID2'
+  The tag is specified 'tag=TAG_ID', and the custom object ids are specified at 'ids=CUSTOMOBJECT_ID1,CUSTOMOBJECT_ID2'
 
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -u APIKEY:U -XPOST https://api.copperegg.com/v2/revealmetrics/tags.json -d 'tag=ElasticBeanstalk&ids=AMAZONA-TS5KSQ6'
+curl -u <APIKEY>:U -XPOST https://api.copperegg.com/v2/revealmetrics/tags.json -d 'tag=ElasticBeanstalk&ids=AMAZONA-TS5KSQ6'
 {% endhighlight %}
 
 Response is Status 200, empty JSON:
 
 {% highlight sh %}
-{
-
-}
+{}
 {% endhighlight %}
 
 
 
-Remove
+##Delete
 -------
-Remove a tag from one custom object.
+Delete a tag from one custom object.
 
 Required params:
-* a tag, where the TAG is part of the path
-* the Id of the custom object from which the tag will be removed, the CUSTOMOBJECTID
+TAG_ID as part of the path
+
+CUSTOMOBJECT_ID  
+the Id of the custom object from which the tag will be removed
 
 Note: the format of the Custom Object Remove Tag API call is somewhat different than the Remove Tag calls for System and Probe.
-  The TAG is specified as part of the path; the custom object ids are specified as 'ids=[CUSTOMOBJECTID1,CUSTOMOBJECTID2]'
+  The TAG_ID is specified as part of the path; the custom object ids are specified as 'ids=[CUSTOMOBJECT_ID1,CUSTOMOBJECT_ID2]'
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/tags/TAG.json -d 'ids[]=CUSTOMOBJECTID'
+curl -XDELETE -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/tags/TAG.json -d 'ids[]=CUSTOMOBJECT_ID'
 {% endhighlight %}
 
-CURL Response:
+####CURL Response:
 
 Response is Status 200, empty JSON:
 
 {% highlight sh %}
-{
-
-}
+{}
 {% endhighlight %}
 
 
 In the following example, the tag 'ElasticBeanstalk' will be removed from the custom object AMAZONA-TS5KSQ6, (see the Show example).
 
-CURL Command:
+####CURL Command, and variations:
 {% highlight sh %}
-curl -XDELETE -u APIKEY:U https://api.copperegg.com/v2/revealmetrics/tags/ElasticBeanstalk.json -d 'ids[]=AMAZONA-TS5KSQ6'
+curl -XDELETE -u <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/tags/ElasticBeanstalk.json -d 'ids[]=AMAZONA-TS5KSQ6'
 {% endhighlight %}
 
