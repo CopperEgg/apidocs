@@ -65,7 +65,7 @@ Note that each tag hash contains a single TAG_ID ("id"), and an array of objects
 ----
 Show in-depth information about a single custom metric tag.
 
-####Required Parameters:  
+####Required Parameters:
 TAG_ID as part of the path.
 
 ####CURL Command, and variations:
@@ -110,7 +110,7 @@ Add a new tag to one or more defined custom objects.
 
 Required params:
 
-* a tag ( tags may contain a-z, A-Z, 0-9, - and _)
+* a tag  Tags may contain a-z, A-Z, 0-9, - and \_
 
 * one or more custom object idv's to which the tag will be applied
 
@@ -142,7 +142,7 @@ Delete a tag from one custom object.
 Required params:
 TAG_ID as part of the path
 
-CUSTOMOBJECT_ID  
+CUSTOMOBJECT_ID
 the Id of the custom object from which the tag will be removed
 
 Note: the format of the Custom Object Remove Tag API call is somewhat different than the Remove Tag calls for System and Probe.
