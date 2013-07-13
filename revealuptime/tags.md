@@ -10,7 +10,7 @@ Each of the API commands described here relate to listing, creating, editing and
 
 ##Index
 -----
-Retrieve an array of all Probe Tag Hashes.  
+Retrieve an array of all Probe Tag Hashes.
 
 
 ####CURL Command, and variations:
@@ -50,16 +50,16 @@ Response is a JSON-encoded array of all Probe Tag Hashes.
 ]
 {% endhighlight %}
 
-In the example above, two Probe Tag Hashes are returned by the Index command; "dallas_group" and "atlanta_group".  
+In the example above, two Probe Tag Hashes are returned by the Index command; "dallas_group" and "atlanta_group".
 Note that each tag structure contains an 'id', which is the tag itself, and an array of "probe_ids", one for each probe to which the tag is attached.
 
 
 ##Show
 ----
-Retrieve details about each Probe with the specified tag.  
+Retrieve details about each Probe with the specified tag.
 
 
-####Required Parameters:  
+####Required Parameters:
 PROBE_TAG as part of the path.
 
 ####CURL Command, and variations:
@@ -119,10 +119,10 @@ Add a new tag to one or more defined probes.
 
 ####Required params:
 
-tag   
-: a text string. Tags may contain a-z, A-Z, 0-9, - and _
+tag
+: a text string. Tags may contain a-z, A-Z, 0-9, - and \_
 
-probe_ids  
+probe_ids
 : one or more probes to which the tag will be applied. if specifying more than one probe_id, use a comma-separated list.
 
 In the following example, a tag labelled "app_group" will be applied to two existing probes.
