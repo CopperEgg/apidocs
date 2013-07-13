@@ -1,3 +1,6 @@
+Updated July 12, 2013
+  Replaced deprecated jekyll semantics.
+
 To install dependencies:
 ------------------------------------
 $ sudo easy_install Pygments
@@ -10,6 +13,13 @@ $ jekyll
 
 or 
 
-$ jekyll --server
+##    $ jekyll --server   ##
+$ jekyll --serve
 (to run a local server for testing and development purposes)
 visit: http://localhost:4000
+
+
+If something is building correctly:
+------------------------------------
+$jekyll serve --trace --watch
+
