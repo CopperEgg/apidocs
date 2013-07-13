@@ -169,27 +169,28 @@ probe_dest
 
 ####Optional parameters:  
     
-check_contents
+check_contents  
 : A string parameter used to enable / disable GET content-checking, and to specify the type of content check made.  
-check_contents may have one of three values:
-* null: no content check is made
-* "match": true if the string in 'contentmatch' is found
-* "notmatch": true if the string in 'contentmatch' is NOT found    
-
-contentmatch
+check_contents may have one of three values:  
+  
+ * null: no content check is made  
+ * "match": true if the string in 'contentmatch' is found  
+ * "notmatch": true if the string in 'contentmatch' is NOT found  
+  
+contentmatch  
 : The string used for comparison if 'check_contents' is not null.  
-
-frequency
+  
+frequency  
 : Frequency of probing; if not specified, the default of 60 seconds will be used; may be set to 15, 60 or 300.  
 NOTE: 'frequency' is a misnomer ... you are actually specifying the time between tests in seconds.   
   
-timeout
+timeout  
 : request time-out, in milliseconds; if not specified, will default to 10000 ms, or 10 seconds.  
   
-retries
+retries  
 : Number of times to retry the operation; if not specified, defaults to 1.   
      
-tags
+tags  
 : Tags to apply to this probe; null: no tags will be applied.  
 
 stations  
