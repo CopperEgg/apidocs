@@ -72,49 +72,50 @@ User array:
   4214882304,   # Memory Resident, this user (number, in bytes)
   0             # internal use
 ]
+{% endhighlight %}  
 
 #####Additional Process notes:  
 
-state
+state  
 : The state is given by a sequence of characters, where the first character indicates the run state of the process.
-The state symbol is passed from the OS, without translation. If a symbol appears that is not included below, please check your OS documentation.
-
+The state symbol is passed from the OS, without translation. If a symbol appears that is not included below, please check your OS documentation.  
+  
 * I       Marks a process that is idle (sleeping for longer than about 20 seconds).
 * R       Marks a runnable process.
 * S       Marks a process that is sleeping for less than about 20 seconds.
 * T       Marks a stopped process.
 * U       Marks a process in uninterruptible wait.
-* Z       Marks a dead process (a ``zombie'').
-{% endhighlight %}  
+* Z       Marks a dead process (a zombie).
+
   
 
 
 ##Retrieve System Samples
 ----
 
-####Required Parameters:
+####Required Parameters:  
 
 uuids
 : You must specify at least one System UUID. Up to 20 uuids can be specified in each request. Multiple uuids can be formatted as either a comma separated string.  
-    
+      
 ####Optional Parameters:  
-
-starttime
+  
+starttime  
 : An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe.  
 *** NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned. 
     
-endtime
+endtime  
 : An integer unix timestamp (seconds since epoch) representing the end of your query timeframe.   
 *** NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)  
   
-keys
+keys  
 : A list of keys you want to include (see "key reference"). This can either be a comma separated string.  
 Default: "l_u,l_r,l_b,l_l,m,s,c,i,d".  
   
-sample_size
+sample_size  
 : Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range.   
 If you specify a smaller sample_size, the default sample_size will be used.  
-Valid sample sizes range from 5 to 86400 seconds.
+Valid sample sizes range from 5 to 86400 seconds.  
     
 
 
@@ -126,18 +127,18 @@ Obtain samples from one system, specifying only the UUID. This will demonstrate 
    
 As noted above, the default keys are "l_u,l_r,l_b,l_l,m,s,c,i,d".  
 
-####CURL Command, and variations:
+####CURL Command, and variations:  
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>"
 
 curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>]}'
-{% endhighlight %}
+{% endhighlight %}  
 
-####CURL Response:
-
-Response is a JSON-encoded array containing one System Sample Hash, with 5 min of data.
+####CURL Response:  
+  
+Response is a JSON-encoded array containing one System Sample Hash, with 5 min of data.  
 
 {% highlight sh %}
 [
@@ -196,25 +197,25 @@ Response is a JSON-encoded array containing one System Sample Hash, with 5 min o
   }
  }
 ]
-{% endhighlight %}
-
-
+{% endhighlight %}  
+  
+  
 ###Example 2
 ---------
-Obtain samples from a single system specifying sample_size of 60 seconds. Default keys.
-
-####CURL Command, and variations:
+Obtain samples from a single system specifying sample_size of 60 seconds. Default keys.   
+  
+####CURL Command, and variations:  
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>"
 
 curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>],"sample_size":60}'
-{% endhighlight %}
-
-####CURL Response:
-
-Response is a JSON-encoded array of System Sample Hashes, same as default except for 60 second samples.
+{% endhighlight %}  
+  
+####CURL Response:  
+  
+Response is a JSON-encoded array of System Sample Hashes, same as default except for 60 second samples.  
 
 {% highlight sh %}
 [
@@ -259,28 +260,28 @@ Response is a JSON-encoded array of System Sample Hashes, same as default except
     }
   }
 ]
-{% endhighlight %}
-
+{% endhighlight %}  
+  
 
 ###Example 3
 ---------
-Obtain samples from a single system specifying sample_size of 60 seconds, and separate network interface metrics.
+Obtain samples from a single system specifying sample_size of 60 seconds, and separate network interface metrics.  
+  
 
-
-####CURL Command, and variations:
+####CURL Command, and variations:  
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>&keys=s_i"
 
 curl -s < "https://APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>&keys=s_i"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>],"sample_size":60,"keys":["s_l"]}'
-{% endhighlight %}
+{% endhighlight %}  
+  
 
-
-####CURL Response:
-
-Response is a JSON-encoded array, containing one System Sample Hash, with one set of data for each network interfaace.
-
+####CURL Response:  
+  
+Response is a JSON-encoded array, containing one System Sample Hash, with one set of data for each network interfaace.  
+  
 {% highlight sh %}
 [
   {
@@ -304,24 +305,24 @@ Response is a JSON-encoded array, containing one System Sample Hash, with one se
     }
   }
 ]
-{% endhighlight %}
-
+{% endhighlight %}  
+  
 ###Example 4
 ---------
-Obtain samples from a single system focusing only on processes.
-
-####CURL Command, and variations:
+Obtain samples from a single system focusing only on processes.  
+  
+####CURL Command, and variations:  
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>&keys=l_p,l_r,l_b"
 
 curl -s  "https://<APIKEY>:Uapi.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>&keys=l_p,l_r,l_b"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>],"keys":["l_p","l_r","l_b"}'
-{% endhighlight %}
-
-
-####CURL Response:  
-
+{% endhighlight %}  
+  
+  
+####CURL Response:   
+  
 Response is a JSON-encoded array containing one or more System Sample Hashes, containing the most recent process data.  
 In this particular example, the returned array contains a single System Sample Hash.
 
