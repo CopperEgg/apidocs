@@ -74,9 +74,9 @@ For multi-metric widgets, the widget 'match' and 'match_param' keys are used to 
 #### Specifying the Metric  
   
 As you can see in the above Widget Hash, there is a 'metric' hash key, with a value consisting of a three or four element array:  
-  "metric"=>["ce_probe_summary_v1","6","health", "rate"]  
+  "metric"=>\["ce_probe_summary_v1","6","health", "rate"\]
   
-The 4 array elements are [METRICGROUP_ID, METRICGROUP_INDEX, METRICNAME, "rate"]  
+The 4 array elements are \[METRICGROUP_ID, METRICGROUP_INDEX, METRICNAME, "rate"\]
  * The METRICGROUP_ID is the unique identifier assigned by CopperEgg for a defined metric group.  
  * The METRICGROUP_INDEX is the value of the 'position' key in the specified metric group.  
  * The METRICNAME is the the same as the "name" defined in the metric group.  

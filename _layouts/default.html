@@ -50,8 +50,6 @@
         <div class="well sidebar-nav">
           <ul class="nav nav-list">
             <li {% if page.url == '/index.html' %}class="active"{% endif %}><a href="/">Introduction</a></li>
-            <li {% if page.url == '/sessions.html' %}class="active"{% endif %}><a href="/">Sessions</a></li>
-            <li {% if page.url == '/site.html' %}class="active"{% endif %}><a href="/">Site</a></li>
 
             <li class="nav-header">Alerts</li>
             <ul class="nav nav-list">
@@ -73,6 +71,11 @@
               <li {% if page.url == '/revealuptime/probes.html' %}class="active"{% endif %}><a href="/revealuptime/probes.html">Probes</a></li>
               <li {% if page.url == '/revealuptime/samples.html' %}class="active"{% endif %}><a href="/revealuptime/samples.html">Samples</a></li>
               <li {% if page.url == '/revealuptime/tags.html' %}class="active"{% endif %}><a href="/revealuptime/tags.html">Tags</a></li>
+            </ul>
+
+            <li class="nav-header">RUM - Real User Monitoring</li>
+            <ul class="nav nav-list">
+              <li {% if page.url == '/revealapp/samples.html' %}class="active"{% endif %}><a href="/revealapp/samples.html">Samples</a></li>
             </ul>
 
             <li class="nav-header">Custom Metrics (RevealMetrics)</li>
