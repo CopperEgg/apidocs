@@ -146,7 +146,7 @@ CUSTOMOBJECT_ID
 the Id of the custom object from which the tag will be removed
 
 Note: the format of the Custom Object Remove Tag API call is somewhat different than the Remove Tag calls for System and Probe.
-  The TAG_ID is specified as part of the path; the custom object ids are specified as 'ids=[CUSTOMOBJECT_ID1,CUSTOMOBJECT_ID2]'
+  The TAG_ID is specified as part of the path; the custom object ids are specified as 'ids=\[CUSTOMOBJECT_ID1,CUSTOMOBJECT_ID2\]'
 
 ####CURL Command, and variations:
 {% highlight sh %}
