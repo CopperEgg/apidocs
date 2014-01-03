@@ -2,12 +2,15 @@
 layout: default
 title: CopperEgg Developer Site
 ---
+
+January 2, 2014
+- Added RUM information
+- Fixed missing Servers page
   
-Last Updated November 18, 2013
-- filled in some missing Server Sample data informtion
+November 18, 2013
+- Filled in some missing Server Sample data informtion
 - Changed 'Systems' to 'Servers' 
 
-Last Updated July 12, 2013
 
   
 Note:  
