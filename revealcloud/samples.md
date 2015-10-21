@@ -6,7 +6,7 @@ title: Servers - Samples
 
 ##Overview
 --------
-The API call for obtaining Server Samples has a fair amount of detail, unlike many of the other CopperEgg API calls.  
+The API call for obtaining Server Samples has a fair amount of detail, unlike many of the other Uptime Cloud Monitor API calls.
 The calling parameters and abbreviations that appear in the data structures are documented at the outset.
 The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys and abbreviations when necessary, once you have gotten a feel for using the API.
 
@@ -43,7 +43,7 @@ health state          # returns an array of 10 values:
                       # load state (same 0,1,2,3 values) (int)
                       # cpu state  (same 0,1,2,3 values) (int)    
                       # memory state (same 0,1,2,3 values) (int)
-                      # last updated state (i.e. how long ago did copperegg receive data for this system) (same 0,1,2,3 values) (int)
+                      # last updated state (i.e. how long ago did Uptime Cloud Monitor receive data for this system) (same 0,1,2,3 values) (int)
                       # filesystem health index (a value 0 to 1 indicating general health of the filesystems) (float)
                       # filesystem state (same 0,1,2,3 values) (int)
 running processes     # number of running processes (integer)

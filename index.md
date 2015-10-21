@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CopperEgg Developer Site
+title: Uptime Cloud Monitor Developer Site
 ---
   
 February 12, 2014  
@@ -11,7 +11,7 @@ January 2, 2014
 - Fixed missing Servers page  
   
 November 18, 2013  
-- Filled in some missing Server Sample data informtion  
+- Filled in some missing Server Sample data information
 - Changed 'Systems' to 'Servers'   
 
 

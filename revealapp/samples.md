@@ -17,7 +17,7 @@ curl -s https://<API key>:U@api.copperegg.com/v2/revealapp/samples.json \
 {% endhighlight %}
 
 The API key is a unique key that identifies each customer. 
-You can obtain it by clicking the Settings tab while logged on to CopperEgg UI. 
+You can obtain it by clicking the Settings tab while logged on to Uptime Cloud Monitor UI.
 It is presented at the bottom of the screen under “User API Access”.
 
 ##Query Parameters
