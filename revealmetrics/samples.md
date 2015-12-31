@@ -6,7 +6,7 @@ title: Custom Metrics - Samples
   
 ##Overview
 -----  
-These are the API calls for storing and retrieving data samples to/from CopperEgg Custom Metrics.  
+These are the API calls for storing and retrieving data samples to/from Uptime Cloud Monitor Custom Metrics.
 
 
 ####Storing a data sample
@@ -36,7 +36,7 @@ null
 {% endhighlight %}  
   
 
-###As an example, the following Store Sample JSON structure was captured using the CopperEgg-powershell scripts:  
+###As an example, the following Store Sample JSON structure was captured using the Uptime Cloud Monitor-powershell scripts:
 
 {% highlight sh %}
 {

@@ -18,7 +18,7 @@ A Metric for the purposes of this document is simply a quantity that we want to 
 Metric Hash
   { "type"=> METRICTYPE,              # "ce_counter", "ce_gauge" or "ce_gauge_f"
     "name" => METRICNAME,             # built-in or user-defined, string
-    "position" => METRIC_ARRAYINDEX,  # position is an array index, assigned by CopperEgg
+    "position" => METRIC_ARRAYINDEX,  # position is an array index, assigned by Uptime Cloud Monitor
     "label" => METRICLABEL,           # user-friendly text describing the metric, string
     "unit" => METRICUNITS             # the units being measured, string
   }  
@@ -39,7 +39,7 @@ In fact, a Metric Group is an object characterized by a hash:
 Metric Group Hash (Ruby-formatted)
 {% highlight sh %}
   {
-    "id"=>METRICGROUP_ID,             # a unique Metric Group ID, assigned by CopperEgg
+    "id"=>METRICGROUP_ID,             # a unique Metric Group ID, assigned by Uptime Cloud Monitor
     "name"=>METRICGROUP_NAME,         # a unique name, built-in or user-defined, string
     "idp"=>INTERNAL_USE,              # internal use
     "label"=>METRICGROUP_LABEL,       # user-friendly text describing the metric group, string
@@ -95,7 +95,7 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
 {% highlight sh %}
 [
   {
-    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by CopperEgg
+    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by Uptime Cloud Monitor
     "name":"redis",             # METRICGROUP_NAME, user-defined metric group name
     "idp":"custom|",            # internal use only
     "label":"Redis Metrics",    # METRICGROUP_LABEL
