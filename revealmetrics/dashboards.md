@@ -77,7 +77,7 @@ As you can see in the above Widget Hash, there is a 'metric' hash key, with a va
   "metric"=>\["ce_probe_summary_v1","6","health", "rate"\]
   
 The 4 array elements are \[METRICGROUP_ID, METRICGROUP_INDEX, METRICNAME, "rate"\]
- * The METRICGROUP_ID is the unique identifier assigned by CopperEgg for a defined metric group.  
+ * The METRICGROUP_ID is the unique identifier assigned by Uptime Cloud Monitor for a defined metric group.  
  * The METRICGROUP_INDEX is the value of the 'position' key in the specified metric group.  
  * The METRICNAME is the the same as the "name" defined in the metric group.  
  * An optional field that may contain the word "rate"  
@@ -94,11 +94,11 @@ This is duplicate information; the duplication exists in v2 of the API for backw
 
 ### The Dashboard Hash  
 As you can see below, the dashboard hash is an object that contains a hash of Widget Hashes, along with some metadata.  
-A JSON-encoded single-widget Dashboard Hash is provided below, as it would be delivered to you from CopperEgg, for example in response to a Create command:  
+A JSON-encoded single-widget Dashboard Hash is provided below, as it would be delivered to you from Uptime Cloud Monitor, for example in response to a Create command:  
   
 {% highlight sh %}
   {
-    "id":80,                          # unique dashboard id assigned by CopperEgg   NOTE: this is a numeric field
+    "id":80,                          # unique dashboard id assigned by Uptime Cloud Monitor   NOTE: this is a numeric field
     "name":"SingleProbe",             # the display name of this dashboard, string
     "data":{                          # the widget data hash, containing two key-value pairs
       "widgets":{                     # a hash of widgets,
@@ -183,7 +183,7 @@ Response is a JSON-encoded array of Dashboard Hashes. In this example, there is 
 {% highlight sh %}
 [
   {
-    "id":61,                                                # unique dashboard ID, assigned by CopperEgg
+    "id":61,                                                # unique dashboard ID, assigned by Uptime Cloud Monitor
     "name":"Service Monitoring",                            # Dashboard name, string
     "data":{                                                # the data hash consists of two key-value pairs, widgets and order
       "widgets":{                                           # array of widget hashes
