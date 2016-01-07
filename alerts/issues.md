@@ -43,14 +43,23 @@ Retrieve all existing Issues at your site (in batches of 200 max).
 
 ####CURL Command, and variations:
 {% highlight sh %}
-curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues.json?per_page=integer&page_number=integer
+curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues.json?per_page=integer&page_number=integer&begin_time=long_integer&end_time=long_integer
 
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues.json?per_page=integer&page_number=integer
+curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues.json?per_page=integer&page_number=integer&begin_time=long_integer&end_time=long_integer
 {% endhighlight %}
 
 where <br>
 per_page    = No. of issues to be fetched in a page (in one call). Maximum is 200. <br>
 page_number = The number of results you would like to get in one call. Maximum and default value is 200. <br>
+begin_time = The time in seconds from 1st Jan 1970 till the lower limit of required date.<br>
+end_time = The time in seconds from 1st Jan 1970 till the upper limit of required date.
+
+Example
+{% highlight sh %}
+curl -su 234jhk356gf:U https://api.copperegg.com/v2/alerts/issues.json?per_page=150&page_number=2&begin_time=1452069534&end_time=1452155888
+
+{% endhighlight %}
+
 
 ####CURL Response:
 Response is an array of JSON-encoded Issue Hashes. In this example, there are two issues; the first is a website alert, the second a system alert.
