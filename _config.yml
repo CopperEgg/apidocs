@@ -1,2 +1,2 @@
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "INSTALL", "CNAME"]
-pygments: true
+highlighter: true
