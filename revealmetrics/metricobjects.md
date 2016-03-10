@@ -54,7 +54,7 @@ curl -su <APIKEY>:U -H "Content-type: application/json" -XGET "http://api.copper
 ## Another similar API to delete stale custom objects :
 
 {% highlight sh %}
-curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'days=x&months=y&years=z'
+curl -su <APIKEY>:U -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'days=x&months=y&years=z'
 
 x = no. of days as a positive non-zero integer
 y = no. of months as a positive non-zero integer
@@ -64,11 +64,11 @@ z = no. of years as a positive non-zero integer
 For eg, a sample request to delete custom metric objects older than 6 months would be :
 
 {% highlight sh %}
-curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'days=0&months=6&years=0'
+curl -su <APIKEY>:U -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'days=0&months=6&years=0'
 {% endhighlight %}
 
 Above request can also be reduced to skip days and years parameters because they are zero
 
 {% highlight sh %}
-curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'months=6'
+curl -su <APIKEY>:U -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'months=6'
 {% endhighlight %}
