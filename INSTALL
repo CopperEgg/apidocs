@@ -1,20 +1,24 @@
-Updated July 12, 2013
+Updated October 7,2016
   Replaced deprecated jekyll semantics.
 
-To install dependencies:
+To install dependencies: (require ruby 2.0.0 and above for jekyll version 3.3.0)
 ------------------------------------
 $ sudo easy_install Pygments
 $ gem install jekyll
 
 
-To generate the static site:
+To see jekyll commands:
 ------------------------------------
 $ jekyll
 
-or 
+To Build Static Site:
+------------------------------------
+$ jekyll b
 
-##    $ jekyll --server   ##
-$ jekyll --serve
+To Server Static Site:
+------------------------------------
+$ jekyll s
+
 (to run a local server for testing and development purposes)
 visit: http://localhost:4000
 
