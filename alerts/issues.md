@@ -5,8 +5,8 @@ title: Alerts - Issues
 
 ##Overview
 
-Each of the API commands described here relate to retrieving, editing, and deleting the Issues that have occurred on your site.  
-Today there are three kinds of issues, those created by system alerts, (RevealCloud), those created by website alerts (RevealUptime), and those created by custom metrics (RevealMetrics). 
+Each of the API commands described here relate to retrieving, editing, and deleting the Issues that have occurred on your site.
+Today there are three kinds of issues, those created by system alerts, (RevealCloud), those created by website alerts (RevealUptime), and those created by custom metrics (RevealMetrics).
 
 Each issue is completely described by an Issue hash.
 
@@ -16,7 +16,7 @@ The JSON-encoded Issue Hash is shown in the following system alert example:
 
 {% highlight sh %}
 {
-  "id":3607050,                                     # Unique Issue_ID 
+  "id":3607050,                                     # Unique Issue_ID
   "state":"cleared",                                # current state
   "short_msg":"MacBookPro: HighCPU (CPU Total Usage 0.035 > 0.01)",   # text msg describing the alert trigger
   "attr_description":"Additional Information",      # text description of the following attributes
@@ -39,7 +39,7 @@ The JSON-encoded Issue Hash is shown in the following system alert example:
 ----
 ##Index
 ----
-Retrieve all existing Issues at your site (in batches of 200 max).
+Retrieve all existing Issues at your site (in batches of 100 max).
 
 ####CURL Command, and variations:
 {% highlight sh %}
@@ -49,8 +49,8 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues.json?per_page=inte
 {% endhighlight %}
 
 where <br>
-per_page    = No. of issues to be fetched in a page (in one call). Maximum is 200. <br>
-page_number = The number of results you would like to get in one call. Maximum and default value is 200. <br>
+per_page    = No. of issues to be fetched in a page (in one call). Maximum is 100. <br>
+page_number = The number of results you would like to get in one call. Maximum and default value is 100. <br>
 begin_time = The time in seconds from 1st Jan 1970 till the lower limit of required date.<br>
 end_time = The time in seconds from 1st Jan 1970 till the upper limit of required date.
 
@@ -62,87 +62,92 @@ curl -su 234jhk356gf:U https://api.copperegg.com/v2/alerts/issues.json?per_page=
 
 
 ####CURL Response:
-Response is an array of JSON-encoded Issue Hashes. In this example, there are two issues; the first is a website alert, the second a system alert.
+Response is an hash which consists of two keys "issues" and "issuesStats".
+"issues" key has value which is array of JSON-encoded Issue Hashes. In this example, there are two issues; the first is a website alert, the second a system alert.
+"issuesStats" key has value as a hash which consits of "total" key which has value as count of issues according to the given filters.
 
 {% highlight ruby %}
-[
- {
-  "id":"50183b776cc66909b7758065",
-  "state":"cleared",
-  "short_msg":"my_website: Lores_Health (Health Index 90% < 95%)",
-  "attr_description":"Additional Information",
-  "attrs":{                               # attributes found in a website / port alert
-    "label":"my_website", 
-    "description":"Lores_Health",
-    "destination":"http://mywebsite.com",
-    "frequency","60",
-    "type","GET"
-  },
-  "type":"ce_revealuptime",
-  "created_at":1343765367,
-  "updated_at":1343765380,
-  "cleared_date":1343765380,
-  "notified_date":1343765368,
-  "ignore_until":1343765372,
-  "annotation_id":"",
-  "obj_idv":"5004a81187517319f4000238|cjwTwDzL2q9QE8x16fGrSGoVRUPm0Jrk|"
- },
- { 
-  "id":"501b40596cc66909b7760cd0",
-  "state":"cleared",
-  "short_msg":"DBServer: Lost nfsd (Process list does not contain nfsd)",
-  "attr_description":"Additional Information",
-  "attrs":                                # attributes found in process alert
-    "ce_processes":"{
-      \"p\":[
-        [\"launchd\",null,1,\"0\",\"S\",0.000003,0.000003,0.000007,0,2568998912,2162688,0],
-        [\"netbiosd\",null,104,\"222\",\"S\",0,0,0,0,2597040128,3117056,0],
-        [\"UserEventAgent\",null,11,\"0\",\"S\",0,0,0,0,2587148288,4882432,0],
-        [\"ntpd\",null,98,\"0\",\"S\",0.000002,0.000006,0.000008,0,2560475136,1245184,0],
-                                  ... ,
-        [\"SystemStarter\",null,99,\"0\",\"S\",0,0,0,0,2559008768,745472,0]
-      ],
-      \"u\":[
-        [-2,0.000001,0.000003,0.000004,0,2572431360,5767168,0],
-        [0,0.003760,0.012779,0.016539,0,138357985280,1688731648,0],
-        [501,0.023961,0.005368,0.029330,0,221265072128,3804700672,0],
-        [65,0.000010,0.000011,0.000021,0,2578763776,4583424,0],
-        [88,0.001999,0.000763,0.002762,0,3631882240,155607040,0]
-      ]
-    }",
-    "hostname":"mysql_1",
-    "label":"DBServer"
-  },
-  "type":"ce_revealcloud",
-  "created_at":1343963225,
-  "updated_at":1343963357,
-  "cleared_date":1343963357,
-  "notified_date":1343963228,
-  "ignore_until":1343963230,
-  "annotation_id":"",
-  "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
- }
-]  
-{% endhighlight %}  
-  
-----  
+{
+ "issues": [
+            {
+             "id":"50183b776cc66909b7758065",
+             "state":"cleared",
+             "short_msg":"my_website: Lores_Health (Health Index 90% < 95%)",
+             "attr_description":"Additional Information",
+             "attrs":{                               # attributes found in a website / port alert
+               "label":"my_website",
+               "description":"Lores_Health",
+               "destination":"http://mywebsite.com",
+               "frequency","60",
+               "type","GET"
+             },
+             "type":"ce_revealuptime",
+             "created_at":1343765367,
+             "updated_at":1343765380,
+             "cleared_date":1343765380,
+             "notified_date":1343765368,
+             "ignore_until":1343765372,
+             "annotation_id":"",
+             "obj_idv":"5004a81187517319f4000238|cjwTwDzL2q9QE8x16fGrSGoVRUPm0Jrk|"
+            },
+            {
+             "id":"501b40596cc66909b7760cd0",
+             "state":"cleared",
+             "short_msg":"DBServer: Lost nfsd (Process list does not contain nfsd)",
+             "attr_description":"Additional Information",
+             "attrs":{                                # attributes found in process alert
+               "ce_processes":"{
+                                \"p\":[
+                                [\"launchd\",null,1,\"0\",\"S\",0.000003,0.000003,0.000007,0,2568998912,2162688,0],
+                                [\"netbiosd\",null,104,\"222\",\"S\",0,0,0,0,2597040128,3117056,0],
+                                [\"UserEventAgent\",null,11,\"0\",\"S\",0,0,0,0,2587148288,4882432,0],
+                                [\"ntpd\",null,98,\"0\",\"S\",0.000002,0.000006,0.000008,0,2560475136,1245184,0],
+                                                             ... ,
+                                [\"SystemStarter\",null,99,\"0\",\"S\",0,0,0,0,2559008768,745472,0]
+                                ],
+                                \"u\":[
+                                [-2,0.000001,0.000003,0.000004,0,2572431360,5767168,0],
+                                [0,0.003760,0.012779,0.016539,0,138357985280,1688731648,0],
+                                [501,0.023961,0.005368,0.029330,0,221265072128,3804700672,0],
+                                [65,0.000010,0.000011,0.000021,0,2578763776,4583424,0],
+                                [88,0.001999,0.000763,0.002762,0,3631882240,155607040,0]
+                                ]
+                               }",
+               "hostname":"mysql_1",
+               "label":"DBServer"
+               },
+             "type":"ce_revealcloud",
+             "created_at":1343963225,
+             "updated_at":1343963357,
+             "cleared_date":1343963357,
+             "notified_date":1343963228,
+             "ignore_until":1343963230,
+             "annotation_id":"",
+             "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
+            }
+           ],
+ "issuesStats":{"total": 5}
+}
+{% endhighlight %}
+
+----
 ##Show
 ----
-Show in-depth information about a single Issue.  
-  
-####Required Parameters:  
+Show in-depth information about a single Issue.
+
+####Required Parameters:
 Issue_ID as part of the path
-  
+
 ####CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/ISSUE_ID.json
 
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues/ISSUE_ID.json
-{% endhighlight %}  
-  
-####CURL Response:  
-  
-Response is a single JSON-encoded Issue Hash. 
+{% endhighlight %}
+
+####CURL Response:
+
+Response is a single JSON-encoded Issue Hash.
 {% highlight javascript %}
 {
   "id":188,
@@ -176,32 +181,32 @@ Response is a single JSON-encoded Issue Hash.
   "annotation_id":"",
   "obj_idv":"d16b38d742a8ada6ccc7b8b33d5eb7dd|"
 }
-{% endhighlight %}  
-  
+{% endhighlight %}
+
 ----
-##Update 
+##Update
 ----
 Update a single Issue.
 
-####Required Parameters:  
-Issue_ID as part of the path  
-  
+####Required Parameters:
+Issue_ID as part of the path
+
 A string specifying a change of state. Permissible strings are :
-* "state=active" 
+* "state=active"
 * "state=notified"
 * "state=acknowledged"
 * "state=cleared"
-* "state=snoozed"  
-  
-####CURL Command, and variations:  
+* "state=snoozed"
+
+####CURL Command, and variations:
 {% highlight sh %}
 curl -s -XPUT https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues/ISSUE_ID.json -d "state=cleared"
 
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/ISSUE_ID.json -XPUT -d "state=cleared"
-{% endhighlight %}  
-  
-####CURL Response:  
-  
+{% endhighlight %}
+
+####CURL Response:
+
 Response is Status 200, and the newly updated Issue Hash
 
 {% highlight javascript %}
@@ -222,26 +227,26 @@ Response is Status 200, and the newly updated Issue Hash
   "ignore_until":0,
   "annotation_id":"",
   "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
-} 
-{% endhighlight %}  
-  
+}
+{% endhighlight %}
+
 ----
 ##Delete
 ----
 Delete a single Issue
 
-####Required Parameters:  
-Issue_ID as part of the path  
-  
-The string "state=deleted"  
+####Required Parameters:
+Issue_ID as part of the path
+
+The string "state=deleted"
 
 ####CURL Command, and variations:
 {% highlight sh %}
 curl -s -XPUT https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues/<ISSUE_ID>.json -d "state=deleted"
 
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/<ISSUE_ID>.json -XPUT -d "state=deleted"
-{% endhighlight %}  
-  
+{% endhighlight %}
+
 ####CURL Response:
 
 The specified issue will be deleted.
