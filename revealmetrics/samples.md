@@ -3,40 +3,33 @@ layout: default
 title: Custom Metrics - Samples
 ---
 
-  
-##Overview
------  
+## Overview
 These are the API calls for storing and retrieving data samples to/from Uptime Cloud Monitor Custom Metrics.
 
+----
+#### Storing a data sample
 
-####Storing a data sample
-----  
-To store a data sample, you POST the new value, referencing it using the metric name, metric group and identifier.  
+To store a data sample, you POST the new value, referencing it using the metric name, metric group and identifier.
 
-####Required parameters:  
-* the METRICGROUP_ID is specified as part of the path  
-* an "indentifier" which specifies the specific object of interest (server, probe, derivative)  
-* a "timestamp", which is a unix time stamp indicating the time of the data collection   
-* a "values" hash, containing one or more metrics to store (to the metric group specified by the METRICGROUP_ID).  
+#### Required parameters:
+* the METRICGROUP_ID is specified as part of the path
+* an "indentifier" which specifies the specific object of interest (server, probe, derivative)
+* a "timestamp", which is a unix time stamp indicating the time of the data collection
+* a "values" hash, containing one or more metrics to store (to the metric group specified by the METRICGROUP_ID).
 
-####Optional parameters:  
-None  
-  
+#### Optional parameters:
+None
 
-####CURL Command, and variations:  
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/samples/<METRICGROUP_ID>.json -d '{"identifier": <YOURIDENTIFIER>,"timestamp": <UNIXTIMESTAMP>, "values": { <METRICNAME>: <METRICVALUE>}'
 {% endhighlight %}
-  
-####CURL Response:  
-A null response is returned  
 
-{% highlight sh %}
-null
-{% endhighlight %}  
-  
+#### CURL Response:
+*Response is Status 200 and a null response is returned.*
 
-###As an example, the following Store Sample JSON structure was captured using the CopperEgg-powershell scripts:
+### As an example, the following Store Sample JSON structure was captured using the CopperEgg-powershell scripts:
 
 {% highlight sh %}
 {
@@ -57,29 +50,31 @@ null
   "timestamp":  1357760740,
   "identifier":  "WIN-1M8N94S69C8"              # this identifier is a server hostname
 }
-{% endhighlight %}  
-  
-  
+{% endhighlight %}
 
-####Reading one or more metrics from Custom Metrics
------  
 
-####Required parameters:  
-* a "queries" hash, containing one or more metric group queries, where one or more metrics are requested from each metric group.  
+-----
+## Reading one or more metrics from Custom Metrics
 
-####Optional parameters:  
-* starttime: a unix time stamp indicating the first sample time of the series being requested. Default is NOW - 300 seconds.  
-* duration: the length of time for which data samples are being requested, in seconds. Default is 300 seconds.  
-* sample_size: Override the default sample size that is determined by the starttime/duration range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Default is 15s.  
 
-####CURL Command, and variations:  
+***NOTE: This API Request is deprecated.***
+
+#### Required parameters:
+* a "queries" hash, containing one or more metric group queries, where one or more metrics are requested from each metric group.
+
+#### Optional parameters:
+* starttime: a unix time stamp indicating the first sample time of the series being requested. Default is NOW - 300 seconds.
+* duration: the length of time for which data samples are being requested, in seconds. Default is 300 seconds.
+* sample_size: Override the default sample size that is determined by the starttime/duration range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Default is 15s.
+
+#### CURL Command, and variations:
 {% highlight sh %}
-curl -su <APIKEY>:U -XGET "https://api.copperegg.com/v2/revealmetrics/samples.json" -H "Content-Type: application/json" -d '{"queries":{"<METRICGROUP_ID>":[{"metrics":["<METRICNAME>"]}]}}'
-{% endhighlight %}  
-  
+curl -su <APIKEY>:U -XGET "https://api.copperegg.com/v2/revealmetrics/samples.json" -H "Content-Type: application/json" -d '{"queries":{"<METRIC_GROUP_ID>":[{"metrics":["<METRIC_NAME>"]}]}}'
+{% endhighlight %}
 
-####CURL Response:  
-A Hash containing the requested data.  
+
+#### CURL Response:
+A Hash containing the requested data.
 
 {% highlight sh %}
 {
@@ -112,6 +107,6 @@ A Hash containing the requested data.
     ]
   }
 }
-{% endhighlight %}  
+{% endhighlight %}
 
 

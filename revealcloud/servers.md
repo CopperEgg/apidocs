@@ -3,17 +3,15 @@ layout: default
 title: Systems
 ---
 
+## Overview
 
-##Overview
-----
+Each of the API commands described here relate to retrieving, hiding and deleting one or more Systems being monitored at your site.
+Each system is completely described by a System Hash, and each has a unique id referred to herein as a UUID.
 
-Each of the API commands described here relate to retrieving, hiding and deleting one or more Systems being monitored at your site.  
-Each system is completely described by a System Hash, and each has a unique id referred to herein as a UUID. 
-    
-  
-###The System Hash  
 
-An example JSON-encoded System Hash is shown below:  
+### The System Hash
+
+An example JSON-encoded System Hash is shown below:
 
 {% highlight sh %}
 [
@@ -41,20 +39,20 @@ An example JSON-encoded System Hash is shown below:
     "hid":0                     # is hidden? 0 = false, 1 = true
   }
 ]
-{% endhighlight %}  
-  
- 
-##Index
+{% endhighlight %}
+
 -----
-Retrieve an array of System Hashes for all monitored systems at a site.  
-  
-####Optional parameters:  
+## Index
+
+Retrieve an array of System Hashes for all monitored systems at a site.
+
+#### Optional parameters:
 
 show_hidden
-: set to show_hidden=1 to include hidden systems  
-NOTE: show_hidden defaults to 0, meaning hidden systems are not returned.
-  
-####CURL Command, and variations:
+: set to show_hidden=1 to include hidden systems
+*NOTE:*  show_hidden defaults to 0, meaning hidden systems are not returned.
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/revealcloud/systems.json
 
@@ -63,7 +61,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/systems.json
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/systems.json?show_hidden=1
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is a JSON-encoded array of System Hashes.
 For example:
@@ -119,29 +117,29 @@ For example:
     "hid":0
   }
 ]
-{% endhighlight %}  
-  
+{% endhighlight %}
 
 
-##Hide
 -------
+## Hide
+
 Hide the specified system.
 
-####Required params:  
-UUID as part of the path   
+#### Required params:
+UUID as part of the path
 
 
-###Hide Example:   
-    
+### Hide Example:
 
-####CURL Command, and variations:
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -XPOST  https://api.copperegg.com/v2/revealcloud/uuids/<UUID>/hide.json
 
 curl -s -XPOST https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/uuids/<UUID>/hide.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is Status 200, "hidden"
 
@@ -149,37 +147,31 @@ Response is Status 200, "hidden"
 hidden
 {% endhighlight %}
 
-
-
-##Delete
 -------
-Delete the specified System Hash.  
+## Delete
+
+Delete the specified System Hash.
 NOTE: in the UI, a system DELETE is referred to as 'Remove'
 
-####Required params:  
-UUID as part of the path  
+#### Required params:
+UUID as part of the path
 
 
-###Delete Example: delete a System Hash.  
+### Delete Example: delete a System Hash.
 
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/revealcloud/uuids/<UUID>.json
 
 curl -s -XDELETE  https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/uuids/<UUID>.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is Status 200, "removed"
 
 {% highlight sh %}
 removed
 {% endhighlight %}
-
-
-
-
-
 

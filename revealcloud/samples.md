@@ -3,15 +3,14 @@ layout: default
 title: Servers - Samples
 ---
 
+## Overview
 
-##Overview
---------
 The API call for obtaining Server Samples has a fair amount of detail, unlike many of the other Uptime Cloud Monitor API calls.
 The calling parameters and abbreviations that appear in the data structures are documented at the outset.
 The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys and abbreviations when necessary, once you have gotten a feel for using the API.
 
 
-#####Server Sample Keys  
+##### Server Sample Keys
 {% highlight sh %}
 key name           valid combinations
 uptime                   l_u
@@ -26,24 +25,26 @@ interfaces            i, l_i, s_i, l_s_i
 filesystems                   s_f, l_s_f
 diskio                        s_d, l_s_d
 processes             p, l_p
-{% endhighlight %}  
+{% endhighlight %}
 
-*** Note:
+***Note:***
 * the prefacing ‘l_’ means ‘latest’; return most recent sample data.
-* the prefacing ‘s_’ means 'separated'; return data from individual components.  
+* the prefacing ‘s_’ means 'separated'; return data from individual components.
 
-#####Server Samples: Data Types and Units  
+##### Server Samples: Data Types and Units
 {% highlight sh %}
 uptime                # server uptime in seconds (integer)
-health state          # returns an array of 10 values:       
+health state          # returns an array of 10 values:
                       # health index (a value between 0 and 1 that indicates the general health of that system) (float)
-                      # health state (0=unknown, 1=ok, 2=warning, 3=critical -- these are generally based on the health index) (int)
+                      # health state
+                       (0=unknown, 1=ok, 2=warning, 3=critical -- these are generally based on the health index) (int)
                       # uptime state (same 0,1,2,3 values) (int)
                       # processes state (same 0,1,2,3 values) (int)
                       # load state (same 0,1,2,3 values) (int)
-                      # cpu state  (same 0,1,2,3 values) (int)    
+                      # cpu state  (same 0,1,2,3 values) (int)
                       # memory state (same 0,1,2,3 values) (int)
-                      # last updated state (i.e. how long ago did Uptime Cloud Monitor receive data for this system) (same 0,1,2,3 values) (int)
+                      # last updated state (i.e. how long ago did Uptime Cloud Monitor receive data for this system)
+                       (same 0,1,2,3 values) (int)
                       # filesystem health index (a value 0 to 1 indicating general health of the filesystems) (float)
                       # filesystem state (same 0,1,2,3 values) (int)
 running processes     # number of running processes (integer)
@@ -56,20 +57,20 @@ interfaces            # bytes received in KB/s, bytes transmitted in KB/s  (floa
 filesystems           # GB used, GB free  (floats)
 diskio                # bytes read in KB/s, bytes written in KB/s (floats)
 processes             # see below
-{% endhighlight %}  
+{% endhighlight %}
 
 
-#####Other Server Sample Abbreviations
+##### Other Server Sample Abbreviations
 {% highlight sh %}
 term               abbreviation
 timestamp             '_ts'
 actual sample size    '_bs'
 attributes            'a'
 system uuid           'uuid'
-{% endhighlight %}  
+{% endhighlight %}
 
 
-#####The format of the Process and User arrays are described below. 
+##### The format of the Process and User arrays are described below.
 {% highlight sh %}
 Process array:
 [
@@ -98,14 +99,14 @@ User array:
   4214882304,   # Memory Resident, this user (integer, in bytes)
   0             # internal use
 ]
-{% endhighlight %}  
+{% endhighlight %}
 
-#####Additional Process notes:  
+##### Additional Process notes:
 
-state  
+state
 : The state is given by a sequence of characters, where the first character indicates the run state of the process.
-The state symbol is passed from the OS, without translation. If a symbol appears that is not included below, please check your OS documentation.  
-  
+The state symbol is passed from the OS, without translation. If a symbol appears that is not included below, please check your OS documentation.
+
 * I       Marks a process that is idle (sleeping for longer than about 20 seconds).
 * R       Marks a runnable process.
 * S       Marks a process that is sleeping for less than about 20 seconds.
@@ -113,59 +114,59 @@ The state symbol is passed from the OS, without translation. If a symbol appears
 * U       Marks a process in uninterruptible wait.
 * Z       Marks a dead process (a zombie).
 
-  
 
 
-##Retrieve Server Samples
 ----
+## Retrieve Server Samples
 
-####Required Parameters:  
+
+#### Required Parameters:
 
 uuids
-: You must specify at least one Server UUID. Up to 20 uuids can be specified in each request. Multiple uuids are specified as a comma separated string.  
-      
-####Optional Parameters:  
-  
-starttime  
-: An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe.  
-*** NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned. 
-    
-endtime  
-: An integer unix timestamp (seconds since epoch) representing the end of your query timeframe.   
-*** NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)  
-  
-keys  
-: A list of keys you want to include (see "key reference"). Multiple keys are specified as a comma separated string.  
-Default: "l_u,l_r,l_b,l_l,m,s,c,i,d".  
-*** NOTE: the 'd' key is not implemented; however, if you call this api command specifying no keys, the result includes the last 5 minutes of aggregate DiskIO data; meaning that each sample has two values, reads in  KB/s, and writes in KB/s
+: You must specify at least one Server UUID. Up to 20 uuids can be specified in each request. Multiple uuids are specified as a comma separated string.
 
-sample_size  
-: Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range.   
-If you specify a smaller sample_size, the default sample_size will be used.  
-Valid sample sizes range from 5 to 86400 seconds.  
-    
+#### Optional Parameters:
 
+starttime
+: An integer unix timestamp (seconds since epoch) representing the beginning of your query timeframe.
+***NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned.***
 
-###Example 1 Retrieving Server Samples, using defaults.
+endtime
+: An integer unix timestamp (seconds since epoch) representing the end of your query timeframe.
+***NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)***
+
+keys
+: A list of keys you want to include (see "key reference"). Multiple keys are specified as a comma separated string.
+Default: "l_u,l_r,l_b,l_l,m,s,c,i,d".
+***NOTE: the 'd' key is not implemented; however, if you call this api command specifying no keys, the result includes the last 5 minutes of aggregate DiskIO data; meaning that each sample has two values, reads in  KB/s, and writes in KB/s***
+
+sample_size
+: Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range.
+If you specify a smaller sample_size, the default sample_size will be used.
+Valid sample sizes range from 5 to 86400 seconds.
+
 ----
-Obtain samples from one system, specifying only the UUID. This will demonstrate the default set of data returned when:    
-* no keys are included in the command, and  
-* the starttime and endtime are not specified.   
-   
-As noted above, the default keys are "l_u,l_r,l_b,l_l,m,s,c,i,d".  
+### Example 1 Retrieving Server Samples, using defaults.
+----
 
-####CURL Command, and variations:  
+Obtain samples from one system, specifying only the UUID. This will demonstrate the default set of data returned when:
+* no keys are included in the command, and
+* the starttime and endtime are not specified.
+
+As noted above, the default keys are "l_u,l_r,l_b,l_l,m,s,c,i,d".
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>"
 
 curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>]}'
-{% endhighlight %}  
+{% endhighlight %}
 
-####CURL Response:  
-  
-Response is a JSON-encoded array containing one Server Sample Hash, with 5 min of data.  
+#### CURL Response:
+
+Response is a JSON-encoded array containing one Server Sample Hash, with 5 min of data.
 
 {% highlight sh %}
 [
@@ -173,8 +174,8 @@ Response is a JSON-encoded array containing one Server Sample Hash, with 5 min o
   "uuid":"ac1f5ef85c1177ef97596f334f877370",        # unique system identifier
   "a":                                              # baked attributes
   {
-   "p":1364954577                                   # most recent update time (unix timestamp) 
-  },                           
+   "p":1364954577                                   # most recent update time (unix timestamp)
+  },
   "hid":0,                                          # hidden; true == 1, false == 0
   "_ts":1364954290,                                 # unix timestamp of offet 0
   "_bs":5,                                          # actual sample interval, in seconds
@@ -190,15 +191,15 @@ Response is a JSON-encoded array containing one Server Sample Hash, with 5 min o
 		"270":[1342.15,1788.38,1267.18,3790.12],
 		"285":[1342.48,1788.56,1264.47,3788.75]
   },
-		"s":                                            # last 5 min of swap metrics
+		"s":                                        # last 5 min of swap metrics
   {
    "0":[131.0,380.0],                               # swap used in MB, swap free in MB
 			"15":[131.0,380.0],
-           .........           
+           .........
 			"270":[131.0,380.0],
 			"285":[131.0,380.0]
   },
-		"c":                                            # last 5 min of aggregate CPU metrics
+		"c":                                        # last 5 min of aggregate CPU metrics
   {                                                 # each value ranges from 0 to 1.0, representing a percentage
    "0":[0.036,0.0,0.0193,0.0,0.0168,0.0,0.0,0.0,0.0],   # active, iowait,user, nice, system, irq, softirq, steal, guest
 			"15":[0.0335,0.0,0.0195,0.0,0.014,0.0,0.0,0.0,0.0],
@@ -206,7 +207,7 @@ Response is a JSON-encoded array containing one Server Sample Hash, with 5 min o
 			"270":[0.0377,0.0,0.025,0.0,0.0127,0.0,0.0,0.0,0.0],
 			"285":[0.0415,0.0,0.0245,0.0,0.017,0.0,0.0,0.0,0.0]
   },
-		"i":                                            # last 5 min of aggregate network interface metrics
+		"i":                                        # last 5 min of aggregate network interface metrics
   {
    "0":[0.0022,0.0018],                             # average received bytes in KB/s, average transmitted bytes in KB/s
 			"15":[0.0016,0.0011],
@@ -214,35 +215,36 @@ Response is a JSON-encoded array containing one Server Sample Hash, with 5 min o
 			"270":[0.0014,0.0021],
 			"285":[0.0036,0.0027]
   },
-		"d":                                            # last 5 min of aggregate diskio metrics
+		"d":                                        # last 5 min of aggregate diskio metrics
   {
    "0":[0,6553],                                    # average bytes read in KB/s, average bytes written in KB/s
 			"15":[0,192102],
         .........
-			"270":[0,0],  
+			"270":[0,0],
 			"285":[0,0]
   }
  }
 ]
-{% endhighlight %}  
-  
-  
-###Example 2
----------
-Obtain samples from a single system specifying sample_size of 60 seconds. Default keys.   
-  
-####CURL Command, and variations:  
+{% endhighlight %}
+
+----
+### Example 2
+----
+
+Obtain samples from a single system specifying sample_size of 60 seconds. Default keys.
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>"
 
 curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>],"sample_size":60}'
-{% endhighlight %}  
-  
-####CURL Response:  
-  
-Response is a JSON-encoded array of Server Sample Hashes, same as default except for 60 second samples.  
+{% endhighlight %}
+
+#### CURL Response:
+
+Response is a JSON-encoded array of Server Sample Hashes, same as default except for 60 second samples.
 
 {% highlight sh %}
 [
@@ -287,28 +289,28 @@ Response is a JSON-encoded array of Server Sample Hashes, same as default except
     }
   }
 ]
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-###Example 3
----------
-Obtain samples from a single system specifying sample_size of 60 seconds, and separate network interface metrics.  
-  
+----
+### Example 3
+----
 
-####CURL Command, and variations:  
+Obtain samples from a single system specifying sample_size of 60 seconds, and separate network interface metrics.
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>&keys=s_i"
 
 curl -s < "https://APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json?sample_size=60&uuids=<UUID>&keys=s_i"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>],"sample_size":60,"keys":["s_l"]}'
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-####CURL Response:  
-  
-Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interfaace.  
-  
+
+#### CURL Response:
+
+Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interfaace.
+
 {% highlight sh %}
 [
   {
@@ -332,28 +334,28 @@ Response is a JSON-encoded array, containing one Server Sample Hash, with one se
     }
   }
 ]
-{% endhighlight %}  
+{% endhighlight %}
 
-
-###Example 4
----------
+----
+### Example 4
+----
 Obtain the latest health samples from a single system.
-  
 
-####CURL Command, and variations:  
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>&keys=l_h"
 
 curl -s < "https://APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>&keys=l_h"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>],"keys":["l_h"]}'
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-####CURL Response:  
-  
-Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interfaace.  
-  
+
+#### CURL Response:
+
+Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interfaace.
+
 {% highlight sh %}
 [
   {
@@ -378,36 +380,37 @@ Response is a JSON-encoded array, containing one Server Sample Hash, with one se
     ]
   }
 ]
-{% endhighlight %}  
+{% endhighlight %}
 
-  
-###Example 5
----------
-Obtain samples from a single system focusing only on processes.  
-  
-####CURL Command, and variations:  
+----
+### Example 5
+----
+
+Obtain samples from a single system focusing only on processes.
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>&keys=l_p,l_r,l_b"
 
 curl -s  "https://<APIKEY>:Uapi.copperegg.com/v2/revealcloud/samples.json?uuids=<UUID>&keys=l_p,l_r,l_b"
 
 curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -H "Content-Type: application/json" -d '{"uuids":[<UUID>],"keys":["l_p","l_r","l_b"}'
-{% endhighlight %}  
-  
-  
-####CURL Response:   
-  
-Response is a JSON-encoded array containing one or more Server Sample Hashes, containing the most recent process data.  
+{% endhighlight %}
+
+
+#### CURL Response:
+
+Response is a JSON-encoded array containing one or more Server Sample Hashes, containing the most recent process data.
 In this particular example, the returned array contains a single Server Sample Hash.
 
 {% highlight sh %}
-[ 
- { 
+[
+ {
   "_bs" : 5,
   "_ts" : 1364960230,
   "a" : { "p" : 1364960395 },
   "hid" : 0,
-  "l_p" : 
+  "l_p" :
    "{
     "p":
     [
@@ -459,7 +462,7 @@ In this particular example, the returned array contains a single Server Sample H
    }",
   "l_p_ts" : 160,
   "uuid" : "ac1f5ef85c1177ef97596f334f877370"
- } 
+ }
 ]
 {% endhighlight %}
 

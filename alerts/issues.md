@@ -3,15 +3,15 @@ layout: default
 title: Alerts - Issues
 ---
 
-##Overview
+## Overview
 
 Each of the API commands described here relate to retrieving, editing, and deleting the Issues that have occurred on your site.
-Today there are three kinds of issues, those created by system alerts, (RevealCloud), those created by website alerts (RevealUptime), and those created by custom metrics (RevealMetrics).
+Today there are four kind of issues, those created by system alerts(RevealCloud), those created by website alerts(RevealUptime), those created by custom metrics(RevealMetrics) and those created for AWS services.
 
 Each issue is completely described by an Issue hash.
 
 ----
-###The Issue Hash
+### The Issue Hash
 The JSON-encoded Issue Hash is shown in the following system alert example:
 
 {% highlight sh %}
@@ -32,16 +32,17 @@ The JSON-encoded Issue Hash is shown in the following system alert example:
   "notified_at":1364849549,                         # timestamp of notification event
   "ignore_until":0,                                 # read-only field, internal use
   "annotation_id":"",                               # read-only field, internal use
+  "group_definition_id":null,                       # read-only field, internal use
   "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"     # read-only field, object identifier
 }
 {% endhighlight %}
 
 ----
-##Index
-----
+## Index
+
 Retrieve all existing Issues at your site (in batches of 100 max).
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues.json?per_page=integer&page_number=integer&begin_time=long_integer&end_time=long_integer
 
@@ -49,22 +50,29 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues.json?per_page=inte
 {% endhighlight %}
 
 where <br>
-per_page    = No. of issues to be fetched in a page (in one call). Maximum is 100. <br>
-page_number = The number of results you would like to get in one call. Maximum and default value is 100. <br>
+per_page = No. of issues to be fetched in a page (in one call). Maximum is 100. <br>
+page_number = Number of batch to be fetched. By default it is 1.<br>
 begin_time = The time in seconds from 1st Jan 1970 till the lower limit of required date.<br>
 end_time = The time in seconds from 1st Jan 1970 till the upper limit of required date.
 
-Example
+If begin_time and end_time are not specified, it fetches the all the issues for site and return result on basis of pagination done according to page_number and per_page option.
+If any of the above parameter are not sent with curl request, the request will return the first 100 isuues of site.
+
+The API key is a unique key that identifies each customer.
+You can obtain it by clicking the Settings tab while logged on to Uptime Cloud Monitor UI.
+It is presented at the bottom of the screen under “User API Access”.
+
+**Example**
 {% highlight sh %}
-curl -su 234jhk356gf:U https://api.copperegg.com/v2/alerts/issues.json?per_page=150&page_number=2&begin_time=1452069534&end_time=1452155888
+curl -su 234jhk356gf:U https://api.copperegg.com/v2/alerts/issues.json?per_page=50&page_number=2&begin_time=1452069534&end_time=1452155888
 
 {% endhighlight %}
 
 
-####CURL Response:
+#### CURL Response:
 Response is an hash which consists of two keys "issues" and "issuesStats".
 "issues" key has value which is array of JSON-encoded Issue Hashes. In this example, there are two issues; the first is a website alert, the second a system alert.
-"issuesStats" key has value as a hash which consits of "total" key which has value as count of issues according to the given filters.
+"issuesStats" key has value as a hash which consist of "total" key which has value as count of issues according to the given filters.
 
 {% highlight ruby %}
 {
@@ -88,6 +96,7 @@ Response is an hash which consists of two keys "issues" and "issuesStats".
              "notified_date":1343765368,
              "ignore_until":1343765372,
              "annotation_id":"",
+             "group_definition_id":null,
              "obj_idv":"5004a81187517319f4000238|cjwTwDzL2q9QE8x16fGrSGoVRUPm0Jrk|"
             },
             {
@@ -123,29 +132,30 @@ Response is an hash which consists of two keys "issues" and "issuesStats".
              "notified_date":1343963228,
              "ignore_until":1343963230,
              "annotation_id":"",
+             "group_definition_id":null,
              "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
             }
            ],
- "issuesStats":{"total": 5}
+ "issuesStats":{"total": 52}
 }
 {% endhighlight %}
 
 ----
-##Show
-----
+## Show
+
 Show in-depth information about a single Issue.
 
-####Required Parameters:
+#### Required Parameters:
 Issue_ID as part of the path
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/ISSUE_ID.json
 
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues/ISSUE_ID.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is a single JSON-encoded Issue Hash.
 {% highlight javascript %}
@@ -179,16 +189,17 @@ Response is a single JSON-encoded Issue Hash.
   "notified_at":1344521506,
   "ignore_until":1344521349,
   "annotation_id":"",
+  "group_definition_id":null,
   "obj_idv":"d16b38d742a8ada6ccc7b8b33d5eb7dd|"
 }
 {% endhighlight %}
 
 ----
-##Update
-----
+## Update
+
 Update a single Issue.
 
-####Required Parameters:
+#### Required Parameters:
 Issue_ID as part of the path
 
 A string specifying a change of state. Permissible strings are :
@@ -198,14 +209,14 @@ A string specifying a change of state. Permissible strings are :
 * "state=cleared"
 * "state=snoozed"
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -s -XPUT https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues/ISSUE_ID.json -d "state=cleared"
 
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/ISSUE_ID.json -XPUT -d "state=cleared"
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is Status 200, and the newly updated Issue Hash
 
@@ -226,34 +237,34 @@ Response is Status 200, and the newly updated Issue Hash
   "notified_at":1364854093,
   "ignore_until":0,
   "annotation_id":"",
+  "group_definition_id":null,
   "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
 }
 {% endhighlight %}
 
 ----
-##Delete
-----
+## Delete
+
 Delete a single Issue
 
-####Required Parameters:
+#### Required Parameters:
 Issue_ID as part of the path
 
 The string "state=deleted"
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -s -XPUT https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues/<ISSUE_ID>.json -d "state=deleted"
 
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/<ISSUE_ID>.json -XPUT -d "state=deleted"
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 The specified issue will be deleted.
 Response is Status 200, empty JSON:
 
 {% highlight javascript %}
-{
-}
+{}
 {% endhighlight %}
 
