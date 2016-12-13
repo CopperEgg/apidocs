@@ -6,7 +6,7 @@ title: Alerts - Schedules  ***Beta***
 ## Overview
 
 Each of the API commands described here relate to retrieving, creating, editing and deleting one or more Alert Schedules at your site.
-Each Alert Schedule is completely described by an Alert Schedule Hash, and has a unique ALERT_SCHED_ID (alert schedule ID).
+Each Alert Schedule is completely described by an Alert Schedule Hash and has a unique ALERT_SCHED_ID (alert schedule ID).
 
 
 ### The Alert Schedule Hash
@@ -139,7 +139,7 @@ state
 : The state in which to this schedule will be left after being created. default is "enabled"
 
 match
-: If not specified, defaults to match any tag, or no tag. To specify one or more tags to match, use the following format: "match":{"tag":\["TAG1","TAG2"\]}.
+: If not specified, defaults to match any tag or no tag. To specify one or more tags to match, use the following format: "match":{"tag":\["TAG1","TAG2"\]}.
 Default if not specified: {}
 
 match_exclude

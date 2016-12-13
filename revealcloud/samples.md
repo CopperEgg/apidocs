@@ -7,7 +7,7 @@ title: Servers - Samples
 
 The API call for obtaining Server Samples has a fair amount of detail, unlike many of the other Uptime Cloud Monitor API calls.
 The calling parameters and abbreviations that appear in the data structures are documented at the outset.
-The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys and abbreviations when necessary, once you have gotten a feel for using the API.
+The ideal way to get started is to scan the early sections, and then dig into the examples. Refer back to the parameters, keys, and abbreviations when necessary, once you have gotten a feel for using the API.
 
 
 ##### Server Sample Keys
@@ -123,7 +123,7 @@ The state symbol is passed from the OS, without translation. If a symbol appears
 #### Required Parameters:
 
 uuids
-: You must specify at least one Server UUID. Up to 20 uuids can be specified in each request. Multiple uuids are specified as a comma separated string.
+: You must specify at least one Server UUID. Up to 20 uuids can be specified in each request. Multiple uuids are specified as a comma-separated string.
 
 #### Optional Parameters:
 
@@ -136,9 +136,9 @@ endtime
 ***NOTE: if neither starttime or endtime are provided, the last 5 minutes of samples are returned)***
 
 keys
-: A list of keys you want to include (see "key reference"). Multiple keys are specified as a comma separated string.
+: A list of keys you want to include (see "key reference"). Multiple keys are specified as a comma-separated string.
 Default: "l_u,l_r,l_b,l_l,m,s,c,i,d".
-***NOTE: the 'd' key is not implemented; however, if you call this api command specifying no keys, the result includes the last 5 minutes of aggregate DiskIO data; meaning that each sample has two values, reads in  KB/s, and writes in KB/s***
+***NOTE: 'd' key is not implemented; however, if you call this api command specifying no keys, the result includes the last 5 minutes of aggregate DiskIO data; meaning that each sample has two values, reads in  KB/s, and writes in KB/s***
 
 sample_size
 : Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range.
@@ -166,7 +166,7 @@ curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -
 
 #### CURL Response:
 
-Response is a JSON-encoded array containing one Server Sample Hash, with 5 min of data.
+Response is a JSON-encoded array containing one Server Sample Hash, with 5 minutes of data.
 
 {% highlight sh %}
 [
@@ -244,7 +244,7 @@ curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -
 
 #### CURL Response:
 
-Response is a JSON-encoded array of Server Sample Hashes, same as default except for 60 second samples.
+Response is a JSON-encoded array of Server Sample Hashes, same as default except for 60 seconds samples.
 
 {% highlight sh %}
 [
@@ -309,7 +309,7 @@ curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -
 
 #### CURL Response:
 
-Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interfaace.
+Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interface.
 
 {% highlight sh %}
 [
@@ -354,7 +354,7 @@ curl -s -XGET https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/samples.json -
 
 #### CURL Response:
 
-Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interfaace.
+Response is a JSON-encoded array, containing one Server Sample Hash, with one set of data for each network interface.
 
 {% highlight sh %}
 [

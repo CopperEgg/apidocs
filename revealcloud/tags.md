@@ -67,7 +67,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealcloud/tags/<SYSTEM_TAG>.js
 
 #### CURL Response:
 
-Response is JSON-encoded array of hashes containing details of all systems associated with the SYSTEM_TAG.
+Response is a JSON-encoded array of hashes containing details of all systems associated with the SYSTEM_TAG.
 
 {% highlight sh %}
 [

@@ -12,7 +12,7 @@ There is a single API call for retrieving Probe data samples.
 ### Required Parameters:
 
 ids
-: At least one PROBE_ID must be specified. Up to 20 PROBE_IDs can be specified in each request. Multiple ids can be formatted as either a comma separated string, or an array represented by multiple HTTP parameters named “ids\[ \]”
+: At least one PROBE_ID must be specified. Up to 20 PROBE_IDs can be specified in each request. Multiple ids can be formatted as either a comma separated string or an array represented by multiple HTTP parameters named “ids\[ \]”
 
 
 ### Optional Parameters:
@@ -24,12 +24,12 @@ endtime
 : An integer unix timestamp (seconds since epoch) representing the end of your query timeframe.
 
 keys
-: A list of keys you want to include (see 'Probe Sample Keys' below).  This can either be a comma separated string, or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"
+: A list of keys you want to include (see 'Probe Sample Keys' below).  This can either be a comma separated string or an array represented by multiple HTTP parameters named "keys\[ \]".  Default: "l_l, l_s, l_u, l_h"
 
 sample_size
 : Override the default sample size that is determined by the starttime/endtime range. This will only work if you specify a sample_size larger than that automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used.
 
-**Note:** If starttime and endtime both are not provided, the last 5 minutes of samples are returned. Also, if frequency of probe is greater than the duration specified for samples, the request will not return any samples.
+**Note:** If starttime and endtime both are not provided, the last 5 minutes of samples are returned. Also, if the frequency of probe is greater than the duration specified for samples, the request will not return any samples.
 
 ### Probe Sample Keys
 {% highlight sh %}
@@ -75,7 +75,7 @@ curl -s  "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?ids=
 
 #### CURL Response:
 
-Response is JSON-encoded array with a single Probe Sample Hash:
+Response is a JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [
@@ -109,7 +109,7 @@ curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?sampl
 
 #### CURL Response:
 
-Response is JSON-encoded array of Probe Sample Hashes, in this case, with 60 second data:
+Response is a JSON-encoded array of Probe Sample Hashes, in this case, with 60 seconds data:
 
 {% highlight sh %}
 [
@@ -141,7 +141,7 @@ Response is JSON-encoded array of Probe Sample Hashes, in this case, with 60 sec
 #### Example 3
 ----
 
-Obtain samples from a single probe, specifying starttime, endtime and sample_size of 60 seconds. Default keys.
+Obtain samples from a single probe, specifying starttime, endtime, and sample_size of 60 seconds. Default keys.
 
 #### CURL Command, and variations:
 {% highlight sh %}
@@ -152,7 +152,7 @@ curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?start
 
 #### CURL Response:
 
-Response is JSON-encoded array with a single Probe Sample Hash:
+Response is a JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [
@@ -185,7 +185,7 @@ curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?sampl
 
 #### CURL Response:
 
-Response is JSON-encoded array with a single Probe Sample Hash:
+Response is a JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [
@@ -204,14 +204,14 @@ Response is JSON-encoded array with a single Probe Sample Hash:
 ]
 {% endhighlight %}
 
-Note: Latency percent arrays contain only three values, connect, time to first byte, and transfer.
+Note: Latency percent arrays contain only three values: connect, time for the first byte, and transfer.
 
 
 ----
 #### Example 5
 ----
 
-Obtain all station data for one probe, specifying sample_size of 60, and the keys s_l, s_s, s_u and s_h.
+Obtain all station data for one probe, specifying sample_size of 60, and the keys s_l, s_s, s_u, and s_h.
 
 
 #### CURL Command, and variations:
@@ -223,7 +223,7 @@ curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/samples.json?sampl
 
 #### CURL Response:
 
-Response is JSON-encoded array with a single Probe Sample Hash:
+Response is a JSON-encoded array with a single Probe Sample Hash:
 
 {% highlight sh %}
 [

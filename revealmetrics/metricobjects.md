@@ -16,12 +16,12 @@ objects from the corresponding MySQL servers.
 Even if these servers are no longer actively monitored, their data samples are still stored inside
 their corresponding custom metric objects in Uptime Cloud Monitor. You will not be billed for these
 data samples if the custom metric object is not active (i.e. for each month, billing happens only
-for the custom metrics object that are 'alive' and have incoming data samples during that month).
+for the custom metric objects that are 'alive' and have incoming data samples during that month).
 
 You might consider deleting 'stale' custom metric objects that no longer have incoming data samples
 so that they are no more visible on your UI (Custom -> Custom Objects). A “Stale” custom metric
 object for a time period is defined as that object for which no data/samples were received in that
-period. So, if we call an object as 6 month stale, that means no samples were received for that
+period. So, if we call an object as 6 months stale, that means no samples were received for that
 metric object since last 6 months. *Such cleanup of stale custom metric objects also improves the
 performance of your site.*
 

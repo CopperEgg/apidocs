@@ -6,19 +6,19 @@ title: Alerts - Definitions
 ## Overview
 
 Each of the API commands described here relate to retrieving, creating, editing and deleting one or more Alert Definitions at your site.
-Today there are four **kind** of Alert Definitions:
+There are four **kinds** of Alert Definitions:
 * those created for system alerts (RevealCloud),
 * those created for website / probe alerts (RevealUptime), and
 * those created for alerts on custom metrics (RevealMetrics)
 * those created for AWS services being monitored.
 
-Each Alert Definition is completely described by an Alert Definition Hash, and has a unique ALERT_DEF_ID (alert definition ID).
+Each Alert Definition is completely described by an Alert Definition Hash and has a unique ALERT_DEF_ID (alert definition ID).
 
 Please Note:  Since this document was last updated, the API calls to specify notifications for have changed. While the 'notify' hash in the
 Alert Definition Hash is still present, it should no longer be used. Instead, you should begin using Notification Profiles, and
 specify which notification profile / type should be used for each Alert Definition, using the 'alert_targets' array.
 
-This process is explained in-part below, in Update Example 2. Please also refer to the Notification Profiles section for more detail.
+This process is explained below, in Update Example 2. Please also refer to the Notification Profiles section for more detail.
 
 -----
 ### The Alert Definition Hash
@@ -144,7 +144,7 @@ Response is an array of JSON-encoded Alert Definition Hashes. In the following e
 Show in-depth information about a single alert definition.
 
 #### Required parameters: ALERT_DEF_ID (alert definition id) as part of the path.
-The value of ALERT_DEF_ID can be picked from the list of alert definitions fetched using above curl command or it can seen in the URL when editing an alert definition.
+The value of ALERT_DEF_ID can be picked from the list of alert definitions fetched using above curl command or it can be seen in the URL when editing an alert definition.
 
 
 #### CURL Command, and variations:
@@ -243,7 +243,7 @@ state
 Default if not specified: "enabled"
 
 match
-: If not specified, defaults to match any tag, or no tag. To specify one or more tags to match, use the following format: "match":{"tag":\["TAG1","TAG2"\]}.
+: If not specified, defaults to match any tag or no tag. To specify one or more tags to match, use the following format: "match":{"tag":\["TAG1","TAG2"\]}.
 Default if not specified: {}
 
 match_exclude

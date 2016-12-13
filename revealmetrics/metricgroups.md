@@ -231,7 +231,7 @@ Create a new Metric Group.
 #### Required parameters:
 * You must include a metric group "name" string and an array of metrics.
 
-* Each Metric hash must contain 3 key-value pairs: type, name and unit. You can optionally specify a label.
+* Each Metric hash must contain 3 key-value pairs: type, name, and unit. You can optionally specify a label.
 
 #### Optional parameters:
 

@@ -9,12 +9,12 @@ These are the API calls for storing and retrieving data samples to/from Uptime C
 ----
 #### Storing a data sample
 
-To store a data sample, you POST the new value, referencing it using the metric name, metric group and identifier.
+To store a data sample, you POST the new value, referencing it using the metric name, metric group, and identifier.
 
 #### Required parameters:
 * the METRICGROUP_ID is specified as part of the path
 * an "indentifier" which specifies the specific object of interest (server, probe, derivative)
-* a "timestamp", which is a unix time stamp indicating the time of the data collection
+* a "timestamp", which is a unix timestamp indicating the time of the data collection
 * a "values" hash, containing one or more metrics to store (to the metric group specified by the METRICGROUP_ID).
 
 #### Optional parameters:
@@ -29,7 +29,7 @@ curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.coppe
 #### CURL Response:
 *Response is Status 200 and a null response is returned.*
 
-### As an example, the following Store Sample JSON structure was captured using the CopperEgg-powershell scripts:
+### As an example, the following Store Sample JSON structure was captured using the CopperEgg-Powershell scripts:
 
 {% highlight sh %}
 {
@@ -63,7 +63,7 @@ curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.coppe
 * a "queries" hash, containing one or more metric group queries, where one or more metrics are requested from each metric group.
 
 #### Optional parameters:
-* starttime: a unix time stamp indicating the first sample time of the series being requested. Default is NOW - 300 seconds.
+* starttime: a unix timestamp indicating the first sample time of the series being requested. Default is NOW - 300 seconds.
 * duration: the length of time for which data samples are being requested, in seconds. Default is 300 seconds.
 * sample_size: Override the default sample size that is determined by the starttime/duration range. This will only work if you specify a sample_size larger than what is automatically calculated for the time range. If you specify a smaller sample_size, the default sample_size will be used. Default is 15s.
 

@@ -145,9 +145,9 @@ To calculate average response time of the entire timeframe, sum the total respon
 You can use atob() in JavaScript to decode request URL from base64 encoding.
 To calculate Apdex score, divide its total by its count.
 
-To calculate avg response time, divide its total by its count.
+To calculate average response time, divide its total by its count.
 
-<b>Note:</b> Each interval reports its own top requests. Each request might be reported in multiple intervals on the same timeframe. To calculate average Apdex score on the entire timeframe for specific request, sum all its totals and then divide by sum of all its counts.
+<b>Note:</b> Each interval reports its own top requests. Each request might be reported in multiple intervals on the same timeframe. To calculate average Apdex score on the entire timeframe for a specific request, sum all its totals and then divide by sum of all its counts.
 
 ##### If “top_locations” key was specified, the response for the key has the following format:
 

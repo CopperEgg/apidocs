@@ -120,7 +120,7 @@ Required params:
 
 * a tag  Tags may contain a-z, A-Z, 0-9, - and \_
 
-* one or more custom object idv to which the tag will be applied. idv for object is identifier for mertic object (can be found from UI).
+* one or more custom object idv to which the tag will be applied. idv for an object is the identifier for a mertic object (can be found from UI).
 
 * if specifying more than one idv, use a comma-separated list
 

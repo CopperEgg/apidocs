@@ -5,15 +5,15 @@ title: Alerts - Notification Profiles
 
 ## Overview
 
-Notifications works separately from Alert Definitions. Each Alert Definition can be associated with zero or more Notification Profiles.
+Notifications work separately from Alert Definitions. Each Alert Definition can be associated with zero or more Notification Profiles.
 
-There two types of Notification Profiles, User Profiles and Custom Profiles. All currently-defined Notification Profiles are displayed on the Notification Profiles page.
+There two types of Notification Profiles, User Profiles, and Custom Profiles. All currently defined Notification Profiles are displayed on the Notification Profiles page.
 All User and Custom Notification Profiles may be enabled, disabled and edited from the Notification Profiles page (given the appropriate credentials).
 To navigate to the Notification Profiles page: in the Uptime Cloud Monitor UI, click on the Issues tab; then click on Notification Profiles in the Left Navigation panel.
 
 ### User Notification Profiles
 A default User Notification Profile is created by Uptime Cloud Monitor when a new User is created within the UI. It will contain an email notification destination.
-This User Profile will be assigned a unique NOTIFICATION_PROFILE_ID, and is uniquely associated with a single Uptime Cloud Monitor User.
+This User Profile will be assigned a unique NOTIFICATION_PROFILE_ID and is uniquely associated with a single Uptime Cloud Monitor User.
 The User Notification Profile is a component of the User's Personal Settings, and cannot be deleted unless the User is deleted.
 
 Each User may edit their own Notifications Profile on the Personal Settings page: in the Uptime Cloud Monitor UI, click on the Settings tab; then click on Personal Settings in the Left Navigation panel; finally click on Notification Settings.
@@ -21,7 +21,7 @@ User Notification Profiles may also be edited using the API, but cannot be delet
 
 ### Custom Notification Profiles
 Custom Notification Profiles can be created, edited, enabled, disabled and deleted using the UI or by using the API.
-These profiles provide a great deal of flexibility in terms of managing a wide array of alerts, users and notification priorities.
+These profiles provide a great deal of flexibility in terms of managing a wide array of alerts, users, and notification priorities.
 Unlike User Notification Profiles, Custom Profiles are not user-specific.
 
 -----
@@ -80,7 +80,7 @@ An example JSON-encoded Notification Profile Hash is shown below:
 ### The Notification Destination Hash
 
 Each Notification Profile Hash will contain 0 or more Notification Destination Hashes, in an array named "destinations".
-Currently there are 8 Notification Destination types defined:
+Currently, there are 8 Notification Destination types defined:
 * Email
 * SMS
 * Push

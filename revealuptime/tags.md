@@ -138,7 +138,7 @@ id
 probe_ids
 : one or more probes to which the tag will be applied. if specifying more than one probe_id, use a comma-separated list.
 
-In the following example, a tag labelled "app_group" will be applied to two existing probes.
+In the following example, a tag labeled "app_group" will be applied to two existing probes.
 
 #### CURL Command, and variations:
 {% highlight sh %}

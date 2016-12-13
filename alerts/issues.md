@@ -6,7 +6,7 @@ title: Alerts - Issues
 ## Overview
 
 Each of the API commands described here relate to retrieving, editing, and deleting the Issues that have occurred on your site.
-Today there are four kind of issues, those created by system alerts(RevealCloud), those created by website alerts(RevealUptime), those created by custom metrics(RevealMetrics) and those created for AWS services.
+There are four kinds of issues, those created by system alerts(RevealCloud), those created by website alerts(RevealUptime), those created by custom metrics(RevealMetrics) and those created for AWS services.
 
 Each issue is completely described by an Issue hash.
 
@@ -51,12 +51,12 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues.json?per_page=inte
 
 where <br>
 per_page = No. of issues to be fetched in a page (in one call). Maximum is 100. <br>
-page_number = Number of batch to be fetched. By default it is 1.<br>
+page_number = Number of the batch to be fetched. By default, it is 1.<br>
 begin_time = The time in seconds from 1st Jan 1970 till the lower limit of required date.<br>
 end_time = The time in seconds from 1st Jan 1970 till the upper limit of required date.
 
-If begin_time and end_time are not specified, it fetches the all the issues for site and return result on basis of pagination done according to page_number and per_page option.
-If any of the above parameter are not sent with curl request, the request will return the first 100 isuues of site.
+If begin_time and end_time are not specified, it fetches the all the issues for the site and returns result on basis of pagination done according to page_number and per_page option.
+If any of the above parameters are not sent with curl request, the request will return the first 100 issues of the site.
 
 The API key is a unique key that identifies each customer.
 You can obtain it by clicking the Settings tab while logged on to Uptime Cloud Monitor UI.
@@ -70,9 +70,9 @@ curl -su 234jhk356gf:U https://api.copperegg.com/v2/alerts/issues.json?per_page=
 
 
 #### CURL Response:
-Response is an hash which consists of two keys "issues" and "issuesStats".
-"issues" key has value which is array of JSON-encoded Issue Hashes. In this example, there are two issues; the first is a website alert, the second a system alert.
-"issuesStats" key has value as a hash which consist of "total" key which has value as count of issues according to the given filters.
+Response is a hash which consists of two keys "issues" and "issuesStats".
+"issues" key has value as an array of JSON-encoded Issue Hashes. In this example, there are two issues; the first is a website alert, the second a system alert.
+"issuesStats" key has value as a hash which consists of "total" key which has value as the count of issues according to the given filters.
 
 {% highlight ruby %}
 {

@@ -189,7 +189,7 @@ probe_dest
 #### Optional parameters:
 
 check_contents
-: A string parameter used to enable / disable GET content-checking, and to specify the type of content check made.
+: A string parameter used to enable / disable GET content-checking and to specify the type of content check made.
 check_contents may have one of three values:
 
  * null: no content check is made
@@ -216,7 +216,7 @@ stations
 : Specify which stations will probe the destination URL; if not specified, all stations will probe.
 
 username
-: Specify username for basic authentication of REST probes (GET, POST, PUT, DELETE).
+: Specify user name for basic authentication of REST probes (GET, POST, PUT, DELETE).
 
 password
 : Specify password for basic authentication of REST probes. (Used in GET, POST, PUT, DELETE probes)
