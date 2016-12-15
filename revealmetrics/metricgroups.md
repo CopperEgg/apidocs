@@ -4,106 +4,105 @@ title: Custom Metrics - Metric Groups
 ---
 
 
-##Overview
+## Overview
+These are the API calls for listing, creating, updating and deleting Metric Groups.
+
 ----
-These are the API calls for listing, creating, updating and deleting Metric Groups.  
-  
-  
-###Definitions of Metric and Metric Group
-----  
-  
-A Metric for the purposes of this document is simply a quantity that we want to measure, record, chart and alert on. Each metric, whether 'built-in' or user-defined, is an object, characterized by a hash:  
-  
+### Definitions of Metric and Metric Group
+
+
+A Metric for the purposes of this document is simply a quantity that we want to measure, record, chart and alert on. Each metric, whether 'built-in' or user-defined, is an object, characterized by a hash:
+
 {% highlight sh %}
 Metric Hash
-  { "type"=> METRICTYPE,              # "ce_counter", "ce_gauge" or "ce_gauge_f"
-    "name" => METRICNAME,             # built-in or user-defined, string
-    "position" => METRIC_ARRAYINDEX,  # position is an array index, assigned by Uptime Cloud Monitor
-    "label" => METRICLABEL,           # user-friendly text describing the metric, string
-    "unit" => METRICUNITS             # the units being measured, string
-  }  
-  
-For example, you will see this (Ruby-formatted) metric hash in a subsequent example:  
-  {
-    "type"=>"ce_counter",             # METRICTYPE
-    "name"=>"uptime",                 # METRICNAME
-    "position"=>0,                    # METRIC_ARRAYINDEX
-    "label"=>"Uptime",                # METRICLABEL
-    "unit"=>"Seconds"                 # METRICUNITS
+  { "type"=> METRIC_TYPE,              # "ce_counter", "ce_gauge" or "ce_gauge_f"
+    "name" => METRIC_NAME,             # built-in or user-defined, string
+    "position" => METRIC_ARRAY_INDEX,  # position is an array index, assigned by Uptime Cloud Monitor
+    "label" => METRIC_LABEL,           # user-friendly text describing the metric, string
+    "unit" => METRIC_UNIT              # the units being measured, string
   }
-{% endhighlight %}  
-  
+
+For example, you will see this (Ruby-formatted) metric hash in a subsequent example:
+  {
+    "type"=>"ce_counter",             # METRIC_TYPE
+    "name"=>"uptime",                 # METRIC_NAME
+    "position"=>0,                    # METRIC_ARRAY_INDEX
+    "label"=>"Uptime",                # METRIC_LABEL
+    "unit"=>"Seconds"                 # METRIC_UNIT
+  }
+{% endhighlight %}
+
 A Metric Group is a built-in or user-defined collection of Metrics, along with some metadata describing the group. Every Metric Group includes an array of metric hashes. The array of metric hashes must have at least one element.
-In fact, a Metric Group is an object characterized by a hash:  
-  
+In fact, a Metric Group is an object characterized by a hash:
+
 Metric Group Hash (Ruby-formatted)
 {% highlight sh %}
   {
-    "id"=>METRICGROUP_ID,             # a unique Metric Group ID, assigned by Uptime Cloud Monitor
-    "name"=>METRICGROUP_NAME,         # a unique name, built-in or user-defined, string
-    "idp"=>INTERNAL_USE,              # internal use
-    "label"=>METRICGROUP_LABEL,       # user-friendly text describing the metric group, string
-    "frequency"=>POLLINGINTERVAL,     # polling interval in seconds; defaults to 60
-    "metrics"=>[                      # the array of metrics that define this group (see above)
-      {METRICHASH},
-      {METRICHASH}
+    "id"=>METRIC_GROUP_ID,             # a unique Metric Group ID, assigned by Uptime Cloud Monitor
+    "name"=>METRIC_GROUP_NAME,         # a unique name, built-in or user-defined, string
+    "idp"=>INTERNAL_USE,               # internal use
+    "label"=>METRIC_GROUP_LABEL,       # user-friendly text describing the metric group, string
+    "frequency"=>POLLING_INTERVAL,     # polling interval in seconds; defaults to 60
+    "metrics"=>[                       # the array of metrics that define this group (see above)
+      {METRIC_HASH},
+      {METRIC_HASH}
     ]
   }
-{% endhighlight %}   
-  
-  
+{% endhighlight %}
+
+
 Metric Group Hash (JSON-formatted)
 {% highlight sh %}
   {
-    "id":"redis",                     # METRICGROUP_ID
-    "name":"redis",                   # METRICGROUP_NAME
-    "idp":"custom|",                
-    "label":"Redis Metrics",          # METRICGROUP_LABEL
-    "frequency":60,                   # POLLINGINTERVAL
+    "id":"redis",                     # METRIC_GROUP_ID
+    "name":"redis",                   # METRIC_GROUP_NAME
+    "idp":"custom|",
+    "label":"Redis Metrics",          # METRIC_GROUP_LABEL
+    "frequency":60,                   # POLLING_INTERVAL
     "metrics":[ {}, {} ]              # array of metrics hashes
   }
-{% endhighlight %}  
-  
-Summing up:  
- * No metric stands alone. Every metric is defined in the context of a metric group.  
- * A metric group exists to group metrics. A metric group must have at least one metric.  
- * There is great power and flexibility in groups of metrics!  
- * You can group metrics that you define, as well as in combination with system metrics from RevealCloud and website performance and availability metrics from RevealUptime.  
-  
-  
+{% endhighlight %}
 
-##Index
+Summing up:
+ * No metric stands alone. Every metric is defined in the context of a metric group.
+ * A metric group exists to group metrics. A metric group must have at least one metric.
+ * There is great power and flexibility in groups of metrics!
+ * You can group metrics that you define, as well as in combination with system metrics from RevealCloud and website performance and availability metrics from RevealUptime.
+
+
 -----
-List all defined Custom Metrics Metric Groups.  
+## Index
 
-####Required parameters:  
+List all defined Custom Metrics Metric Groups.
+
+#### Required parameters:
 None.
-  
-####Optional parameters:  
-None.  
 
-####CURL Command, and variations:  
+#### Optional parameters:
+None.
+
+#### CURL Command, and variations:
 {% highlight sh %}
-curl -su <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json  
-  
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealmetrics/metric_groups.json 
-{% endhighlight %}  
-  
-####CURL Response:  
-  
-Response is a JSON array of Metric Group hashes. In this example, there is one metric group defined, which contains 6 metrics.  
+curl -su <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/metric_groups.json
+
+curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealmetrics/metric_groups.json
+{% endhighlight %}
+
+#### CURL Response:
+
+Response is a JSON array of Metric Group hashes. In this example, there is one metric group defined, which contains 6 metrics.
 {% highlight sh %}
 [
   {
-    "id":"redis",               # METRICGROUP_ID, a unique identifier assigned by Uptime Cloud Monitor
-    "name":"redis",             # METRICGROUP_NAME, user-defined metric group name
+    "id":"redis",               # METRIC_GROUP_ID, a unique identifier assigned by Uptime Cloud Monitor
+    "name":"redis",             # METRIC_GROUP_NAME, user-defined metric group name
     "idp":"custom|",            # internal use only
-    "label":"Redis Metrics",    # METRICGROUP_LABEL
-    "frequency":60,             # POLLINGINTERVAL,  defaults to 60 seconds.
+    "label":"Redis Metrics",    # METRIC_GROUP_LABEL
+    "frequency":60,             # POLLING_INTERVAL,  defaults to 60 seconds.
     "metrics":[                 # the array of metrics in this group
       {
-        "type":"ce_counter",    # METRICTYPE
-        "name":"uptime",        # METRICNAME
+        "type":"ce_counter",    # METRIC_TYPE
+        "name":"uptime",        # METRIC_NAME
         "position":0,           # METRIC_ARRAY_INDEX
         "label":"Uptime",       # METRIC_LABEL
         "unit":"Seconds"        # the units of this metric
@@ -146,27 +145,27 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
     ]
   }
 ]
-{% endhighlight %}  
-  
-  
-##Show
------  
-Show all details of a single Metric Group.  
+{% endhighlight %}
 
-####Required parameters:  
-  
-METRIC_GROUP_ID as part of the path  
-  
-####Optional parameters:  
-None.  
-  
-####CURL Command, and variations:  
+-----
+## Show
+
+Show all details of a single Metric Group.
+
+#### Required parameters:
+
+METRIC_GROUP_ID as part of the path
+
+#### Optional parameters:
+None.
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/metric_groups/METRIC_GROUP_ID.json
-{% endhighlight %}  
-  
-####CURL Response:  
-  
+{% endhighlight %}
+
+#### CURL Response:
+
 Response is single Metric Group Hash. In this example, the metric group is the same as that returned in the Index example.
 {% highlight sh %}
 [
@@ -176,7 +175,7 @@ Response is single Metric Group Hash. In this example, the metric group is the s
     "idp":"custom|",
     "label":"Redis Metrics",
     "frequency":60,
-    "metrics":[ 
+    "metrics":[
       {
         "type":"ce_counter",
         "name":"uptime",
@@ -224,38 +223,38 @@ Response is single Metric Group Hash. In this example, the metric group is the s
 ]
 {% endhighlight %}
 
+------
+## Create Metric Group
 
-##Create Metric Group
-------  
-Create a new Metric Group.  
-  
-####Required parameters:  
-* You must include a metric group "name" string and an array of metrics.  
-  
-* Each Metric hash must contain 3 key-value pairs: type, name and unit. You can optionally specify a label.  
-  
-####Optional parameters:  
+Create a new Metric Group.
 
-* frequency  
+#### Required parameters:
+* You must include a metric group "name" string and an array of metrics.
+
+* Each Metric hash must contain 3 key-value pairs: type, name, and unit. You can optionally specify a label.
+
+#### Optional parameters:
+
+* frequency
   if not included, the polling frequency will be once per minute. (polling period 60 seconds)
-  
-* label  
-  if not included, a default label will be created. Be descriptive!!!
-  
 
-####Create Example 1: create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'myredis'.  
-We'll also use the bare minimum required parameters, to demonstrate the defaults.  
-  
- 
-####CURL Command, and variations:
+* label
+  if not included, a default label will be created. Be descriptive!!!
+
+
+#### Create Example 1: create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'myredis'.
+We'll also use the bare minimum required parameters, to demonstrate the defaults.
+
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"myredis","metrics":[{"type":"ce_counter","name":"uptime","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-####CURL Response:  
-  
-Response is Status 200, and the metric group hash created:  
+
+#### CURL Response:
+
+Response is Status 200, and the metric group hash created:
 {% highlight sh %}
 {
   "id":"myredis",
@@ -280,20 +279,20 @@ Response is Status 200, and the metric group hash created:
     }
   ]
 }
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-####Create Example 2: create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'newredis'.  
-This time we'll specify frequency and labels.  
-  
-####CURL Command, and variations:
+
+#### Create Example 2: create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'newredis'.
+This time we'll specify frequency and labels.
+
+#### C  URL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"newredis","frequency":15,"label":"Well-Labelled Redis","metrics":[{"type":"ce_counter","name":"uptime","label":"UPTIME","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
 {% endhighlight %}
 
-####CURL Response:  
-  
-Response is Status 200, and the metric group hash created:  
+#### CURL Response:
+
+Response is Status 200, and the metric group hash created:
 {% highlight sh %}
   {
     "id":"newredis",
@@ -318,35 +317,39 @@ Response is Status 200, and the metric group hash created:
       }
     ]
   }
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-##Update
-------  
-Update an existing Metric Group.  
+------
+## Update
 
-####Required parameters  
-  
-METRIC_GROUP_ID as part of the path  
-  
+Update an existing Metric Group.
 
-####Optional parameters  
-  
-* frequency, if you want to alter it  
+#### Required parameters
 
-* any labels that you want to alter  
-  
-* add new metrics  
-  
+METRIC_GROUP_ID as part of the path
 
-####Update Example 1: change frequency of the metric group created above to every 15 seconds.  (where id="myredis")  
-  
-####CURL Command, and variations:  
+
+#### Optional parameters
+
+* frequency, if you want to alter it
+
+* any labels that you want to alter
+
+* add new metrics
+
+#### CURL REQUEST
+{% highlight sh %}
+curl -su <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/<METRIC_GROUP_ID> -d '{<UPDATED_VALUES_HASH>}'
+{% endhighlight %}
+
+#### Update Example 1: change frequency of the metric group created above to every 15 seconds.  (where id="myredis")
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/myredis.json -d '{"frequency":15}'
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is Status 200, updated metric group hash:
 {% highlight sh %}
@@ -373,19 +376,19 @@ Response is Status 200, updated metric group hash:
     }
   ]
 }
-{% endhighlight %}  
-  
+{% endhighlight %}
 
-####Update Example 2: Add a metric to a metric group. (where id="myredis")  
-NOTE: You don't need to repeat the already-existing metrics.  
+
+#### Update Example 2: Add a metric to a metric group. (where id="myredis")
+NOTE: You don't need to repeat the already-existing metrics.
 {% highlight sh %}
 curl -su <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/myredis4.json -d '{"metrics":[{"type":"ce_gauge","name":"connected_slaves","unit":"Slaves"}]}'
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
-Response is Status 200, updated metric group hash:  
-  
+Response is Status 200, updated metric group hash:
+
 {% highlight sh %}
 {
   "id":"myredis",
@@ -417,31 +420,31 @@ Response is Status 200, updated metric group hash:
     }
   ]
 }
-{% endhighlight %}  
-  
-  
-Delete
--------  
-Delete the specified Metric Group.  
+{% endhighlight %}
 
-####Required parameters  
-  
-METRIC_GROUP_ID as part of the path  
-  
-####Optional parameters  
-None  
-  
+------
+## Delete
 
-####CURL Command, and variations:  
+Delete the specified Metric Group.
+
+#### Required parameters
+
+METRIC_GROUP_ID as part of the path
+
+#### Optional parameters
+None
+
+
+#### CURL Command, and variations:
 {% highlight sh %}
-curl  -su <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/metric_groups/METRICGROUP_ID.json
-{% endhighlight %}  
-  
-####CURL Response:  
-  
-Response is Status 200, empty JSON:  
-  
+curl  -su <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/metric_groups/<METRICGROUP_ID>.json
+{% endhighlight %}
+
+#### CURL Response:
+
+Response is Status 200, empty JSON:
+
 {% highlight javascript %}
 {}
-{% endhighlight %}  
+{% endhighlight %}
 
