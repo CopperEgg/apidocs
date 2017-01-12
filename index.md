@@ -28,11 +28,13 @@ HTTP and HTTPS both are supported.
 
 
 ----
+
 ### Available APIs
 
 Given below is a brief description of all APIs available.
 
 ----
+
 #### Alert
 
 ##### [Definitions](alerts/definitions.html)
@@ -77,7 +79,8 @@ The following actions can be performed using this API.
  - Update - Update an Annotations.
  - Delete - Delete an Annotations. 
  
----- 
+----
+ 
 #### RevealCloud
 
 ##### [Servers](revealcloud/servers.html)
@@ -101,6 +104,7 @@ The following actions can be performed using this API.
 
 
 ----
+
 #### RevealUptime
 
 ##### [Probes](revealuptime/probes.html)
@@ -124,13 +128,15 @@ The following actions can be performed using this API.
  - Create - Add a new Probe Tag to one or more monitored Systems.
  - Delete - Remove a tag from on probe.
  
----- 
+----
+ 
 #### Real Time User Monitoring
 
 ##### [Samples](revealapp/samples.html)
 Samples API can be used to fetch collected RUM data samples.
 
 ----
+
 #### Custom Metrics
 
 ##### [Metric Groups](revealmetrics/metricgroups.html)
@@ -142,7 +148,6 @@ Metric Group API allows users to create their own metric groups and performs var
  - Update - Update an existing Metric Group.
  - Delete - Delete an existing Metric Group.
 
-----
 ##### [Custom Metric Objects and Staleness](revealmetrics/metricobjects.html)
 Each Metric Group has one or more Metric Objects for which data is sent.
 CopperEgg provides API for counting and deleting stale Custom objects.
@@ -155,7 +160,7 @@ Following operation are available in Custom Metric Dashboard API.
  - Update - Update an existing Custom Metric Dashboard.
  - Delete - Delete an existing Custom Metric Dashboard.
  
-#### [Samples](revealmetrics/samples.html) 
+##### [Samples](revealmetrics/samples.html) 
 Samples API can be used to fetch collected data for custom metrics.
 The only action available in this API is fetching the data for a custom metric and for a given time period.
 
@@ -168,7 +173,11 @@ The following actions can be performed using this API.
  - Delete - Remove a Custom Metrics Tag from a custom metric object.
  
 ---- 
+
 ### Releases
+
+January 13, 2017
+- Update to RevealMetrics Group API to disallow creation of Metric Groups with name containg periods or spaces. 
 
 January 12, 2017
 - Update API Documentation.
