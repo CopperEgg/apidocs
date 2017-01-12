@@ -5,7 +5,7 @@ title: IDERA Developer Site
 
 ### Format of CURL Request
 
-The general format for the curl request in this. You can get the curl software from here - https://curl.haxx.se/
+The general format for the curl request is described below. You can get the curl software from here - https://curl.haxx.se/
 
 curl -su <APIKEY>:U <HTTP/HTTPS>://api.copperegg.com/v2/alerts/definitions.json
 
@@ -17,9 +17,9 @@ APIKEY is the user's unique key used for both identification and authentication.
 
 To obtain the APIKEY follow these steps.
 
-- Login to your account on CopperEgg.
+- Log in to your account on CopperEgg.
 - Go to Settings Tab.
-- Click on Personal Settings tab on the left hand side.
+- Click on Personal Settings tab on the left-hand side.
 - Scroll down to 'User API Access' Section, APIKEY is available here.
 
 HTTP and HTTPS both are supported.
@@ -34,7 +34,7 @@ Given below is a brief description of all APIs available.
 ##### [Definitions](alerts/definitions.html)
 Alert Definitions define the conditions which are periodically checked and if the conditions are met then an Alert is generated.
 The following actions can be performed using this API.
- - Index - Fetch all your Alert Definition
+ - Index - Fetch all your Alert Definition.
  - Show - Show in-depth information for a single Alert Definition.
  - Update - Update/Create an Alert Definition.
 
@@ -61,8 +61,8 @@ The following actions can be performed using this API.
  - Index - Fetch all Schedules.
  - Show - Fetch in-depth information for a single Schedules.
  - Create - Create a new Schedules.
- - Update - Update an Schedules.
- - Delete - Delete an Schedules.
+ - Update - Update a Schedules.
+ - Delete - Delete a Schedules.
  
 ##### [Annotations](alerts/annotations.html)
 Annotations can be used to annotate event time line on monitoring graphs for later inspection.
@@ -129,8 +129,8 @@ Samples API can be used to fetch collected RUM data samples.
 #### Custom Metrics
 
 ##### [Metric Groups](revealmetrics/metricgroups.html)
-Custom Metrics allow user to create custom groups for which data can be collected, monitored. A custom metric group behaves exactly as a probe or a system i.e Users can send data to CopperEgg, define alerts, see the graphs on CopperEgg UI.
-Metric Group API allows users to create their own metric groups and perform various functions on them.
+Custom Metrics allow the user to create custom groups for which data can be collected, monitored. A custom metric group behaves exactly as a probe or a system i.e Users can send data to CopperEgg, define alerts, see the graphs on CopperEgg UI.
+Metric Group API allows users to create their own metric groups and performs various functions on them.
  - Index - Fetch all defined Metric Groups.
  - Show - Fetch in-depth details of a Single Metric Group.
  - Create - Create a new Metric Group.
@@ -142,7 +142,7 @@ Each Metric Group has one or more Metric Objects for which data is sent.
 CopperEgg provides API for counting and deleting stale Custom objects.
 
 ##### [Dashboards](revealmetrics/dashboards..html)
-Custom Metrics Dashboards allows user to create dashboard for organize the custom metrics and view their associated charts.
+Custom Metrics Dashboards allows the user to create dashboards for organizing the custom metrics and view their associated charts.
 Following operation are available in Custom Metric Dashboard API.
  - Index - Fetch all defined Custom Metric Dashboard.
  - Create - Create a new Custom Metric Dashboard.
@@ -157,19 +157,22 @@ The only action available in this API is fetching the data for a custom metric a
 Tags are used to group multiple custom metrics monitored by CopperEgg.
 The following actions can be performed using this API.
  - Index - Fetch all defined Custom Metrics tags.
- - Show - Fetch custom metric object associated with single custom metric tag.
+ - Show - Fetch custom metric object associated with a single custom metric tag.
  - Create - Add a new Custom Metrics Tag to a custom metric object.
  - Delete - Remove a Custom Metrics Tag from a custom metric object.
  
  
 ### Releases
 
-December 10,2015
+January 12, 2016
+- Update API Documentation
+
+December 10, 2015
 - Updated API Documentation.
 
 December 31, 2015
 
-- Pagination added to API which allows to fetch issues from Alerts API in batches of 100.
+- Pagination added to API which allows fetching issues from Alerts API in batches of 100.
 
 February 12, 2014
 
@@ -184,9 +187,3 @@ November 18, 2013
 
 - Filled in some missing Server Sample data information
 - Changed 'Systems' to 'Servers'
-
-
-
-Note:
-Get your API key from Settings, Personal Settings, then at the bottom "User API Access"
-
