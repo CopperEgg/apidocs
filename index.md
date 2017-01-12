@@ -7,11 +7,13 @@ title: IDERA Developer Site
 
 The general format for the curl request is described below. You can get the curl software from here - https://curl.haxx.se/
 
+{% highlight sh %}
 curl -su <APIKEY>:U <HTTP/HTTPS>://api.copperegg.com/v2/alerts/definitions.json
 
 or 
 
-curl -s <HTTP/HTTPS>://<APIKEY>:U@api.copperegg.com/v2/alerts/<API>.<FORMAT>
+curl -s <HTTP/HTTPS>://<APIKEY>:U@api.copperegg.com/v2/alerts/alerts/definitions.json
+{% endhighlight %}
 
 APIKEY is the user's unique key used for both identification and authentication.
 
@@ -25,10 +27,12 @@ To obtain the APIKEY follow these steps.
 HTTP and HTTPS both are supported.
 
 
+----
 ### Available APIs
 
 Given below is a brief description of all APIs available.
 
+----
 #### Alert
 
 ##### [Definitions](alerts/definitions.html)
@@ -64,7 +68,7 @@ The following actions can be performed using this API.
  - Update - Update a Schedules.
  - Delete - Delete a Schedules.
  
-##### [Annotations](alerts/annotations.html)
+##### [Annotations](revealengine/annotations.html)
 Annotations can be used to annotate event time line on monitoring graphs for later inspection.
 The following actions can be performed using this API.
  - Index - Fetch all Annotations.
@@ -73,7 +77,7 @@ The following actions can be performed using this API.
  - Update - Update an Annotations.
  - Delete - Delete an Annotations. 
  
- 
+---- 
 #### RevealCloud
 
 ##### [Servers](revealcloud/servers.html)
@@ -87,7 +91,7 @@ The following actions can be performed using this API.
 Samples API can be used to fetch collected data for a system.
 The only action available in this API is fetching the data for a system and for a given time period.
 
-##### [Tags](revealcloud/samples.html)
+##### [Tags](revealcloud/tags.html)
 Tags are used to group multiple systems monitored by CopperEgg.
 The following actions can be performed using this API.
  - Index - Fetch all system Tags.
@@ -96,6 +100,7 @@ The following actions can be performed using this API.
  - Delete - Remove a tag from on system.
 
 
+----
 #### RevealUptime
 
 ##### [Probes](revealuptime/probes.html)
@@ -111,7 +116,7 @@ The following actions can be performed using this API.
 Samples API can be used to fetch collected data for a probe.
 The only action available in this API is fetching the data for a probe and for a given time period.
 
-##### [Tags](revealuptime/samples.html)
+##### [Tags](revealuptime/tags.html)
 Tags are used to group multiple probes monitored by CopperEgg.
 The following actions can be performed using this API.
  - Index - Fetch all probe Tags.
@@ -119,13 +124,13 @@ The following actions can be performed using this API.
  - Create - Add a new Probe Tag to one or more monitored Systems.
  - Delete - Remove a tag from on probe.
  
- 
+---- 
 #### Real Time User Monitoring
 
 ##### [Samples](revealapp/samples.html)
 Samples API can be used to fetch collected RUM data samples.
 
-
+----
 #### Custom Metrics
 
 ##### [Metric Groups](revealmetrics/metricgroups.html)
@@ -137,11 +142,12 @@ Metric Group API allows users to create their own metric groups and performs var
  - Update - Update an existing Metric Group.
  - Delete - Delete an existing Metric Group.
 
-##### [Custom Metric Objects and Staleness](revealmetrics/metricgroups.html)
+----
+##### [Custom Metric Objects and Staleness](revealmetrics/metricobjects.html)
 Each Metric Group has one or more Metric Objects for which data is sent.
 CopperEgg provides API for counting and deleting stale Custom objects.
 
-##### [Dashboards](revealmetrics/dashboards..html)
+##### [Dashboards](revealmetrics/dashboards.html)
 Custom Metrics Dashboards allows the user to create dashboards for organizing the custom metrics and view their associated charts.
 Following operation are available in Custom Metric Dashboard API.
  - Index - Fetch all defined Custom Metric Dashboard.
@@ -161,10 +167,10 @@ The following actions can be performed using this API.
  - Create - Add a new Custom Metrics Tag to a custom metric object.
  - Delete - Remove a Custom Metrics Tag from a custom metric object.
  
- 
+---- 
 ### Releases
 
-January 12, 2016
+January 12, 2017
 - Update API Documentation.
 
 December 10, 2015
