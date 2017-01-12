@@ -165,7 +165,7 @@ The following actions can be performed using this API.
 ### Releases
 
 January 12, 2016
-- Update API Documentation
+- Update API Documentation.
 
 December 10, 2015
 - Updated API Documentation.
@@ -176,14 +176,14 @@ December 31, 2015
 
 February 12, 2014
 
-- Added Alert Schedules information
+- Added Alert Schedules information.
 
 January 2, 2014
 
-- Added RUM information
-- Fixed missing Servers page
+- Added RUM information.
+- Fixed missing Servers page.
 
 November 18, 2013
 
-- Filled in some missing Server Sample data information
-- Changed 'Systems' to 'Servers'
+- Filled in some missing Server Sample data information.
+- Changed 'Systems' to 'Servers'.
