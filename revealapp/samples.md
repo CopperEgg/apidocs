@@ -1,9 +1,9 @@
 ---
 layout: default
-title: RUM - Real User Monitoring 
----  
+title: RUM - Real User Monitoring
+---
 
-##Overview
+## Overview
 
 There is a single API call for retrieving RUM data samples.
 
@@ -16,16 +16,16 @@ curl -s https://<API key>:U@api.copperegg.com/v2/revealapp/samples.json \
 
 {% endhighlight %}
 
-The API key is a unique key that identifies each customer. 
+The API key is a unique key that identifies each customer.
 You can obtain it by clicking the Settings tab while logged on to Uptime Cloud Monitor UI.
 It is presented at the bottom of the screen under “User API Access”.
 
-##Query Parameters
+## Query Parameters
 
 Parameters are specified in JSON format as follows:
 
 {% highlight sh %}
-{"starttime": <start_time>, "endtime": <end_time>, "group": 0, 
+{"starttime": <start_time>, "endtime": <end_time>, "group": 0,
   "queries": [{<query 1>},{<query 2>}, {<query n>}]}
 {% endhighlight %}
 
@@ -33,17 +33,21 @@ start_time and end_time should be specified as an integer UNIX timestamp (second
 When omitted, the last 15 minutes will be queried.
 When multiple queries are specified, all will share the same timeframe.
 
-##Required Parameters
-group: must be specified as 0 (zero).
-queries: at least one query must be specified.
+## Required Parameters
 
-##Query format
+group
+: must be specified as 0 (zero).
+
+queries
+: at least one query must be specified.
+
+## Query format
 
 {% highlight sh %}
 {"idvs": ["<instrumentation key 1>|", "<instrumentation key n>|"], "keys": ["<key1>", "<keyn>"]}
 {% endhighlight %}
 
-idvs allows specifying an array of instrumentation keys. At least one instrumentation key must be specified. 
+idvs allows specifying an array of instrumentation keys. At least one instrumentation key must be specified.
 To obtain Web App’s instrumentation key:
 
 
@@ -52,21 +56,21 @@ To obtain Web App’s instrumentation key:
 3. In the third line of JavaScript code look for:
 {% highlight sh %}
 BACON.id = '<instrumentation key>';
-{% endhighlight %} 
+{% endhighlight %}
 
 
 <b>Attention:</b> You must concatenate “|” character at the end of every instrumentation key.
 
-##keys
+## Keys
 The key is the type of results that will be returned. Multiple keys can be specified. At least one is mandatory. Result type (key) should one of:
- 
+
 * <b>user_times</b> - returns Web App level counters per interval
-* <b>top_urls</b> - returns a list of top requests per interval 
+* <b>top_urls</b> - returns a list of top requests per interval
   Contains both Ajax and Page requests
 * <b>top_locations</b> - returns a list of top countries per interval. Also contains states for US only
 * <b>top_browsers</b> - returns a list of top browsers per interval
 
-##Sample request: last 15 minutes Web App counters for one Web App
+## Sample request: last 15 minutes Web App counters for one Web App
 
 {% highlight sh %}
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealapp/samples.json \
@@ -74,7 +78,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealapp/samples.json \
 -d '{"group": 0, "queries": [{"idvs": ["<instrument key>|"], "keys": ["user_times"]}]}'
 {% endhighlight %}
 
-#####The response has the following format:
+##### The response has the following format:
 
 {% highlight sh %}
 [[{
@@ -108,12 +112,12 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealapp/samples.json \
 }]]
 {% endhighlight %}
 
-<b>Note:</b> Twelve counters are returned per interval. 
-When charting an overtime graph, averages are sufficient. 
+<b>Note:</b> Twelve counters are returned per interval.
+When charting an overtime graph, averages are sufficient.
 
 To calculate average response time of the entire timeframe, sum the total response time of all intervals and then divide by the sum of requests counts of all intervals.
 
-#####If “top_urls” key was specified, the response for the key has the following format:
+##### If “top_urls” key was specified, the response for the key has the following format:
 
 {% highlight sh %}
 "top_urls":{                               # response for the 'top_urls' key
@@ -141,11 +145,11 @@ To calculate average response time of the entire timeframe, sum the total respon
 You can use atob() in JavaScript to decode request URL from base64 encoding.
 To calculate Apdex score, divide its total by its count.
 
-To calculate avg response time, divide its total by its count.
+To calculate average response time, divide its total by its count.
 
-<b>Note:</b> Each interval reports its own top requests. Each request might be reported in multiple intervals on the same timeframe. To calculate average Apdex score on the entire timeframe for specific request, sum all its totals and then divide by sum of all its counts.
+<b>Note:</b> Each interval reports its own top requests. Each request might be reported in multiple intervals on the same timeframe. To calculate average Apdex score on the entire timeframe for a specific request, sum all its totals and then divide by sum of all its counts.
 
-#####If “top_locations” key was specified, the response for the key has the following format:
+##### If “top_locations” key was specified, the response for the key has the following format:
 
 {% highlight sh %}
 
@@ -164,10 +168,10 @@ To calculate avg response time, divide its total by its count.
 }
 {% endhighlight %}
 
-#####If “top_browsers” key was specified, the response for the key has the following format:
- 
+##### If “top_browsers” key was specified, the response for the key has the following format:
+
  {% highlight sh %}
- 
+
  "top_browsers":{                          # response for the 'top_browsers' key
    "0":{                                   # Timestamp - offset from _ts
       "Chrome":[                           # Browser type.

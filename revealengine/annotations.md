@@ -3,17 +3,17 @@ layout: default
 title: Annotations
 ---
 
-##Index
------
+## Index
 
-####CURL Command, and variations::
+
+#### CURL Command, and variations::
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/annotations.json
 
 curl -sk https://<APIKEY>:U@api.copperegg.com/v2/annotations.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is a JSON-encoded array of Annotation Hashes.
 
@@ -44,17 +44,17 @@ Response is a JSON-encoded array of Annotation Hashes.
 ]
 {% endhighlight %}
 
-##Show
 ----
+## Show
 
-####CURL Command, and variations::
+#### CURL Command, and variations::
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/annotations/<ANNOTATION_ID>.json
 
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/annotations/<ANNOTATION_ID>.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is a JSON-encoded Annotation Hash:
 
@@ -72,21 +72,20 @@ Response is a JSON-encoded Annotation Hash:
 }
 {% endhighlight %}
 
-
-##Create
 ----
+## Create
 
-####Required parameters:  
+#### Required parameters:
 * note: text string describing the event (max 250 chars)
 * starttime: seconds from the epoch
 * endtime: seconds from the epoch, must be AFTER starttime
 
-####Optional parameters:  
+#### Optional parameters:
 * label: one of: \[yellow green blue orange red purple\]
-* tags: comma separated list (Allowed chars: A-Za-z0-9_)  
+* tags: comma separated list (Allowed chars: A-Za-z0-9_)
 
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -XPOST https://api.copperegg.com/v2/annotations.json -d 'note=API&starttime=1342119638&endtime=1342119950'
 
@@ -95,7 +94,7 @@ curl -s  -XPOST https://<APIKEY>:U@api.copperegg.com/v2/annotations.json -d 'not
 curl -s  https://<APIKEY>:U@api.copperegg.com/v2/annotations.json -H "Content-Type: application/json" -XPOST -d '{"note":"API","starttime":1342119638,"endtime":1342119950}'
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is a JSON-encoded Annotation Hash:
 
@@ -113,11 +112,10 @@ Response is a JSON-encoded Annotation Hash:
 }
 {% endhighlight %}
 
-
-##Update
 ----
+## Update
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/annotations/<ANNOTATION_ID>.json -XPUT -d 'endtime=1342119990'
 
@@ -126,7 +124,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/annotations/<ANNOTATION_ID>.json
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/annotations/<ANNOTATION_ID>.json -H "Content-Type: application/json" -XPUT -d '{"endtime":1342119990}'
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is the JSON-encoded updated Annotation Hash:
 
@@ -144,18 +142,17 @@ Response is the JSON-encoded updated Annotation Hash:
 }
 {% endhighlight %}
 
-
-##Delete
 ----
+## Delete
 
-####CURL Command, and variations::
+#### CURL Command, and variations::
 {% highlight sh %}
 curl -XDELETE -su <APIKEY>:U https://api.copperegg.com/v2/annotations/<ANNOTATION_ID>.json
 
 curl -XDELETE -s  https://<APIKEY>:U@api.copperegg.com/v2/annotations/<ANNOTATION_ID>.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is Status 200, empty JSON:
 

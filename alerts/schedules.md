@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Alerts - Schedules  *** Beta ***
----  
+title: Alerts - Schedules  ***Beta***
+---
 
-##Overview
+## Overview
 
 Each of the API commands described here relate to retrieving, creating, editing and deleting one or more Alert Schedules at your site.
-Each Alert Schedule is completely described by an Alert Schedule Hash, and has a unique ALERT_SCHED_ID (alert schedule ID).
+Each Alert Schedule is completely described by an Alert Schedule Hash and has a unique ALERT_SCHED_ID (alert schedule ID).
 
 
-###The Alert Schedule Hash
+### The Alert Schedule Hash
 
 A JSON-encoded Alert Schedule Hash is shown below:
 
@@ -21,7 +21,7 @@ A JSON-encoded Alert Schedule Hash is shown below:
   "end_time":"2014-02-12T05:03:15Z",                  # end time, TZ format
   "duration":60,                                      # Duration of maintenance window, in minutes
   "state":"enabled",                                  # state may be "enabled" or "disabled"
-  "match":                                        
+  "match":
     {                                                 # a hash which may be empty (match all), or may include an array of tags to include
       "tag":["no-latealerts"]                         # array of tags to match
     },
@@ -30,19 +30,19 @@ A JSON-encoded Alert Schedule Hash is shown below:
 }
 {% endhighlight %}
 
-
-##Index
 -----
-Retrieve all Alert Schedules at your site. 
+## Index
 
-####CURL Command, and variations:
+Retrieve all Alert Schedules at your site.
+
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/schedules.json
 
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 Response is an array of JSON-encoded Alert Schedule Hashes. In the following example, two Alert Schedule Hashes are returned:
 {% highlight ruby %}
 [
@@ -79,21 +79,21 @@ Response is an array of JSON-encoded Alert Schedule Hashes. In the following exa
 ]
 {% endhighlight %}
 
-
-##Show
 ----
+## Show
+
 Show information about a single alert schedule.
 
-####Required parameters: ALERT_SCHED_ID (alert schedule id) as part of the path.
+#### Required parameters: ALERT_SCHED_ID (alert schedule id) as part of the path.
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID>.json
 
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID>.json
 {% endhighlight %}
 
-####CURL Response:  
+#### CURL Response:
 
 Response is a single JSON-encoded Alert Schedule Hash.
 {% highlight ruby %}
@@ -114,53 +114,52 @@ Response is a single JSON-encoded Alert Schedule Hash.
 }
 {% endhighlight %}
 
-
-##Create
+----
+## Create
 
 Create a new alert schedule.
 
-####Required parameters:
+#### Required parameters:
 You must include all of the following:
 
 name
-: Your short text description of the schedule (string); e.g., "name":"Production_Maintenance".  
+: Your short text description of the schedule (string); e.g., "name":"Production_Maintenance".
 
 start_time
 :  The Time and Date of the beginning of the window, in TZ format. (e..g., "2014-02-12T04:03:15Z")
 
 duration
-: The number of minutes (integer) that the notifications will be disabled, beginning at the start_time. 
+: The number of minutes (integer) that the notifications will be disabled, beginning at the start_time.
 
 
-####Optional parameters:
+#### Optional parameters:
 You may include any of the following:
 
 state
 : The state in which to this schedule will be left after being created. default is "enabled"
 
 match
-: If not specified, defaults to match any tag, or no tag. To specify one or more tags to match, use the following format: "match":{"tag":\["TAG1","TAG2"\]}.  
-Default if not specified: {}  
+: If not specified, defaults to match any tag or no tag. To specify one or more tags to match, use the following format: "match":{"tag":\["TAG1","TAG2"\]}.
+Default if not specified: {}
 
 match_exclude
-: If not specified, defaults to exclude nothing. To specify one or more tags to exclude, use the following format: "match_exclude":{"tag":\["TAG1","TAG2"\]}.  
-Default if not specified: {}  
+: If not specified, defaults to exclude nothing. To specify one or more tags to exclude, use the following format: "match_exclude":{"tag":\["TAG1","TAG2"\]}.
+Default if not specified: {}
 
 recurring
 : When the recurring flag is false, this schedule will be executed one time.
-Default is false
-*** the recurring feature is not yet implemented.  
-Specifying  "recurring":true will cause an error.
+Default is false.
+**The recurring feature is not yet implemented.** Specifying  "recurring":true will cause an error.
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
-curl -su <APIKEY>:U -H "Content-Type: application/json" -XPOST -d '{"name":"Duplicate","start_time":"2014-02-14T17:30:00Z","duration":60,"state":"enabled","match":{"tag":["no-latealerts"]},"match_exclude":{},"recurring":false}' https://api.copperegg.com/v2/alerts/schedules.json  
+curl -su <APIKEY>:U -H "Content-Type: application/json" -XPOST -d '{"name":"Duplicate","start_time":"2014-02-14T17:30:00Z","duration":60,"state":"enabled","match":{"tag":["no-latealerts"]},"match_exclude":{},"recurring":false}' https://api.copperegg.com/v2/alerts/schedules.json
 
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules.json -H "Content-Type: application/json" -XPOST -d '{"name":"Duplicate","start_time":"2014-02-14T17:30:00Z","duration":60,"state":"enabled","match":{"tag":["no-latealerts"]},"match_exclude":{},"recurring":false}'  
+curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules.json -H "Content-Type: application/json" -XPOST -d '{"name":"Duplicate","start_time":"2014-02-14T17:30:00Z","duration":60,"state":"enabled","match":{"tag":["no-latealerts"]},"match_exclude":{},"recurring":false}'
 {% endhighlight %}
 
-####CURL Response:  
-Status Code 200, and a newly-created Alert Schedule Hash: 
+#### CURL Response:
+Status Code 200, and a newly-created Alert Schedule Hash:
 {% highlight ruby %}
 {
   "id":407,
@@ -177,21 +176,21 @@ Status Code 200, and a newly-created Alert Schedule Hash:
 }
 {% endhighlight %}
 
-
-##Update
 ----
+## Update
+
 Update an existing alert schedule.
 
-####Required parameter:  
-ALERT_SCHED_ID (alert schedule id) as part of the path.  
+#### Required parameter:
+ALERT_SCHED_ID (alert schedule id) as part of the path.
 
-####Optional parameters:  
-same as described for create.  
+#### Optional parameters:
+same as described for create.
 
 
-###Update Example: Change alert duration and flags in the alert schedule created above.
+### Update Example: Change alert duration and flags in the alert schedule created above.
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -H "Content-Type: application/json" -XPUT -d '{"duration":45,"state":"disabled"}' https://api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID.json
 
@@ -199,9 +198,9 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID
 
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
-Status Code 200, and the newly-updated Alert Schedule Hash: 
+Status Code 200, and the newly-updated Alert Schedule Hash:
 
 {% highlight ruby %}
 {
@@ -219,22 +218,22 @@ Status Code 200, and the newly-updated Alert Schedule Hash:
 }
 {% endhighlight %}
 
-
-##Destroy
+-----
+## Destroy
 
 Delete the specified alert schedule.
 
-####Required parameter:  
+#### Required parameter:
 ALERT_SCHED_ID (alert schedule id) as part of the path.
 
-####CURL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID>.json
 
 curl -s -XDELETE https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID>.json
 {% endhighlight %}
 
-####CURL Response:
+#### CURL Response:
 
 Response is Status 200, empty JSON:
 
