@@ -5,12 +5,12 @@ title: IDERA Developer Site
 
 ### Format of CURL Request
 
-The general format for the curl request is described below. You can get the curl software from here - https://curl.haxx.se/
+The general format for the curl request is described below. You can get the curl software from [here](https://curl.haxx.se/)
 
 {% highlight sh %}
 curl -su <APIKEY>:U <HTTP/HTTPS>://api.copperegg.com/v2/alerts/definitions.json
 
-or 
+or
 
 curl -s <HTTP/HTTPS>://<APIKEY>:U@api.copperegg.com/v2/alerts/alerts/definitions.json
 {% endhighlight %}
@@ -52,7 +52,7 @@ The following actions can be performed using this API.
  - Create - Create a new Notification Profile.
  - Update - Update an existing Notification Profile.
  - Delete - Delete an existing Notification Profile.
- 
+
 ##### [Issues](alerts/issues.html)
 Issues are automatically created by CopperEgg's alerting system whenever one of the conditions defined in Alert Definition is met.
 The following actions can be performed using this API.
@@ -62,14 +62,14 @@ The following actions can be performed using this API.
  - Delete - Delete an Issue.
 
 ##### [Schedules](alerts/schedules.html)
-Schedules are for creating Maintenance periods for the resources monitored by CopperEgg. During which any Issues created will not be notified to the user. 
+Schedules are for creating Maintenance periods for the resources monitored by CopperEgg. During which any Issues created will not be notified to the user.
 The following actions can be performed using this API.
  - Index - Fetch all Schedules.
  - Show - Fetch in-depth information for a single Schedules.
  - Create - Create a new Schedules.
  - Update - Update a Schedules.
  - Delete - Delete a Schedules.
- 
+
 ##### [Annotations](revealengine/annotations.html)
 Annotations can be used to annotate event time line on monitoring graphs for later inspection.
 The following actions can be performed using this API.
@@ -77,10 +77,10 @@ The following actions can be performed using this API.
  - Show - Fetch in-depth information for a single Annotations.
  - Create - Create a new Annotations.
  - Update - Update an Annotations.
- - Delete - Delete an Annotations. 
- 
+ - Delete - Delete an Annotations.
+
 ----
- 
+
 #### RevealCloud
 
 ##### [Servers](revealcloud/servers.html)
@@ -89,7 +89,7 @@ The following actions can be performed using this API.
  - Index - Fetch details of all monitored systems.
  - Hide - Hide/Unhide a system.
  - Delete - Remove a system from being monitored by CopperEgg.
- 
+
 ##### [Samples](revealcloud/samples.html)
 Samples API can be used to fetch collected data for a system.
 The only action available in this API is fetching the data for a system and for a given time period.
@@ -115,7 +115,7 @@ The following actions can be performed using this API.
  - Create - Create a new Probe.
  - Update - Update an existing probe.
  - Delete - Remove an existing probe.
- 
+
 ##### [Samples](revealuptime/samples.html)
 Samples API can be used to fetch collected data for a probe.
 The only action available in this API is fetching the data for a probe and for a given time period.
@@ -127,9 +127,9 @@ The following actions can be performed using this API.
  - Show - Fetch all probe grouped by a tag.
  - Create - Add a new Probe Tag to one or more monitored Systems.
  - Delete - Remove a tag from on probe.
- 
+
 ----
- 
+
 #### Real Time User Monitoring
 
 ##### [Samples](revealapp/samples.html)
@@ -159,8 +159,8 @@ Following operation are available in Custom Metric Dashboard API.
  - Create - Create a new Custom Metric Dashboard.
  - Update - Update an existing Custom Metric Dashboard.
  - Delete - Delete an existing Custom Metric Dashboard.
- 
-##### [Samples](revealmetrics/samples.html) 
+
+##### [Samples](revealmetrics/samples.html)
 Samples API can be used to fetch collected data for custom metrics.
 The only action available in this API is fetching the data for a custom metric and for a given time period.
 
@@ -171,18 +171,21 @@ The following actions can be performed using this API.
  - Show - Fetch custom metric object associated with a single custom metric tag.
  - Create - Add a new Custom Metrics Tag to a custom metric object.
  - Delete - Remove a Custom Metrics Tag from a custom metric object.
- 
----- 
+
+----
 
 ### Releases
 
 January 13, 2017
-- Update to RevealMetrics Group API to disallow creation of Metric Groups with name containg periods or spaces. 
+
+- Update to RevealMetrics Group API to disallow creation of Metric Groups with name containg periods or spaces.
 
 January 12, 2017
+
 - Update API Documentation.
 
 December 10, 2015
+
 - Updated API Documentation.
 
 December 31, 2015
