@@ -229,7 +229,7 @@ Response is single Metric Group Hash. In this example, the metric group is the s
 Create a new Metric Group.
 
 #### Required parameters:
-* You must include a metric group "name" string and an array of metrics.
+* You must include a metric group "name" string and an array of metrics. The metric group name can not contain spaces or periods.
 
 * Each Metric hash must contain 3 key-value pairs: type, name, and unit. You can optionally specify a label.
 
@@ -242,7 +242,7 @@ Create a new Metric Group.
   if not included, a default label will be created. Be descriptive!!!
 
 
-#### Create Example 1: create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'myredis'.
+#### Create Example 1: Create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'myredis'.
 We'll also use the bare minimum required parameters, to demonstrate the defaults.
 
 
@@ -282,10 +282,10 @@ Response is Status 200, and the metric group hash created:
 {% endhighlight %}
 
 
-#### Create Example 2: create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'newredis'.
+#### Create Example 2: Create a small group of metrics using two of the metrics from the example above. We'll call this new metric group 'newredis'.
 This time we'll specify frequency and labels.
 
-#### C  URL Command, and variations:
+#### CURL Command, and variations:
 {% highlight sh %}
 curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"newredis","frequency":15,"label":"Well-Labelled Redis","metrics":[{"type":"ce_counter","name":"uptime","label":"UPTIME","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
 {% endhighlight %}
@@ -319,6 +319,24 @@ Response is Status 200, and the metric group hash created:
   }
 {% endhighlight %}
 
+#### Create Example 2: Attempt to create a metric group with name containing spaces.
+
+#### CURL Command, and variations:
+{% highlight sh %}
+curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.copperegg.com/v2/revealmetrics/metric_groups.json -d '{"name":"new   redis","frequency":15,"label":"Well-Labelled Redis","metrics":[{"type":"ce_counter","name":"uptime","label":"UPTIME","unit":"Seconds"},{"type":"ce_gauge","name":"connected_clients","unit":"Clients"}]}'
+{% endhighlight %}
+
+#### CURL Response:
+
+Response is Status 403 and an error message is returned:
+{% highlight sh %}
+{
+	"error": true,
+	"error_type": "message",
+	"message": "error: Metric Group name can not contain spaces or periods."
+}
+{% endhighlight %}
+
 ------
 ## Update
 
@@ -342,7 +360,7 @@ METRIC_GROUP_ID as part of the path
 curl -su <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copperegg.com/v2/revealmetrics/metric_groups/<METRIC_GROUP_ID> -d '{<UPDATED_VALUES_HASH>}'
 {% endhighlight %}
 
-#### Update Example 1: change frequency of the metric group created above to every 15 seconds.  (where id="myredis")
+#### Update Example 1: Change frequency of the metric group created above to every 15 seconds.  (where id="myredis")
 
 #### CURL Command, and variations:
 {% highlight sh %}
