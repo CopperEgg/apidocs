@@ -45,6 +45,7 @@ Response is a JSON-encoded array of Annotation Hashes.
 {% endhighlight %}
 
 ----
+
 ## Show
 
 #### CURL Command, and variations::
@@ -73,6 +74,7 @@ Response is a JSON-encoded Annotation Hash:
 {% endhighlight %}
 
 ----
+
 ## Create
 
 #### Required parameters:
@@ -113,6 +115,7 @@ Response is a JSON-encoded Annotation Hash:
 {% endhighlight %}
 
 ----
+
 ## Update
 
 #### CURL Command, and variations:
@@ -143,6 +146,7 @@ Response is the JSON-encoded updated Annotation Hash:
 {% endhighlight %}
 
 ----
+
 ## Delete
 
 #### CURL Command, and variations::

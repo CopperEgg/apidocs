@@ -7,6 +7,7 @@ title: Custom Metrics - Samples
 These are the API calls for storing and retrieving data samples to/from Uptime Cloud Monitor Custom Metrics.
 
 ----
+
 #### Storing a data sample
 
 To store a data sample, you POST the new value, referencing it using the metric name, metric group, and identifier.
@@ -54,6 +55,7 @@ curl -su <APIKEY>:U -H "Content-type: application/json" -XPOST https://api.coppe
 
 
 -----
+
 ## Reading one or more metrics from Custom Metrics
 
 

@@ -11,6 +11,7 @@ There are four kinds of issues, those created by system alerts(RevealCloud), tho
 Each issue is completely described by an Issue hash.
 
 ----
+
 ### The Issue Hash
 The JSON-encoded Issue Hash is shown in the following system alert example:
 
@@ -38,6 +39,7 @@ The JSON-encoded Issue Hash is shown in the following system alert example:
 {% endhighlight %}
 
 ----
+
 ## Index
 
 Retrieve all existing Issues at your site (in batches of 100 max).
@@ -141,6 +143,7 @@ Response is a hash which consists of two keys "issues" and "issuesStats".
 {% endhighlight %}
 
 ----
+
 ## Show
 
 Show in-depth information about a single Issue.
@@ -158,7 +161,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/issues/ISSUE_ID.json
 #### CURL Response:
 
 Response is a single JSON-encoded Issue Hash.
-{% highlight javascript %}
+{% highlight sh %}
 {
   "id":188,
   "state":"notified",
@@ -195,6 +198,7 @@ Response is a single JSON-encoded Issue Hash.
 {% endhighlight %}
 
 ----
+
 ## Update
 
 Update a single Issue.
@@ -220,7 +224,7 @@ curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/ISSUE_ID.json -XP
 
 Response is Status 200, and the newly updated Issue Hash
 
-{% highlight javascript %}
+{% highlight sh %}
 {
  "id":3607894,
  "state":"cleared",
@@ -243,6 +247,7 @@ Response is Status 200, and the newly updated Issue Hash
 {% endhighlight %}
 
 ----
+
 ## Delete
 
 Delete a single Issue
@@ -264,7 +269,7 @@ curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/issues/<ISSUE_ID>.json -
 The specified issue will be deleted.
 Response is Status 200, empty JSON:
 
-{% highlight javascript %}
+{% highlight sh %}
 {}
 {% endhighlight %}
 

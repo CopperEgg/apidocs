@@ -48,6 +48,7 @@ Note that each System Tag Hash contains a single TAG_ID (tag "id"), which is the
 
 
 ----
+
 ## Show
 
 
@@ -82,6 +83,7 @@ Response is a JSON-encoded array of hashes containing details of all systems ass
 Note: the results above indicate that the tag 'winserver' is associated with 5 systems, all hidden.
 
 ------
+
 ## Create
 
 Add a new System Tag to one or more monitored Systems.
@@ -119,6 +121,7 @@ Response is Status 200, empty JSON:
 
 
 -------
+
 ## Delete
 
 Remove a tag from one system.

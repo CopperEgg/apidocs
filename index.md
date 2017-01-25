@@ -105,6 +105,22 @@ The following actions can be performed using this API.
 
 ----
 
+#### Amazon Web Services(AWS)
+
+##### [AWS Accounts](aws/accounts.html)
+Server represent each of the user's system monitored by CopperEgg.
+The following actions can be performed using this API.
+ - Index - Fetch details of all monitored AWS Accounts.
+ - Create - Add a new AWS Account on monitoring.
+ - Update - Update an existing AWS Account.
+ - Delete - Remove AWS Account from monitoring.
+
+##### [Samples](aws/samples.html)
+Samples API can be used to fetch collected data for an AWS Account.
+Samples for various AWS services can be fetched using this API.
+
+----
+
 #### RevealUptime
 
 ##### [Probes](revealuptime/probes.html)
@@ -175,6 +191,10 @@ The following actions can be performed using this API.
 ----
 
 ### Releases
+
+January 25, 2017
+
+- Added AWS Documentation.
 
 January 13, 2017
 

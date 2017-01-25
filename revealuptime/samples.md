@@ -62,7 +62,9 @@ status codes          's'
 {% endhighlight %}
 
 ----
+
 #### Example 1
+
 ----
 Obtain samples from one probe, specifying only the PROBE_ID.
 
@@ -94,7 +96,9 @@ Response is a JSON-encoded array with a single Probe Sample Hash:
 
 
 ----
+
 #### Example 2
+
 ----
 
 Obtain samples from two probes, specifying sample_size of 60. Default keys.
@@ -138,7 +142,9 @@ Response is a JSON-encoded array of Probe Sample Hashes, in this case, with 60 s
 
 
 ----
+
 #### Example 3
+
 ----
 
 Obtain samples from a single probe, specifying starttime, endtime, and sample_size of 60 seconds. Default keys.
@@ -171,7 +177,9 @@ Response is a JSON-encoded array with a single Probe Sample Hash:
 
 
 ----
+
 #### Example 4
+
 ----
 
 Obtain samples from one probe, specifying sample_size of 60, and the keys l, lp, l_s, u, l_h and l_ss.
@@ -208,7 +216,9 @@ Note: Latency percent arrays contain only three values: connect, time for the fi
 
 
 ----
+
 #### Example 5
+
 ----
 
 Obtain all station data for one probe, specifying sample_size of 60, and the keys s_l, s_s, s_u, and s_h.
