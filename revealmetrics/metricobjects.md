@@ -2,6 +2,7 @@
 layout: default
 title: Custom Metric Objects and Staleness
 ---
+
 ## Overview
 
 These are the API calls for counting and deleting stale custom metric objects.
@@ -58,6 +59,7 @@ Total objects : <NUMBER_OF_METRIC_OBJECT> , Stale objects : <NUMBER_OF_METRIC_OB
 {% endhighlight %}
 
 -----
+
 ## Another similar API to delete stale custom objects :
 
 {% highlight sh %}

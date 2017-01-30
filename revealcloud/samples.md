@@ -117,6 +117,7 @@ The state symbol is passed from the OS, without translation. If a symbol appears
 
 
 ----
+
 ## Retrieve Server Samples
 
 
@@ -146,7 +147,9 @@ If you specify a smaller sample_size, the default sample_size will be used.
 Valid sample sizes range from 5 to 86400 seconds.
 
 ----
+
 ### Example 1 Retrieving Server Samples, using defaults.
+
 ----
 
 Obtain samples from one system, specifying only the UUID. This will demonstrate the default set of data returned when:
@@ -228,7 +231,9 @@ Response is a JSON-encoded array containing one Server Sample Hash, with 5 minut
 {% endhighlight %}
 
 ----
+
 ### Example 2
+
 ----
 
 Obtain samples from a single system specifying sample_size of 60 seconds. Default keys.
@@ -292,7 +297,9 @@ Response is a JSON-encoded array of Server Sample Hashes, same as default except
 {% endhighlight %}
 
 ----
+
 ### Example 3
+
 ----
 
 Obtain samples from a single system specifying sample_size of 60 seconds, and separate network interface metrics.
@@ -337,7 +344,9 @@ Response is a JSON-encoded array, containing one Server Sample Hash, with one se
 {% endhighlight %}
 
 ----
+
 ### Example 4
+
 ----
 Obtain the latest health samples from a single system.
 
@@ -383,7 +392,9 @@ Response is a JSON-encoded array, containing one Server Sample Hash, with one se
 {% endhighlight %}
 
 ----
+
 ### Example 5
+
 ----
 
 Obtain samples from a single system focusing only on processes.

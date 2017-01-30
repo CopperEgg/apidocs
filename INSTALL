@@ -1,11 +1,19 @@
+Updated January 30, 2017
+  Added Gemfile with github-pages gem so that look and feel of website is same on local and production
+
 Updated October 7,2016
   Replaced deprecated jekyll semantics.
 
 To install dependencies: (require ruby 2.0.0 and above for jekyll version 3.3.0)
 ------------------------------------
 $ sudo easy_install Pygments
-$ gem install jekyll
+$ gem install bundler
+$ bundle install
+$ bundle update
 
+
+Here, bundle update is important because github always uses latest gems to host a jekyll site.
+These gems are mentioned as dependencies of github-pages gem which is a part of Gemfile.
 
 To see jekyll commands:
 ------------------------------------

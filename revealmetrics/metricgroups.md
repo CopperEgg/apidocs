@@ -8,6 +8,7 @@ title: Custom Metrics - Metric Groups
 These are the API calls for listing, creating, updating and deleting Metric Groups.
 
 ----
+
 ### Definitions of Metric and Metric Group
 
 
@@ -71,6 +72,7 @@ Summing up:
 
 
 -----
+
 ## Index
 
 List all defined Custom Metrics Metric Groups.
@@ -148,6 +150,7 @@ Response is a JSON array of Metric Group hashes. In this example, there is one m
 {% endhighlight %}
 
 -----
+
 ## Show
 
 Show all details of a single Metric Group.
@@ -224,6 +227,7 @@ Response is single Metric Group Hash. In this example, the metric group is the s
 {% endhighlight %}
 
 ------
+
 ## Create Metric Group
 
 Create a new Metric Group.
@@ -338,6 +342,7 @@ Response is Status 403 and an error message is returned:
 {% endhighlight %}
 
 ------
+
 ## Update
 
 Update an existing Metric Group.
@@ -441,6 +446,7 @@ Response is Status 200, updated metric group hash:
 {% endhighlight %}
 
 ------
+
 ## Delete
 
 Delete the specified Metric Group.
@@ -462,7 +468,7 @@ curl  -su <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/metric
 
 Response is Status 200, empty JSON:
 
-{% highlight javascript %}
+{% highlight sh %}
 {}
 {% endhighlight %}
 

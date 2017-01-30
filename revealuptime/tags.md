@@ -8,6 +8,7 @@ title: Probes - Tags
 Each of the API commands described here relate to listing, creating, editing and deleting tags that have been associated with Probes at your site.
 
 -----
+
 ## Index
 
 Retrieve an array of all Probe Tag Hashes.
@@ -54,6 +55,7 @@ In the example above, two Probe Tag Hashes are returned by the Index command; "d
 Note that each tag structure contains an 'id', which is the tag itself, and an array of "probe_ids", one for each probe to which the tag is attached.
 
 ----
+
 ## Show
 
 Retrieve details about each Probe with the specified tag.
@@ -126,6 +128,7 @@ Response is a JSON-encoded array of Probe Hashes, each containing details and st
 {% endhighlight %}
 
 ------
+
 ## Create
 
 Add a new tag to one or more defined probes.
@@ -155,6 +158,7 @@ Response is Status 200, empty JSON:
 {% endhighlight %}
 
 -------
+
 Delete
 
 Delete a tag from a probe.

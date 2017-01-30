@@ -42,6 +42,7 @@ An example JSON-encoded System Hash is shown below:
 {% endhighlight %}
 
 -----
+
 ## Index
 
 Retrieve an array of System Hashes for all monitored systems at a site.
@@ -121,6 +122,7 @@ For example:
 
 
 -------
+
 ## Hide
 
 Hide the specified system.
@@ -148,6 +150,7 @@ hidden
 {% endhighlight %}
 
 -------
+
 ## Delete
 
 Delete the specified System Hash.

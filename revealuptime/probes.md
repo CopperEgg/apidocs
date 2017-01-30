@@ -44,6 +44,7 @@ An example JSON-encoded Probe Hash is shown below:
 {% endhighlight %}
 
 ----
+
 ## Index
 
 Retrieve an array of all of your Probe Hashes.
@@ -116,6 +117,7 @@ Response is a JSON-encoded array of Probe Hashes.
 {% endhighlight %}
 
 ----
+
 ## Show
 
 Retrieve a single Probe Hash, given its PROBE_ID.
@@ -168,6 +170,7 @@ Response is a single JSON-encoded Probe Hash.
 {% endhighlight %}
 
 ------
+
 ## Create
 
 Create a new probe.
@@ -326,6 +329,7 @@ Response is the newly-created JSON-encoded Probe Hash:
 {% endhighlight %}
 
 ------
+
 ## Update
 
 Update an existing Probe.
@@ -387,6 +391,7 @@ Response is the newly-updated JSON-encoded Probe Hash:
 {% endhighlight %}
 
 -------
+
 ## Delete
 
 Delete the specified Probe Hash.
