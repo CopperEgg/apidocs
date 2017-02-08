@@ -25,6 +25,7 @@ These profiles provide a great deal of flexibility in terms of managing a wide a
 Unlike User Notification Profiles, Custom Profiles are not user-specific.
 
 -----
+
 ### The Notification Profile Hash
 An example JSON-encoded Notification Profile Hash is shown below:
 
@@ -77,6 +78,7 @@ An example JSON-encoded Notification Profile Hash is shown below:
 {% endhighlight %}
 
 -----
+
 ### The Notification Destination Hash
 
 Each Notification Profile Hash will contain 0 or more Notification Destination Hashes, in an array named "destinations".
@@ -197,6 +199,7 @@ The following summarizes the format of each.
 {% endhighlight %}
 
 -----
+
 ## Index
 
 List all Notification Profiles.
@@ -276,6 +279,7 @@ Response is an array of JSON-encoded Notification Profile Hashes. The following 
 {% endhighlight %}
 
 -----
+
 ## Show
 
 Show in-depth information about a single notification profile.
@@ -317,6 +321,7 @@ Response is a single JSON Notification Profile Hash. In this case, the profile i
 {% endhighlight %}
 
 -----
+
 ## Create
 
 Create a new Notification Profile.
@@ -401,6 +406,7 @@ Note that creating this profile creates both a new NOTIFICATION_PROFILE_ID as we
 {% endhighlight %}
 
 -----
+
 ## Update
 Update an existing Notification Profile.
 
@@ -518,6 +524,7 @@ Response is Status 200, and a newly-updated Notification Profile Hash.
 {% endhighlight %}
 
 -----
+
 ## Delete
 
 Delete the specified Notification Profile.
@@ -537,6 +544,6 @@ curl -s -XDELETE https://<APIKEY>:U@api.copperegg.com/v2/alerts/profiles/<NOTIFI
 
 Response is Status 200, empty JSON hash:
 
-{% highlight javascript %}
+{% highlight sh %}
 {}
 {% endhighlight %}

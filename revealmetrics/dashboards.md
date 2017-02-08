@@ -8,6 +8,7 @@ These are the API calls for retrieving, creating, updating and deleting Custom M
 
 
 ----
+
 #### Creating a Dashboard and populating it with Widgets
 
 
@@ -159,6 +160,7 @@ The difference in the structures is mentioned at this point to avoid confusion w
 The reason for the difference in structures has to do with new functionality which will be available in an upcoming API release.
 
 -----
+
 ## Index
 
 List all defined Custom Metrics Custom Dashboards.
@@ -236,6 +238,7 @@ Response is a JSON-encoded array of Dashboard Hashes. In this example, there is 
 {% endhighlight %}
 
 ------
+
 ## Create Dashboard
 
 Create a new Dashboard
@@ -299,6 +302,7 @@ Response is a JSON-encoded Dashboard Hash. Once again notice the format of the "
 {% endhighlight %}
 
 ------
+
 ## Update
 
 Update an existing Dashboard and/or the widgets it displays.
@@ -322,7 +326,7 @@ curl -su <APIKEY>:U -H "Content-type: application/json" -XPUT https://api.copper
 #### CURL Response:
 Response is a JSON-formatted Dashboard hash.
 
-{% highlight javascript %}
+{% highlight sh %}
 {
   "id":89,
   "name":"My New Dash",
@@ -352,6 +356,7 @@ Response is a JSON-formatted Dashboard hash.
 {% endhighlight %}
 
 -------
+
 ## Delete
 
 Delete the specified Dashboard.
@@ -372,7 +377,7 @@ curl -su <APIKEY>:U -XDELETE  https://api.copperegg.com/v2/revealmetrics/dashboa
 
 Response is Status 200, empty JSON:
 
-{% highlight javascript %}
+{% highlight sh %}
 {}
 {% endhighlight %}
 

@@ -31,6 +31,7 @@ A JSON-encoded Alert Schedule Hash is shown below:
 {% endhighlight %}
 
 -----
+
 ## Index
 
 Retrieve all Alert Schedules at your site.
@@ -80,6 +81,7 @@ Response is an array of JSON-encoded Alert Schedule Hashes. In the following exa
 {% endhighlight %}
 
 ----
+
 ## Show
 
 Show information about a single alert schedule.
@@ -115,6 +117,7 @@ Response is a single JSON-encoded Alert Schedule Hash.
 {% endhighlight %}
 
 ----
+
 ## Create
 
 Create a new alert schedule.
@@ -177,6 +180,7 @@ Status Code 200, and a newly-created Alert Schedule Hash:
 {% endhighlight %}
 
 ----
+
 ## Update
 
 Update an existing alert schedule.
@@ -219,6 +223,7 @@ Status Code 200, and the newly-updated Alert Schedule Hash:
 {% endhighlight %}
 
 -----
+
 ## Destroy
 
 Delete the specified alert schedule.
@@ -237,6 +242,6 @@ curl -s -XDELETE https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules/<ALERT
 
 Response is Status 200, empty JSON:
 
-{% highlight javascript %}
+{% highlight sh %}
 {}
 {% endhighlight %}

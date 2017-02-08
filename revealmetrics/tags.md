@@ -61,6 +61,7 @@ Note that each tag hash contains a single TAG_ID ("id"), and an array of objects
 
 
 ----
+
 ## Show
 
 Show in-depth information about a single custom metric tag.
@@ -112,6 +113,7 @@ Continuing with the Index example, here we pass the tag "Win2008r2":
 
 
 ----
+
 ## Create / Update
 
 Add a new tag to one or more defined custom objects.
@@ -143,6 +145,7 @@ Response is Status 200, empty JSON:
 
 
 ----
+
 ## Delete
 
 Delete a tag from one custom object.

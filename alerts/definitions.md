@@ -21,6 +21,7 @@ specify which notification profile / type should be used for each Alert Definiti
 This process is explained below, in Update Example 2. Please also refer to the Notification Profiles section for more detail.
 
 -----
+
 ### The Alert Definition Hash
 
 A JSON-encoded Alert Definition Hash is shown in the following system alert definition example:
@@ -58,6 +59,7 @@ A JSON-encoded Alert Definition Hash is shown in the following system alert defi
 {% endhighlight %}
 
 -----
+
 ## Index
 
 Retrieve all Alert Definitions at your site.
@@ -139,6 +141,7 @@ Response is an array of JSON-encoded Alert Definition Hashes. In the following e
 {% endhighlight %}
 
 ----
+
 ## Show
 
 Show in-depth information about a single alert definition.
@@ -191,6 +194,7 @@ Response is a single JSON-encoded Alert Definition Hash. In this case, the alert
 {% endhighlight %}
 
 -----
+
 ## Create
 
 Create a new alert definition.
@@ -259,7 +263,7 @@ Please refer to the Notification Profiles section.
 #### Specifying Comparison parameters
 
 ##### Comparison parameters for a system alert (RevealCloud)
-{% highlight javascript %}
+{% highlight sh %}
   Process List
     "comp_func":"COMPFUNC"              "COMPFUNC" may be "=~" or "!~"
     "comp_val1":["ce_usage","payload"]
@@ -344,7 +348,7 @@ Please refer to the Notification Profiles section.
 
 ##### Comparison parameters for a website / probe alert (RevealUptime)
 
-{% highlight javascript %}
+{% highlight sh %}
   Response Time
     "comp_func": "COMPFUNC"             "COMPFUNC" may be "<", ">", "<=", ">=", "=" or "!="
     "comp_val1":["ce_probe_summary_v1","time"]
@@ -377,7 +381,7 @@ Please refer to the Notification Profiles section.
 
 ##### Comparison parameters for a custom metrics alert (RevealMetrics)
 
-{% highlight javascript %}
+{% highlight sh %}
   Response Time
     "comp_func": "COMPFUNC"             "COMPFUNC" may be "<", ">", "<=", ">=", "=" or "!="
     "comp_val1":["ce_probe_summary_v1","time"]
@@ -389,7 +393,7 @@ Please refer to the Notification Profiles section.
 
 ##### Comparison parameters for AWS alert
 For more alerts type on AWS, refer to Application.
-{% highlight javascript %}
+{% highlight sh %}
   Response Time
     "comp_func": "COMPFUNC"             "COMPFUNC" may be "<", ">", "<=", ">=", "=" or "!="
     "comp_val1":["aws_rds","CPUUtilization"]
@@ -481,6 +485,7 @@ Status Code 200, and a newly-created Alert Definition Hash:
 {% endhighlight %}
 
 -----
+
 ## Update
 
 Update an existing alert definition.
@@ -620,6 +625,7 @@ Response is Status 200, and a newly-updated Alert Definition Hash.
 {% endhighlight %}
 
 -----
+
 ## Destroy
 
 Delete the specified alert definition.
@@ -638,6 +644,6 @@ curl -s -XDELETE https://<APIKEY>:U@api.copperegg.com/v2/alerts/definitions/<ALE
 
 Response is Status 200, empty JSON:
 
-{% highlight javascript %}
+{% highlight sh %}
 {}
 {% endhighlight %}
