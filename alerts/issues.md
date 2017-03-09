@@ -138,7 +138,9 @@ Response is a hash which consists of two keys "issues" and "issuesStats".
              "obj_idv":"ac1f5ef85c1177ef97596f334f877370|"
             }
            ],
- "issuesStats":{"total": 52}
+    "issuesStats":{
+        "total": 62             # total issues without pagination (according to current filter)
+    }
 }
 {% endhighlight %}
 
