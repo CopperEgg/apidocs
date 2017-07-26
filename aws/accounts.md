@@ -94,7 +94,7 @@ Add a new AWS Account.
 #### Required parameters:
 
 aws_role_arn
-: Role ARN of role created for cross-account access using UCM policy'
+: Role ARN of role created for cross-account access using UCM policy
 
 aws_external_id
 : External ID is a random string used in AWS role creation
@@ -110,7 +110,7 @@ label
 tags
 : Tags to apply to this AWS Account, If not specified no tags will be applied.
 
-### Create Example 1: create a new probe using only the required parameters, to demonstrate defaults.
+### Create Example 1: create a new account using only the required parameters, to demonstrate defaults.
 
 ##### Uptime Cloud Monitor needs read-only access through an AWS Role
 

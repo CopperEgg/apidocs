@@ -121,6 +121,46 @@ Samples for various AWS services can be fetched using this API.
 
 ----
 
+#### Azure
+
+##### [Azure Accounts](azure/accounts.html)
+Account represent each of the user's account monitored by CopperEgg.
+The following actions can be performed using this API.
+ - Index - Fetch details of all monitored Azure Accounts.
+ - Create - Add a new Azure Account on monitoring.
+ - Update - Update an existing Azure Account.
+ - Delete - Remove Azure Account from monitoring.
+
+##### [Azure Subscriptions](azure/subscriptions.html)
+Subscription represent each of an azure account's subscription monitored by CopperEgg.
+The following actions can be performed using this API.
+ - Index - Fetch details of all monitored Azure Subscriptions for an Azure Account.
+ - Update - Update an existing Azure Subscription.
+
+##### [Azure Resource Groups](azure/resource_groups.html)
+Resource Group represent each of an azure subscription's resource groups monitored by CopperEgg.
+The following actions can be performed using this API.
+ - Index - Fetch details of all monitored Azure Resource Groups for an Azure Subscription.
+ - Update - Update an existing Azure Resource Group.
+
+##### [Azure Resource](azure/resource.html)
+Resource represent each of an azure resource group's resources monitored by CopperEgg.
+The following actions can be performed using this API.
+ - Index - Fetch details of all the monitored Azure Resources for an Azure Resource Group or Account.
+ - Count - Fetch count of all the monitored Azure Resources for an Azure Resource Group or Account.
+ - Update - Update an existing Azure Resource.
+
+##### [Azure All Entities](azure/allentities.html)
+Azure Entity represent an azure resource monitored by CopperEgg.
+The following actions can be performed using this API.
+ - Index - Fetch details of all the monitored Azure Resources for all accounts of a user.
+ - Count - Fetch count of all the entities.
+
+##### [Samples](azure/samples.html)
+Samples API can be used to fetch collected data for resources of an Azure Account.
+
+----
+
 #### RevealUptime
 
 ##### [Probes](revealuptime/probes.html)
