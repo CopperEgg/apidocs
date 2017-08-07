@@ -122,7 +122,8 @@ A JSON-encoded single-widget Dashboard Hash is provided below, as it would be de
     },
     "tags":[],                        # an optional list of tags to apply to this dashboard.
     "created_at":1354035004,          # time created, unix timestamp, UTC
-    "updated_at":1354042044           # last time updated, unix timestamp, UTC
+    "updated_at":1354042044,          # last time updated, unix timestamp, UTC
+    "is_database":false               # dashboard belongs to a database
   }
 {% endhighlight %}
 
@@ -163,7 +164,7 @@ The reason for the difference in structures has to do with new functionality whi
 
 ## Index
 
-List all defined Custom Metrics Custom Dashboards.
+List all defined Custom Metrics Custom Dashboards. Limited fields are shown by API for each dashboard. For details of a particular dashboard, use show api.
 
 #### Required parameters:
 None.
@@ -184,57 +185,89 @@ Response is a JSON-encoded array of Dashboard Hashes. In this example, there is 
 {% highlight sh %}
 [
   {
-    "id":61,                                                # unique dashboard ID, assigned by Uptime Cloud Monitor
-    "name":"Service Monitoring",                            # Dashboard name, string
-    "data":{                                                # the data hash consists of two key-value pairs, widgets and order
-      "widgets":{                                           # array of widget hashes
-        "0":{                                               # widget id
-          "type":"timeline",                                # widget type
-          "style":"values",                                 # widget style
-          "match":"tag",                                    # what category to select on
-          "label":"Cloud Portal Response Time (total)",     # Widget label
-          "metric":{                                        # The "metric" hash
-            "ce_probe_summary_v1":[
-              [
-                "0",
-                "time"
-              ]
-            ]
-          },
-          "match_param":"cloud"                             # which member of the category to select on
-        },
-        "1":{
-          "type":"metric_list",
-          "style":"list",
-          "match":"tag",
-          "label":"Cloud Portal Health",
-          "metric":{"ce_probe_summary_v1":[["6","health"]]},
-          "match_param":"cloud"
-        },
-        "2":{
-          "type":"timeline",
-          "style":"values",
-          "match":"tag",
-          "label":"Social Sites Response Time (total)",
-          "metric":{"ce_probe_summary_v1":[["0","time"]]},
-          "match_param":"social"
-        },
-        "3":{
-          "type":"metric_list",
-          "style":"list",
-          "match":"tag",
-          "label":"Social Sites Health",
-          "metric":{"ce_probe_summary_v1":[["6","health"]]},
-          "match_param":"social"
-        }
-      },
-      "order":["0","1","2","3"]                   # the order of the widgets on the screen |  0  1  2  |
-    },                                            #                                        |  4  5  6  |
-    "tags":[],
-    "created_at":1353891562,                      # time created, unix timestamp, UTC
-    "updated_at":1353938713                       # last time updated, unix timestamp, UTC
+    "id":61,                                      # unique dashboard ID, assigned by Uptime Cloud Monitor
+    "name":"Service Monitoring",                  # Dashboard name, string
+    "updated_at":1353938713,                      # last time updated, unix timestamp, UTC
+    "is_database":false                           # dashboard belongs to a database
   }
 ]
+{% endhighlight %}
+
+------
+
+## Show Dashboard
+
+Get a specific Dashboard data
+
+#### Required parameters:
+dashboard_id.
+
+#### Optional parameters:
+None.
+
+#### CURL Command, and variations:
+{% highlight sh %}
+curl -su <APIKEY>:U https://api.copperegg.com/v2/revealmetrics/dashboards/<dashboard_id>.json
+
+curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealmetrics/dashboards/<dashboard_id>.json
+{% endhighlight %}
+
+#### CURL Response:
+
+Response is a JSON-encoded array of Dashboard Hashes. In this example, there is one dashboard defined, which displays 4 widgets.
+{% highlight sh %}
+{
+  "id":61,                                                # unique dashboard ID, assigned by Uptime Cloud Monitor
+  "name":"Service Monitoring",                            # Dashboard name, string
+  "data":{                                                # the data hash consists of two key-value pairs, widgets and order
+    "widgets":{                                           # array of widget hashes
+      "0":{                                               # widget id
+        "type":"timeline",                                # widget type
+        "style":"values",                                 # widget style
+        "match":"tag",                                    # what category to select on
+        "label":"Cloud Portal Response Time (total)",     # Widget label
+        "metric":{                                        # The "metric" hash
+          "ce_probe_summary_v1":[
+            [
+              "0",
+              "time"
+            ]
+          ]
+        },
+        "match_param":"cloud"                             # which member of the category to select on
+      },
+      "1":{
+        "type":"metric_list",
+        "style":"list",
+        "match":"tag",
+        "label":"Cloud Portal Health",
+        "metric":{"ce_probe_summary_v1":[["6","health"]]},
+        "match_param":"cloud"
+      },
+      "2":{
+        "type":"timeline",
+        "style":"values",
+        "match":"tag",
+        "label":"Social Sites Response Time (total)",
+        "metric":{"ce_probe_summary_v1":[["0","time"]]},
+        "match_param":"social"
+      },
+      "3":{
+        "type":"metric_list",
+        "style":"list",
+        "match":"tag",
+        "label":"Social Sites Health",
+        "metric":{"ce_probe_summary_v1":[["6","health"]]},
+        "match_param":"social"
+      }
+    },
+    "order":["0","1","2","3"]                   # the order of the widgets on the screen |  0  1  2  |
+  },                                            #                                        |  4  5  6  |
+  "tags":[],
+  "created_at":1353891562,                      # time created, unix timestamp, UTC
+  "updated_at":1353938713,                      # last time updated, unix timestamp, UTC
+  "is_database":false                           # dashboard belongs to a database
+}
 {% endhighlight %}
 
 ------
@@ -297,7 +330,8 @@ Response is a JSON-encoded Dashboard Hash. Once again notice the format of the "
   },
   "tags":[],
   "created_at":1354048053,
-  "updated_at":1354048053
+  "updated_at":1354048053,
+  "is_database":false
 }
 {% endhighlight %}
 
@@ -352,6 +386,7 @@ Response is a JSON-formatted Dashboard hash.
   tags":[],
   "created_at":1354050492,
   "updated_at":1354050561
+  "is_database":false
 }
 {% endhighlight %}
 
