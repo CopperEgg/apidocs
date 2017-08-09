@@ -33,11 +33,11 @@ curl -s  "https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/overview.json?ac
     }
   },
   "metrics": {
-    "dummy_resource_type_1": {
+    "resource_type_1": {
       "objects": 1,
       "metrics": 1
     },
-    "dummy_resource_type_2": {
+    "resource_type_2": {
       "objects": 1,
       "metrics": 1
     }
@@ -69,12 +69,13 @@ idvs
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| VM Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_vm_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-vm\|
 
 #### CURL Command:
 
 {% highlight sh %}
-curl -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/vm.json?idvs%5B%5D=<IDV1>&idvs%5B%5D=<IDV2>'
+
+curl -XGET -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/vm.json -H "Content-Type: application/json" -d '{"idvs":["idv1", "idv2"]}'
 {% endhighlight %}
 
 #### CURL Response:
@@ -141,7 +142,7 @@ idv
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| VM Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_vm_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-vm\|
 
 #### Optional Parameters:
 
@@ -231,12 +232,12 @@ idvs
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_sql_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mssql-1\|
 
 #### CURL Command:
 
 {% highlight sh %}
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/sql.json?idvs%5B%5D=<IDV1>&idvs%5B%5D=<IDV2>
+curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/sql.json -H "Content-Type: application/json" -d '{"idvs":["idv1", "idv2"]}'
 {% endhighlight %}
 
 #### CURL Response:
@@ -302,7 +303,7 @@ idv
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_sql_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mssql-1\|
 
 #### Optional Parameters:
 
@@ -427,12 +428,12 @@ idvs
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_sql_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mysql\|
 
 #### CURL Command:
 
 {% highlight sh %}
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/mysql.json?idvs%5B%5D=<IDV1>&idvs%5B%5D=<IDV2>
+curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/mysql.json -H "Content-Type: application/json" -d '{"idvs":["idv1", "idv2"]}'
 {% endhighlight %}
 
 #### CURL Response:
@@ -494,7 +495,7 @@ idv
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| MySQL Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_mysql_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mysql\|
 
 #### Optional Parameters:
 
@@ -564,7 +565,7 @@ curl -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/mysql_details.jso
             "1484811060":[41448340,533795466],
             "1484811360":[41478340,533795466]
         },
-        "n:{
+        "n":{
             "1484810160":[533795466,30448340],
             "1484810220":[null,null],
             "1484810280":[null,null],
@@ -600,12 +601,12 @@ idvs
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| Postgres Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_postgres_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-postgres\|
 
 #### CURL Command:
 
 {% highlight sh %}
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/postgres.json?idvs%5B%5D=<IDV1>&idvs%5B%5D=<IDV2>
+curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/postgres.json -H "Content-Type: application/json" -d '{"idvs":["idv1", "idv2"]}'
 {% endhighlight %}
 
 #### CURL Response:
@@ -667,7 +668,7 @@ idv
 
 *idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| Postgres Resource ID\|
 
-eg. 1\|dummy_subscription_id\|dummy_resource_groud_id\|dummy_postgres_id\|
+eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-postgres\|
 
 #### Optional Parameters:
 
@@ -737,7 +738,7 @@ curl -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/postgres_details.
             "1484811060":[41448340,533795466],
             "1484811360":[41478340,533795466]
         },
-        "n:{
+        "n":{
             "1484810160":[533795466,30448340],
             "1484810220":[null,null],
             "1484810280":[null,null],

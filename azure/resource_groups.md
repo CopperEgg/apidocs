@@ -14,13 +14,14 @@ An example JSON-encoded Azure Resource Group Hash is shown below:
 
 {% highlight ruby %}
 {
-    "id":1,                                         # Azure Resource ID(Assigned by Uptime Cloud Monitor)
-    "azure_subscription_unique_id":"/subscriptions/dummy_subscription_id",                       # Azure subscription unique id of the subscription of the resource
+    "id":1,                                         # Azure resource ID (Assigned by Uptime Cloud Monitor)
+    "azure_subscription_id": 10,                    # Azure subscription ID (Assigned by Uptime Cloud Monitor)
+    "azure_account_id": 4,                          # Azure account ID (Assigned by Uptime Cloud Monitor)
     "name":"dummy_name",                            # Name of the Azure Resource Group
-    "unique_id":"/subscriptions/dummy_subscription_id/resourceGroups/dummy_resource_group_id",   # A unique identifier for the resource group
     "location":"dummy_location",                    # Location of the resource group
     "reading_enabled":true,                         # If monitoring is enabled for the resource group
-    "attrs":{...}                                   # Attributes related to this azure resource group
+    "attrs":{...},                                  # Attributes related to this azure resource group
+    "unique_id":"/subscriptions/sub_id/resourceGroups/rg_id"   # A unique identifier for the resource group
 }
 {% endhighlight %}
 
@@ -54,9 +55,10 @@ Response is a JSON-encoded list of Azure Resource Group Hashes and stats(contain
     "resource_groups":[
         {
             "id":1,
-            "azure_subscription_unique_id":"/subscriptions/dummy_subscription_id",
+            "azure_subscription_id":10,
+            "azure_account_id": 4,
             "name":"dummy_name",
-            "unique_id":"/subscriptions/dummy_subscription_id/resourceGroups/dummy_resource_group_id",
+            "unique_id":"/subscriptions/sub_id/resourceGroups/dummy_rg_id",
             "location":"dummy_location",
             "reading_enabled":true,
             "attrs":{...},
@@ -101,9 +103,10 @@ curl -s -XPUT -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 {% highlight ruby %}
 {
     "id":1,
-    "azure_subscription_unique_id":"/subscriptions/dummy_subscription_id",
+    "azure_subscription_id":10,
+    "azure_account_id": 4,
     "name":"dummy_name",
-    "unique_id":"/subscriptions/dummy_subscription_id/resourceGroups/dummy_resource_group_id",
+    "unique_id":"/subscriptions/sub_id/resourceGroups/rg_id",
     "location":"dummy_location",
     "reading_enabled":false,
     "attrs":{...}

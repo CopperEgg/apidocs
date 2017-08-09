@@ -14,15 +14,14 @@ An example JSON-encoded Azure Resource Hash is shown below:
 
 {% highlight ruby %}
 {
-    "id":1,                                         # Azure Subscription ID(Assigned by Uptime Cloud Monitor)
-    "azure_subscription_unique_id":"/subscriptions/dummy_subscription_id",
-        # Azure subscription unique id of the subscription of the resource
-    "azure_resource_group_unique_id":"/subscriptions/dummy_subscription_id/resourceGroups/dummy_resource_group_id",
-        # Azure Resource Group unique id of the resource group of the resource
+    "id":1,                                         # Azure resource ID (Assigned by Uptime Cloud Monitor)
+    "azure_account_id":3,                           # Azure account ID (Assigned by Uptime Cloud Monitor)
+    "azure_subscription_id":10,                     # Azure subscription ID (Assigned by Uptime Cloud Monitor)
+    "azure_resource_group_id":"34",                 # Azure resource group ID (Assigned by Uptime Cloud Monitor)
     "name":"dummy_name",                            # Name of the Azure Resource
     "type":"dummy_type",                            # Type  of the Azure Resource
     "sku_attrs":{...},                              # Sku Attributes of the Azure Resource
-    "unique_id":"/subscriptions/dummy_subscription_id/resourceGroups/dummy_resource_group_id/dummy_resource_path",
+    "unique_id":"/subscriptions/sub_id/resourceGroups/rg_id/dummy_resource_path",
         # A unique identifier for the resource
     "location":"dummy_location",                    # Location of the resource
     "reading_enabled":true,                         # If monitoring is enabled for the resource group
@@ -58,12 +57,13 @@ Response is a JSON-encoded list of Azure resources Hashes and stats(contains tot
     "resources":[
         {
             "id":1,
-            "azure_subscription_unique_id":"/subscriptions/dummy_subscription_id",
-            "azure_resource_group_unique_id":"/subscriptions/dummy_subscription_id/resourceGroups/dummy_resource_group_id",
+            "azure_account_id":3,
+            "azure_subscription_id":10,
+            "azure_resource_group_id":"34",
             "name":"dummy_name",
             "type":"dummy_type",
             "sku_attrs":{...},
-            "unique_id":"/subscriptions/dummy_subscription_id/resourceGroups/dummy_resource_group_id/dummy_resource_path",
+            "unique_id":"/subscriptions/sub_id/resourceGroups/rg_id/dummy_resource_path",
             "location":"dummy_location",
             "reading_enabled":true,
             "last_seen_at":null
@@ -73,22 +73,6 @@ Response is a JSON-encoded list of Azure resources Hashes and stats(contains tot
         "total":1
     }
 }
-{% endhighlight %}
-
-------
-
-## Count
-
-Fetches count of total azure resources for your site.
-
-##### Curl Command
-{% highlight sh %}
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/accounts/allentities/count.json
-{% endhighlight %}
-
-##### Curl Response
-{% highlight ruby %}
-1
 {% endhighlight %}
 
 ------

@@ -14,7 +14,7 @@ An example JSON-encoded Azure Subscription Hash is shown below:
 
 {% highlight ruby %}
 {
-    "id":1,                                         # Azure Subscription ID(Assigned by Uptime Cloud Monitor)
+    "id":1,                                         # Azure Subscription ID (Assigned by Uptime Cloud Monitor)
     "azure_account_id":1,                           # Azure account id of the subscription
     "unique_id":"/subscriptions/dummy_unique_id",   # A unique identifier for a subscription
     "name":"dummy_name",                            # Name of the Azure Subscription
@@ -28,7 +28,7 @@ An example JSON-encoded Azure Subscription Hash is shown below:
 
 ## Index
 
-Retrieve a list of all of your Azure Subscriptions for an Azure Account with their resource groups.
+Retrieve a list of all of your Azure Subscriptions for an Azure Account.
 
 #### Required Parameters:
 
@@ -44,7 +44,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/accounts/<Azure_Account_ID
 
 
 #### CURL Response:
-Response is a JSON-encoded list of Azure Subscription Hashes and stats(contains total no of subscriptions for the account).
+Response is a JSON-encoded list of Azure Subscription Hashes and stats (contains total no of subscriptions for the account).
 
 {% highlight ruby %}
 {
@@ -56,10 +56,7 @@ Response is a JSON-encoded list of Azure Subscription Hashes and stats(contains 
             "name":"dummy_name",
             "reading_enabled":true,
             "state":"dummy_state",
-            "attrs":{...},
-            "resource_groups":[
-                {...}
-            ]
+            "attrs":{...}
         }
     ],
     "stats":{
