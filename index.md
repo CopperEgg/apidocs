@@ -1,6 +1,6 @@
 ---
 layout: default
-title: IDERA Developer Site
+title: Uptime Cloud Monitor Developer Site
 ---
 
 ### Format of CURL Request

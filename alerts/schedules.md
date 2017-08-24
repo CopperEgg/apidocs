@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alerts - Schedules  ***Beta***
+title: Alerts - Schedules
 ---
 
 ## Overview

@@ -25,17 +25,10 @@ curl -s  "https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/overview.json?ac
 
 {% highlight ruby %}
 {
-  "subscriptions": {
-    "count": 1,
-    "dummy_subscription_name_1": {
-      "dummy_resource_type_1": 1,
-      "dummy_resource_type_2": 1
-    }
-  },
   "metrics": {
     "resource_type_1": {
-      "objects": 1,
-      "metrics": 1
+      "objects": 100,
+      "metrics": 707
     },
     "resource_type_2": {
       "objects": 1,
@@ -221,6 +214,9 @@ Key name           Valid combinations
 Cpu                c
 I/O                i
 Database           p
+Throughput (DTU)   t
+Connection         n
+Workers            w
 {% endhighlight %}
 
 ### Fetch Samples from resources specified in idvs
@@ -265,7 +261,29 @@ curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/sql.json -H 
             "1484810760":0.364,
             "1484811060":0.348,
             "1484811360":0.329
+        },
+        "t":{
+            "1484810160":0.441,
+            "1484810460":0.428,
+            "1484810760":0.464,
+            "1484811060":0.448,
+            "1484811360":0.429
+        },
+        "n":{
+            "1484810160":[0.841, 0.489, 0.814],
+            "1484810460":[0.628, 0.533, 0.384],
+            "1484810760":[0.464, 0.461, 0.282],
+            "1484811060":[0.248, 0.583, 0.584],
+            "1484811360":[0.629, 0.485, 0.734]
+        },
+        "w":{
+            "1484810160":0.541,
+            "1484810460":0.528,
+            "1484810760":0.564,
+            "1484811060":0.548,
+            "1484811360":0.529
         }
+
     }
 }
 {% endhighlight %}
@@ -417,6 +435,9 @@ Key name           Valid combinations
 Cpu                c
 I/O                i
 Storage            s
+Memory             m
+Connection         n
+Storage Percent    sp
 {% endhighlight %}
 
 ### Fetch Samples from resources specified in idvs
@@ -461,6 +482,27 @@ curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/mysql.json -
             "1484810760":[41448340,533795466],
             "1484811060":[41448340,533795466],
             "1484811360":[41478340,533795466]
+        },
+        "m":{
+            "1484810160":0.441,
+            "1484810460":0.538,
+            "1484810760":0.263,
+            "1484811060":0.544,
+            "1484811360":0.623
+        },
+        "n":{
+            "1484810160":[30448340,533795466],
+            "1484810460":[30449340,533795466],
+            "1484810760":[41448340,533795466],
+            "1484811060":[41448340,533795466],
+            "1484811360":[41478340,533795466]
+        },
+        "sp":{
+            "1484810160":0.241,
+            "1484810460":0.358,
+            "1484810760":0.364,
+            "1484811060":0.248,
+            "1484811360":0.359
         }
     }
 }
@@ -590,6 +632,10 @@ Key name           Valid combinations
 Cpu                c
 I/O                i
 Storage            s
+Memory             m
+Connection         n
+Storage Percent    sp
+
 {% endhighlight %}
 
 ### Fetch Samples from resources specified in idvs
@@ -634,6 +680,27 @@ curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/postgres.jso
             "1484810760":[41448340,533795466],
             "1484811060":[41448340,533795466],
             "1484811360":[41478340,533795466]
+        },
+        "m":{
+            "1484810160":0.441,
+            "1484810460":0.538,
+            "1484810760":0.263,
+            "1484811060":0.544,
+            "1484811360":0.623
+        },
+        "n":{
+            "1484810160":[30448340,533795466],
+            "1484810460":[30449340,533795466],
+            "1484810760":[41448340,533795466],
+            "1484811060":[41448340,533795466],
+            "1484811360":[41478340,533795466]
+        },
+        "sp":{
+            "1484810160":0.241,
+            "1484810460":0.358,
+            "1484810760":0.364,
+            "1484811060":0.248,
+            "1484811360":0.359
         }
     }
 }
