@@ -8,7 +8,7 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 2 !important;
+  line-height: 1.50 !important;
 }
 
 h1 {
@@ -24,11 +24,35 @@ h3 {
   font-size: 1.40rem;
 }
 
+h4 {
+  font-size: 1.15rem;
+}
+
+h5 {
+  font-size: 1.00rem;
+}
+
+h6 {
+  font-size: 0.75rem;
+}
+
+p, li, dt, dd {
+  font-size: 0.90rem;
+}
+
+h2, h3, h4 {
+  font-weight: 600;
+}
+
+dd {
+  margin-left: 1rem;
+}
+
 pre {
   display: block;
   padding: 8.5px;
   margin: 0 0 9px;
-  font-size: 11px;
+  font-size: 12px;
   word-break: break-all;
   word-wrap: break-word;
   white-space: pre-wrap;

@@ -12,7 +12,7 @@ Each Azure Resource is completely described by a Hash.
 
 An example JSON-encoded Azure Resource Hash is shown below:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,                                               # Azure resource ID (Assigned by Uptime Cloud Monitor)
     "azure_account_id":3,                                 # Azure account ID (Assigned by Uptime Cloud Monitor)
@@ -84,7 +84,7 @@ curl -su <APIKEY>:U https://api.copperegg.com/v2/azure/accounts/<Azure_Account_I
 #### CURL Response:
 Response is a JSON-encoded list of Azure Resource Hashes and stats(contains total no of resources for the resource group/account).
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "resources":[
         {
@@ -135,7 +135,7 @@ curl -s -H "Content-Type: application/json" https://<APIKEY>:U@api.copperegg.com
 {% endhighlight %}
 
 ##### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "azure_account_id":3,
@@ -185,7 +185,7 @@ curl -s -XPUT -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 {% endhighlight %}
 
 ##### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "azure_account_id":3,

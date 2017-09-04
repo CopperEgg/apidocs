@@ -190,41 +190,41 @@ Response is a JSON-encoded array containing one Server Sample Hash, with 5 minut
   {                                                 # each value in MB
    "0":[1335.72,1786.73,1275.4,3784.5],             # buffer memory, cache memory, free memory, used memory
    "15":[1335.71,1786.73,1273.43,3787.66],
-               .........
-		"270":[1342.15,1788.38,1267.18,3790.12],
-		"285":[1342.48,1788.56,1264.47,3788.75]
+   ...........
+   "270":[1342.15,1788.38,1267.18,3790.12],
+   "285":[1342.48,1788.56,1264.47,3788.75]
   },
-		"s":                                        # last 5 min of swap metrics
+  "s":                                               # last 5 min of swap metrics
   {
-   "0":[131.0,380.0],                               # swap used in MB, swap free in MB
-			"15":[131.0,380.0],
-           .........
-			"270":[131.0,380.0],
-			"285":[131.0,380.0]
+   "0":[131. 0,380.0],                               # swap used in MB, swap free in MB
+   "15":[131.0,380.0],
+   .........
+   "270":[131.0,380.0],
+   "285":[131.0,380.0]
   },
-		"c":                                        # last 5 min of aggregate CPU metrics
-  {                                                 # each value ranges from 0 to 1.0, representing a percentage
+  "c":                                               # last 5 min of aggregate CPU metrics
+  {                                                  # each value ranges from 0 to 1.0, representing a percentage
    "0":[0.036,0.0,0.0193,0.0,0.0168,0.0,0.0,0.0,0.0],   # active, iowait,user, nice, system, irq, softirq, steal, guest
-			"15":[0.0335,0.0,0.0195,0.0,0.014,0.0,0.0,0.0,0.0],
-                        .........
-			"270":[0.0377,0.0,0.025,0.0,0.0127,0.0,0.0,0.0,0.0],
-			"285":[0.0415,0.0,0.0245,0.0,0.017,0.0,0.0,0.0,0.0]
+   "15":[0.0335,0.0,0.0195,0.0,0.014,0.0,0.0,0.0,0.0],
+   .........
+   "270":[0.0377,0.0,0.025,0.0,0.0127,0.0,0.0,0.0,0.0],
+   "285":[0.0415,0.0,0.0245,0.0,0.017,0.0,0.0,0.0,0.0]
   },
-		"i":                                        # last 5 min of aggregate network interface metrics
+  "i":                                               # last 5 min of aggregate network interface metrics
   {
-   "0":[0.0022,0.0018],                             # average received bytes in KB/s, average transmitted bytes in KB/s
-			"15":[0.0016,0.0011],
-           .........
-			"270":[0.0014,0.0021],
-			"285":[0.0036,0.0027]
+   "0":[0.0022,0.0018],                              # average received bytes in KB/s, average transmitted bytes in KB/s
+   "15":[0.0016,0.0011],
+   .........
+   "270":[0.0014,0.0021],
+   "285":[0.0036,0.0027]
   },
-		"d":                                        # last 5 min of aggregate diskio metrics
+  "d":                                               # last 5 min of aggregate diskio metrics
   {
-   "0":[0,6553],                                    # average bytes read in KB/s, average bytes written in KB/s
-			"15":[0,192102],
-        .........
-			"270":[0,0],
-			"285":[0,0]
+   "0":[0,6553],                                     # average bytes read in KB/s, average bytes written in KB/s
+   "15":[0,192102],
+   .........
+   "270":[0,0],
+   "285":[0,0]
   }
  }
 ]

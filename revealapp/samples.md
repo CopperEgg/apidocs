@@ -70,7 +70,7 @@ The key is the type of results that will be returned. Multiple keys can be speci
 * <b>top_locations</b> - returns a list of top countries per interval. Also contains states for US only
 * <b>top_browsers</b> - returns a list of top browsers per interval
 
-## Sample request: last 15 minutes Web App counters for one Web App
+#### Sample request: last 15 minutes Web App counters for one Web App
 
 {% highlight sh %}
 curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealapp/samples.json \

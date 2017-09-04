@@ -12,7 +12,7 @@ Each Azure Resource Group is completely described by a Hash.
 
 An example JSON-encoded Azure Resource Group Hash is shown below:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,                                         # Azure resource ID (Assigned by Uptime Cloud Monitor)
     "azure_subscription_id": 10,                    # Azure subscription ID (Assigned by Uptime Cloud Monitor)
@@ -50,7 +50,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/accounts/<Azure_Account_ID
 #### CURL Response:
 Response is a JSON-encoded list of Azure Resource Group Hashes and stats(contains total no of resource groups for the subscription).
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "resource_groups":[
         {
@@ -100,7 +100,7 @@ curl -s -XPUT -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 {% endhighlight %}
 
 ##### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "azure_subscription_id":10,

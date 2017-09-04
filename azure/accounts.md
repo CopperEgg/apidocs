@@ -12,7 +12,7 @@ Each Azure Account is completely described by a Hash.
 
 An example JSON-encoded Azure Account Hash is shown below:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,                                      # Azure Account ID (Assigned by Uptime Cloud Monitor)
     "tenant_id":"dummy_tenant_id",               # Azure account tenant id
@@ -41,7 +41,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/accounts.json
 #### CURL Response:
 Response is a JSON-encoded list of AWS Account Hashes and stats (contains total no of accounts).
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "accounts":[
                    {
@@ -91,7 +91,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 {% endhighlight %}
 
 ##### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "tenant_id":<Tenant ID>,
@@ -122,7 +122,7 @@ curl -s -XPUT -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 {% endhighlight %}
 
 #### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "tenant_id":<Tenant ID>,

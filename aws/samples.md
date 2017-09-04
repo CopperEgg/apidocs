@@ -24,7 +24,7 @@ curl -s -XGET -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "billing":{
         "USD":{
@@ -187,7 +187,7 @@ curl -s -XGET -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "billing":{
         "USD":{
@@ -363,7 +363,7 @@ curl -s -XGET -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "month_label":"Jan 2017",
     "month_sortable":"2017-01",
@@ -432,7 +432,7 @@ curl -s -XGET -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "month_label":"Jan 2017",
     "month_sortable":"2017-01",
@@ -539,7 +539,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|i-0016986665842b75b|":{
         "c":{
@@ -629,7 +629,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|i-0016986665842b75b|":{
         "c":{
@@ -737,7 +737,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|vol-00018cad1c7bc0195|":{
         "b":{
@@ -788,7 +788,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|vol-00018cad1c7bc0195|":{
         "b":{
@@ -852,7 +852,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|demo-table|":{
         "d":{
@@ -894,7 +894,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|demo-table|":{
         "d":{
@@ -951,7 +951,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|rds-test-1|":{
         "c":{
@@ -1060,7 +1060,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|rds-test-1|":{
         "c":{
@@ -1186,7 +1186,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|test-elb|us-east-1a|":{
         "h":{
@@ -1314,7 +1314,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|test-elb|us-east-1a|":{
         "h":{
@@ -1460,7 +1460,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|E2CN093FFQP6MI|Global|":{
         "r":{
@@ -1663,7 +1663,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|E2CN093FFQP6MI|Global|":{
         "r":{
@@ -1881,7 +1881,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "601337641757|us-east-1|ffd7f8f4-1d34-47ed-96b3-ea0ad505ffef|":{
         "c":{
@@ -2003,7 +2003,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "601337641757|us-east-1|ffd7f8f4-1d34-47ed-96b3-ea0ad505ffef|":{
         "c":{
@@ -2139,7 +2139,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|e761288a-970f-4617-915c-af55f0854cc6|":{
         "s":{
@@ -2228,7 +2228,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|e761288a-970f-4617-915c-af55f0854cc6|":{
         "s":{
@@ -2331,7 +2331,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|test-sqs|":{
         "l":{
@@ -2376,7 +2376,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|test-sqs|":{
         "l":{
@@ -2436,7 +2436,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|test-sns|":{
         "c":{
@@ -2480,7 +2480,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|test-sns|":{
         "c":{
@@ -2540,7 +2540,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|j-2C4W4A2B3UW9X|":{
         "f":{
@@ -2597,7 +2597,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|j-2C4W4A2B3UW9X|":{
         "f":{
@@ -2668,7 +2668,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|ml-KrgrdKta03v|RealTimePredictions|":{
         "c":{
@@ -2705,7 +2705,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|ml-KrgrdKta03v|RealTimePredictions|":{
         "c":{
@@ -2758,7 +2758,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|awstest|Shared|":{
         "c":{
@@ -2905,7 +2905,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|awstest|Shared|":{
         "c":{
@@ -3068,7 +3068,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|awstest|123456789002|":{
         "c":{
@@ -3213,7 +3213,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|awstest|123456789002|":{
         "c":{
@@ -3343,7 +3343,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 This is an API used to get samples of one or more Workspaces
 
 ### Workspaces Sample Keys
-{% highlight java %}
+{% highlight sh %}
 Key name                         Valid combinations
 
 Healthy                          a
@@ -3378,7 +3378,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|d-90673c00b3|":{
         "a":{
@@ -3439,7 +3439,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "123456789001|us-east-1|d-90673c00b3|":{
         "a":{

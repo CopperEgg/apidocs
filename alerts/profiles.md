@@ -83,6 +83,7 @@ An example JSON-encoded Notification Profile Hash is shown below:
 
 Each Notification Profile Hash will contain 0 or more Notification Destination Hashes, in an array named "destinations".
 Currently, there are 8 Notification Destination types defined:
+
 * Email
 * SMS
 * Push
@@ -285,7 +286,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/profiles/<NOTIFICATION_PR
 
 Response is a single JSON Notification Profile Hash. In this case, the profile is the same Twitter profile as above.
 
-{% highlight ruby %}
+{% highlight sh %}
 {
  "id":6468,
  "name":"Operations Twitter DM",
@@ -344,7 +345,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/profiles.json  -H "Conten
 #### CURL Response:
 Response is Status 200, and a newly-created Notification Profile Hash.
 
-{% highlight ruby %}
+{% highlight sh %}
 {
  "id":10764,                     # The new Notification Profile ID
   "name":"HipChat Test",
@@ -370,7 +371,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/profiles.json -H "Content
 Response is Status 200, and a newly-created Notification Profile Hash.
 Note that creating this profile creates both a new NOTIFICATION_PROFILE_ID as well as a new Notification Destination ID:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
  "id":10766,                     # The new Notification Profile ID
  "name":"Twitter-Test",
@@ -421,7 +422,7 @@ curl -su <APIKEY>:U https://api.copperegg.com/v2/alerts/profiles/<NOTIFICATION_P
 
 Response is Status 200, and the updated Notification Profile Hash:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
  "name":"Twitter-Test",
  "state":"disabled",             # All notifications defined here are disabled
@@ -477,7 +478,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/profiles/<NOTIFICATION_PR
 #### CURL Response:
 Response is Status 200, and a newly-updated Notification Profile Hash.
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":10766,
   "name":"Twitter-Test",

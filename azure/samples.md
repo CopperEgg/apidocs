@@ -23,7 +23,7 @@ curl -s  "https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/overview.json?ac
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "metrics": {
     "resource_type_1": {
@@ -73,7 +73,7 @@ curl -XGET -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/vm.json -H 
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{
@@ -153,7 +153,7 @@ curl -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/vm_details.json?i
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{
@@ -238,7 +238,7 @@ curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/sql.json -H 
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{
@@ -339,7 +339,7 @@ curl -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/sql_details.json?
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{
@@ -459,7 +459,7 @@ curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/mysql.json -
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{
@@ -555,7 +555,7 @@ curl -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/mysql_details.jso
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{
@@ -657,7 +657,7 @@ curl -XGET -s https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/postgres.jso
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{
@@ -753,7 +753,7 @@ curl -s 'https://<APIKEY>:U@api.copperegg.com/v2/azure/samples/postgres_details.
 
 #### CURL Response:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "<IDV1>":{
         "c":{

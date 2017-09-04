@@ -40,6 +40,7 @@ Given below is a brief description of all APIs available.
 ##### [Definitions](alerts/definitions.html)
 Alert Definitions define the conditions which are periodically checked and if the conditions are met then an Alert is generated.
 The following actions can be performed using this API.
+
  - Index - Fetch all your Alert Definition.
  - Show - Show in-depth information for a single Alert Definition.
  - Update - Update/Create an Alert Definition.
@@ -47,6 +48,7 @@ The following actions can be performed using this API.
 ##### [Notification Profiles](alerts/profiles.html)
 Notification Profiles define the various channels defined by the user for sending notifications. There are two notification profile - *User Notification Profiles* and *Custom Notification Profiles*. Each Alert Definition can have one or more than one associated Notification profiles.
 The following actions can be performed using this API.
+
  - Index - Fetch all Notification Profiles
  - Show - Fetch in-depth information for a single Notification Profile.
  - Create - Create a new Notification Profile.
@@ -56,6 +58,7 @@ The following actions can be performed using this API.
 ##### [Issues](alerts/issues.html)
 Issues are automatically created by CopperEgg's alerting system whenever one of the conditions defined in Alert Definition is met.
 The following actions can be performed using this API.
+
  - Index - Fetch all Issues.
  - Show - Fetch in-depth information for a single Issue.
  - Update - Update an Issue.
@@ -64,6 +67,7 @@ The following actions can be performed using this API.
 ##### [Schedules](alerts/schedules.html)
 Schedules are for creating Maintenance periods for the resources monitored by CopperEgg. During which any Issues created will not be notified to the user.
 The following actions can be performed using this API.
+
  - Index - Fetch all Schedules.
  - Show - Fetch in-depth information for a single Schedules.
  - Create - Create a new Schedules.
@@ -73,6 +77,7 @@ The following actions can be performed using this API.
 ##### [Annotations](revealengine/annotations.html)
 Annotations can be used to annotate event time line on monitoring graphs for later inspection.
 The following actions can be performed using this API.
+
  - Index - Fetch all Annotations.
  - Show - Fetch in-depth information for a single Annotations.
  - Create - Create a new Annotations.
@@ -86,6 +91,7 @@ The following actions can be performed using this API.
 ##### [Servers](revealcloud/servers.html)
 Server represent each of the user's system monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch details of all monitored systems.
  - Hide - Hide/Unhide a system.
  - Delete - Remove a system from being monitored by CopperEgg.
@@ -97,6 +103,7 @@ The only action available in this API is fetching the data for a system and for 
 ##### [Tags](revealcloud/tags.html)
 Tags are used to group multiple systems monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch all system Tags.
  - Show - Fetch all system grouped by a tag.
  - Create - Add a new System Tag to one or more monitored Systems.
@@ -110,6 +117,7 @@ The following actions can be performed using this API.
 ##### [AWS Accounts](aws/accounts.html)
 Server represent each of the user's system monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch details of all monitored AWS Accounts.
  - Create - Add a new AWS Account on monitoring.
  - Update - Update an existing AWS Account.
@@ -126,6 +134,7 @@ Samples for various AWS services can be fetched using this API.
 ##### [Azure Accounts](azure/accounts.html)
 Account represent each of the user's account monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch details of all monitored Azure Accounts.
  - Create - Add a new Azure Account on monitoring.
  - Update - Update an existing Azure Account.
@@ -134,27 +143,24 @@ The following actions can be performed using this API.
 ##### [Azure Subscriptions](azure/subscriptions.html)
 Subscription represent each of an azure account's subscription monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch details of all monitored Azure Subscriptions for an Azure Account.
  - Update - Update an existing Azure Subscription.
 
 ##### [Azure Resource Groups](azure/resource_groups.html)
 Resource Group represent each of an azure subscription's resource groups monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch details of all monitored Azure Resource Groups for an Azure Subscription.
  - Update - Update an existing Azure Resource Group.
 
-##### [Azure Resource](azure/resource.html)
+##### [Azure Resource](azure/resources.html)
 Resource represent each of an azure resource group's resources monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch details of all the monitored Azure Resources for an Azure Resource Group or Account.
  - Count - Fetch count of all the monitored Azure Resources for an Azure Resource Group or Account.
  - Update - Update an existing Azure Resource.
-
-##### [Azure All Entities](azure/allentities.html)
-Azure Entity represent an azure resource monitored by CopperEgg.
-The following actions can be performed using this API.
- - Index - Fetch details of all the monitored Azure Resources for all accounts of a user.
- - Count - Fetch count of all the entities.
 
 ##### [Samples](azure/samples.html)
 Samples API can be used to fetch collected data for resources of an Azure Account.
@@ -166,6 +172,7 @@ Samples API can be used to fetch collected data for resources of an Azure Accoun
 ##### [Probes](revealuptime/probes.html)
 Probe refers to a periodic test of an internet-connected service. Today the supported Probe types include TCP port connections, ICMP, DNS, HTTP GET/POST and HTTPS GET/POST, REST, SSL. ‘Station’ refers to a location from which the tests are being generated.
 The following actions can be performed using this API.
+
  - Index - Fetch details of all monitored probe.
  - Show - Fetch in-depth of a single probe.
  - Create - Create a new Probe.
@@ -179,6 +186,7 @@ The only action available in this API is fetching the data for a probe and for a
 ##### [Tags](revealuptime/tags.html)
 Tags are used to group multiple probes monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch all probe Tags.
  - Show - Fetch all probe grouped by a tag.
  - Create - Add a new Probe Tag to one or more monitored Systems.
@@ -198,6 +206,7 @@ Samples API can be used to fetch collected RUM data samples.
 ##### [Metric Groups](revealmetrics/metricgroups.html)
 Custom Metrics allow the user to create custom groups for which data can be collected, monitored. A custom metric group behaves exactly as a probe or a system i.e Users can send data to CopperEgg, define alerts, see the graphs on CopperEgg UI.
 Metric Group API allows users to create their own metric groups and performs various functions on them.
+
  - Index - Fetch all defined Metric Groups.
  - Show - Fetch in-depth details of a Single Metric Group.
  - Create - Create a new Metric Group.
@@ -211,6 +220,7 @@ CopperEgg provides API for counting and deleting stale Custom objects.
 ##### [Dashboards](revealmetrics/dashboards.html)
 Custom Metrics Dashboards allows the user to create dashboards for organizing the custom metrics and view their associated charts.
 Following operation are available in Custom Metric Dashboard API.
+
  - Index - Fetch all defined Custom Metric Dashboard.
  - Create - Create a new Custom Metric Dashboard.
  - Update - Update an existing Custom Metric Dashboard.
@@ -223,6 +233,7 @@ The only action available in this API is fetching the data for a custom metric a
 ##### [Tags](revealmetrics/tags.html)
 Tags are used to group multiple custom metrics monitored by CopperEgg.
 The following actions can be performed using this API.
+
  - Index - Fetch all defined Custom Metrics tags.
  - Show - Fetch custom metric object associated with a single custom metric tag.
  - Create - Add a new Custom Metrics Tag to a custom metric object.
@@ -232,9 +243,14 @@ The following actions can be performed using this API.
 
 ### Releases
 
+September 4, 2017
+
+- Added bootstrap material design theme.
+- Added azure API documentation
+
 January 25, 2017
 
-- Added AWS Documentation.
+- Added AWS API Documentation.
 
 January 13, 2017
 

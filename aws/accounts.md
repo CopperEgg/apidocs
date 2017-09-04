@@ -12,7 +12,7 @@ Each AWS Account is completely described by a Hash.
 
 An example JSON-encoded AWS Accounts Hash is shown below:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,                                     # AWS Account ID(Assigned by Uptime Cloud Monitor)
     "account_number":"123456789012",            # 12 digit AWS Account Number of account to be monitored
@@ -56,7 +56,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/amazon_accounts.json
 #### CURL Response:
 Response is a JSON-encoded list of AWS Account Hashes.
 
-{% highlight ruby %}
+{% highlight sh %}
 [
     {
         "id":1,
@@ -140,7 +140,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 {% endhighlight %}
 
 ##### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "account_number":"<Account Number>",
@@ -186,7 +186,7 @@ curl -s -XPUT -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 {% endhighlight %}
 
 #### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "account_number":"<Account Number>",

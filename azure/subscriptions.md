@@ -12,7 +12,7 @@ Each Azure Subscription is completely described by a Hash.
 
 An example JSON-encoded Azure Subscription Hash is shown below:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,                                         # Azure Subscription ID (Assigned by Uptime Cloud Monitor)
     "azure_account_id":1,                           # Azure account id of the subscription
@@ -46,7 +46,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/azure/accounts/<Azure_Account_ID
 #### CURL Response:
 Response is a JSON-encoded list of Azure Subscription Hashes and stats (contains total no of subscriptions for the account).
 
-{% highlight ruby %}
+{% highlight sh %}
 {
     "subscriptions":[
         {
@@ -89,7 +89,7 @@ curl -s -XPUT -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 {% endhighlight %}
 
 ##### Curl Response
-{% highlight ruby %}
+{% highlight sh %}
 {
     "id":1,
     "azure_account_id":1,
