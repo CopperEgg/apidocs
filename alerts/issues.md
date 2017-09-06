@@ -76,7 +76,7 @@ Response is a hash which consists of two keys "issues" and "issuesStats".
 "issues" key has value as an array of JSON-encoded Issue Hashes. In this example, there are two issues; the first is a website alert, the second a system alert.
 "issuesStats" key has value as a hash which consists of "total" key which has value as the count of issues according to the given filters.
 
-{% highlight ruby %}
+{% highlight sh %}
 {
  "issues": [
             {
@@ -209,6 +209,7 @@ Update a single Issue.
 Issue_ID as part of the path
 
 A string specifying a change of state. Permissible strings are :
+
 * "state=active"
 * "state=notified"
 * "state=acknowledged"

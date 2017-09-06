@@ -36,7 +36,7 @@ An example JSON-encoded System Hash is shown below:
       "fs":1                    # filesystems status
     },
     "uuid":"ac1f5ef85c1177ef97596f334f877370",   # system unique identifier; UUID
-    "hid":0                     # is hidden? 0 = false, 1 = true
+    "hid":0                                      # is hidden? 0 = false, 1 = true
   }
 ]
 {% endhighlight %}

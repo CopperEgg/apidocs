@@ -7,6 +7,7 @@ title: Alerts - Definitions
 
 Each of the API commands described here relate to retrieving, creating, editing and deleting one or more Alert Definitions at your site.
 There are four **kinds** of Alert Definitions:
+
 * those created for system alerts (RevealCloud),
 * those created for website / probe alerts (RevealUptime), and
 * those created for alerts on custom metrics (RevealMetrics)
@@ -77,7 +78,7 @@ It is presented at the bottom of the screen under “User API Access”.
 
 #### CURL Response:
 Response is an array of JSON-encoded Alert Definition Hashes. In the following example, two Alert Definition Hashes are returned, one probe and one custom metrics alert definition:
-{% highlight ruby %}
+{% highlight sh %}
 [
  {
    "id":134416,
@@ -160,7 +161,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/definitions/<ALERT_DEF_ID
 #### CURL Response:
 
 Response is a single JSON-encoded Alert Definition Hash. In this case, the alert defined is a 'Website Down' alert.
-{% highlight ruby %}
+{% highlight sh %}
 {
  "id":134416,
  "auto_clear":true,
@@ -415,7 +416,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/definitions.json -H "Cont
 #### CURL Response:
 
 Status Code 200, and a newly-created Alert Definition Hash:
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":183004,
   "auto_clear":true,                     # unspecified defaults to true
@@ -457,7 +458,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/definitions.json -H "Cont
 #### CURL Response:
 
 Status Code 200, and a newly-created Alert Definition Hash:
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":183020,
   "auto_clear":true,
@@ -511,7 +512,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/definitions/<ALERT_DEF_ID
 
 Status Code 200, and the newly-updated Alert Definition Hash:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":183055,
   "auto_clear":false,
@@ -583,7 +584,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/definitions/<ALERT_DEF_ID
 #### CURL Response:
 Response is Status 200, and a newly-updated Alert Definition Hash.
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":183830,
   "auto_clear":true,
