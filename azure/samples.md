@@ -60,9 +60,9 @@ Disk               d
 idvs
 : It is a list of ids(unique for every vm resource)
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| VM Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| VM Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-vm\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### CURL Command:
 
@@ -133,9 +133,9 @@ Disk Operations    o
 idv
 : unique id for a vm resource
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| VM Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| VM Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-vm\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### Optional Parameters:
 
@@ -226,9 +226,9 @@ Workers            w
 idvs
 : It is a list of ids(unique for every sql resource)
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mssql-1\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### CURL Command:
 
@@ -319,9 +319,9 @@ DTU Limit and Used dt
 idv
 : unique id for a sql resource
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mssql-1\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### Optional Parameters:
 
@@ -447,9 +447,9 @@ Storage Percent    sp
 idvs
 : It is a list of ids(unique for every sql resource)
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| SQL Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| MySQL Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mysql\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### CURL Command:
 
@@ -535,9 +535,9 @@ Connections        n                    # active and failed
 idv
 : unique id for a mysql resource
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| MySQL Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| MySQL Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-mysql\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### Optional Parameters:
 
@@ -645,9 +645,9 @@ Storage Percent    sp
 idvs
 : It is a list of ids(unique for every postgres resource)
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| Postgres Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| Postgres Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-postgres\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### CURL Command:
 
@@ -733,9 +733,9 @@ Connections        n                    # active and failed
 idv
 : unique id for a postgres resource
 
-*idv is a combination of Azure Account Id \| Subscription ID \| Resource Group ID \| Postgres Resource ID\|
+*idv is a combination of azure\| Azure Account Id \| Subscription ID \| Resource Group ID \| Postgres Resource ID\|
 
-eg. 1\|af33c92c-7b53-4c65-9fec-8b606790afa7\|resource-group-1\|test-postgres\|
+These IDs are unique IDs assigned by Uptime Cloud Monitor. Eg. azure \| 1 \| 13 \| 221 \| 942 \|
 
 #### Optional Parameters:
 

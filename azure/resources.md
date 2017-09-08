@@ -16,8 +16,8 @@ An example JSON-encoded Azure Resource Hash is shown below:
 {
     "id":1,                                               # Azure resource ID (Assigned by Uptime Cloud Monitor)
     "azure_account_id":3,                                 # Azure account ID (Assigned by Uptime Cloud Monitor)
-    "azure_subscription_unique_id":"aefbdolpr-23ed2342-dsdf23rad",  # Azure subscription Unique id
-    "azure_resource_group_name":"test-rg",                # Azure resource group name
+    "azure_subscription_id":10,                           # Azure subscription ID (Assigned by Uptime Cloud Monitor)
+    "azure_resource_group_id":15,                         # Azure resource group ID (Assigned by Uptime Cloud Monitor)
     "name":"resource_1",                                  # Name of the Azure Resource
     "type":"type_1",                                      # Type of the Azure Resource
     "sku_attrs":{...},                                    # Sku Attributes of the Azure Resource
