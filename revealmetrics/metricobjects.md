@@ -33,7 +33,7 @@ A simple API will get you count of your total custom metric objects vs. stale cu
  for a particular time period which is sent by you.
 
 {% highlight sh %}
-curl -su <APIKEY>:U -H "Content-type: application/json" -XGET "http://api.copperegg.com/v2/revealmetrics/count_stale_objects.json?days=x&months=y&years=z"
+curl -su <APIKEY>:U -H "Content-type: application/json" -XGET "https://api.copperegg.com/v2/revealmetrics/count_stale_objects.json?days=x&months=y&years=z"
 
 x = number of days as a positive non-zero integer
 y = number of months as a positive non-zero integer
@@ -43,13 +43,13 @@ z = number of years as a positive non-zero integer
 For eg, a sample request to delete custom metric objects older than 10 days would be :
 
 {% highlight sh %}
-curl -su <APIKEY>:U -H "Content-type: application/json" -XGET "http://api.copperegg.com/v2/revealmetrics/count_stale_objects.json?days=10&months=0&years=0"
+curl -su <APIKEY>:U -H "Content-type: application/json" -XGET "https://api.copperegg.com/v2/revealmetrics/count_stale_objects.json?days=10&months=0&years=0"
 {% endhighlight %}
 
 Above request can also be reduced to skip months and years parameters because they are zero
 {% highlight sh %}
 
-curl -su <APIKEY>:U -H "Content-type: application/json" -XGET "http://api.copperegg.com/v2/revealmetrics/count_stale_objects.json?days=10"
+curl -su <APIKEY>:U -H "Content-type: application/json" -XGET "https://api.copperegg.com/v2/revealmetrics/count_stale_objects.json?days=10"
 {% endhighlight %}
 
 #### CURL OUTPUT FORMAT
@@ -63,7 +63,7 @@ Total objects : <NUMBER_OF_METRIC_OBJECT> , Stale objects : <NUMBER_OF_METRIC_OB
 ## Another similar API to delete stale custom objects :
 
 {% highlight sh %}
-curl -su <APIKEY>:U -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'days=x&months=y&years=z'
+curl -su <APIKEY>:U -XDELETE "https://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json?days=x&months=y&years=z"
 
 x = no. of days as a positive non-zero integer
 y = no. of months as a positive non-zero integer
@@ -73,13 +73,13 @@ z = no. of years as a positive non-zero integer
 For eg, a sample request to delete custom metric objects older than 6 months would be :
 
 {% highlight sh %}
-curl -su <APIKEY>:U -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'days=0&months=6&years=0'
+curl -su <APIKEY>:U -XDELETE "https://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json?days=0&months=6&years=0"
 {% endhighlight %}
 
 Above request can also be reduced to skip days and years parameters because they are zero
 
 {% highlight sh %}
-curl -su <APIKEY>:U -XPOST "http://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json" -d 'months=6'
+curl -su <APIKEY>:U -XDELETE "https://api.copperegg.com/v2/revealmetrics/destroy_stale_objects.json?months=6"
 {% endhighlight %}
 
 
