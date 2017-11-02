@@ -65,6 +65,7 @@ Metric Group Hash (JSON-formatted)
 {% endhighlight %}
 
 Summing up:
+
  * No metric stands alone. Every metric is defined in the context of a metric group.
  * A metric group exists to group metrics. A metric group must have at least one metric.
  * There is great power and flexibility in groups of metrics!

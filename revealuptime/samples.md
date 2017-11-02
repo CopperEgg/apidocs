@@ -42,6 +42,7 @@ health                h, l_h, s_h
 state_string          ss, l_ss
 {% endhighlight %}
 **Note:**
+
 * the prefacing ‘l_’ means ‘latest’; return most recent sample data.
 * the prefacing ‘s_’ means 'separated'; return data from individual components
 
