@@ -1,0 +1,125 @@
+/* Override some defaults */
+html, body {
+  background-color: #FFF;
+  font-family: 'Roboto';
+  padding-top: 80px;
+  padding-bottom: 40px;
+  color: #222;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.50 !important;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+
+h2 {
+  font-size: 1.80rem;
+}
+
+h3 {
+  font-size: 1.40rem;
+}
+
+h4 {
+  font-size: 1.15rem;
+}
+
+h5 {
+  font-size: 1.00rem;
+}
+
+h6 {
+  font-size: 0.75rem;
+}
+
+p, li, dt, dd {
+  font-size: 0.90rem;
+}
+
+h2, h3, h4 {
+  font-weight: 600;
+}
+
+dd {
+  margin-left: 1rem;
+}
+
+pre {
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 9px;
+  font-size: 12px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  background-color: rgb(245, 245, 245);
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 2px;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  color: #333;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+figure {
+  margin-left: 40px;
+}
+
+li.active {
+  background-color: #009688;
+}
+
+li.active>a {
+  color: white;
+}
+
+.product-name {
+  margin-top: 3px;
+}
+
+.inner-nav-list>li, .nav-list>li {
+  padding: 5px;
+}
+
+.inner-nav-list>li {
+  margin-left: 10px;
+}
+
+.nav-list>li>a {
+  display: block;
+}
+
+.nav-list>li:hover {
+  background-color: #DDD;
+}
+
+.nav-list>li.active:hover {
+  background-color: #087C71;
+}
+
+.nav-header:hover {
+  background-color: transparent !important;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.side-left-navigation, .side-right-navigation {
+  padding: 25px;
+}
+
+.side-left-navigation {
+  background-color: #EEE;
+}
+
+.row {
+  margin-top: -90px;
+  margin-bottom: -80px;
+}

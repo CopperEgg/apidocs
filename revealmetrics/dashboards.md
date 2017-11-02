@@ -41,11 +41,13 @@ A (Ruby-formatted) Widget Hash looks like this:
 Widget type 'metric'
 
 These widgets are large enough to be readable from a distance. There are three styles of the 'metric' type widget:
+
  * 'value':    display the current metric value as a series of digits (.5x widget)
  * 'timeline': display a time-series sparkline of the metric changing over time (.5x widget)
  * 'both':     display both the current value numerically, and a time-series sparkline (1x widget)
 
 In single-metric widgets, you will specify the source of the metric as follows:
+
  * assign the value 'select' to the 'match' key
  * assign the value 'object_id' to the 'match_param' key. The object_id my be a UUID, a PROBE_ID or a METRICGROUP_ID.
 
@@ -61,6 +63,7 @@ Widget type 'timeline', style 'values'
 This is a 2x widget that displays up to 7 metrics as lines on the same time-series chart.
 
 For multi-metric widgets, the widget 'match' and 'match_param' keys are used to specify how to select the objects from which the widget will pull data.
+
  * 'match' == 'select'
     This will force the multi-metric widget to display a single metric. Using the multi-metric widgets this way is supported, but not encouraged.
 
@@ -76,12 +79,14 @@ As you can see in the above Widget Hash, there is a 'metric' hash key, with a va
   "metric"=>\["ce_probe_summary_v1","6","health", "rate"\]
 
 The 4 array elements are \[METRICGROUP_ID, METRICGROUP_INDEX, METRICNAME, "rate"\]
+
  * The METRICGROUP_ID is the unique identifier assigned by Uptime Cloud Monitor for a defined metric group.
  * The METRICGROUP_INDEX is the value of the 'position' key in the specified metric group.
  * The METRICNAME is the the same as the "name" defined in the metric group.
  * An optional field that may contain the word "rate"
 
 ***NOTE:***
+
  * "rate"
 The word "rate" may be included as a fourth array element in the "metric" array. If included in a "metric" array specifying a counter metric, the counter value will be converted into a rate, and the rate will be displayed in the widget.
 If the word "rate" is not included in a counter widget, the value of the counter is displayed.
@@ -129,6 +134,7 @@ A JSON-encoded single-widget Dashboard Hash is provided below, as it would be de
 
 
 NOTES:
+
  * The JSON-encoded Dashboard Hash that you provide in a Create or Update command is not identical to the JSON-encoded Dashboard Hash delivered in response, or in response to an Index command.
  * The "created_at" and "updated_at" fields are never included in any request, but are always returned in all response.
  * Also notice that the "metric" definition in a widget is specified in an array, but the response metric definitions are always in the form of a hash.
@@ -277,6 +283,7 @@ Response is a JSON-encoded array of Dashboard Hashes. In this example, there is 
 Create a new Dashboard
 
 #### Required parameters:
+
  * You must include a dashboard "name" string, and a data hash, including both a widget hash and an order hash.
  * The widget hash must be one or more key-value pairs, where each key is a string-formatted number starting with "0"; each of these keys must have an associated widget hash value.
  * Each widget hash must include 'type', 'style', 'match' and a 'metric' value array. 'match_param' is not required for "match":"all"
@@ -284,6 +291,7 @@ Create a new Dashboard
 
 
 #### Optional parameters:
+
  * label
  if not included, a default label will be created. Be descriptive!!!
 
@@ -342,9 +350,11 @@ Response is a JSON-encoded Dashboard Hash. Once again notice the format of the "
 Update an existing Dashboard and/or the widgets it displays.
 
 #### Required parameters
+
  * Dashboard id, returned from an Index command or in response to the create command
 
 #### Optional parameters
+
  * change the Dashboard label
  * modify existing widgets
  * add new widgets

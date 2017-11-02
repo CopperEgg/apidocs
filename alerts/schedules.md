@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alerts - Schedules  ***Beta***
+title: Alerts - Schedules
 ---
 
 ## Overview
@@ -45,7 +45,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules.json
 
 #### CURL Response:
 Response is an array of JSON-encoded Alert Schedule Hashes. In the following example, two Alert Schedule Hashes are returned:
-{% highlight ruby %}
+{% highlight sh %}
 [
   {
     "id":405,
@@ -98,7 +98,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID
 #### CURL Response:
 
 Response is a single JSON-encoded Alert Schedule Hash.
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":405,
   "name":"No-notseen",
@@ -163,7 +163,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules.json -H "Conten
 
 #### CURL Response:
 Status Code 200, and a newly-created Alert Schedule Hash:
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":407,
   "name":"Duplicate",
@@ -206,7 +206,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/alerts/schedules/<ALERT_SCHED_ID
 
 Status Code 200, and the newly-updated Alert Schedule Hash:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":407,
   "name":"Duplicate",

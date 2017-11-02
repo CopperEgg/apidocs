@@ -60,7 +60,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/probes.json
 #### CURL Response:
 Response is a JSON-encoded array of Probe Hashes.
 
-{% highlight ruby %}
+{% highlight sh %}
 [
   {
     "id":"4ff6010f2ca1fc1bd30000fd",
@@ -139,7 +139,7 @@ curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/probes/<PROBE_ID>.j
 
 Response is a single JSON-encoded Probe Hash.
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":"4ff6015ac0212a273200002d",
   "probe_desc":"Another website of interest",
@@ -244,7 +244,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 #### CURL Response:
 Response is the newly-created JSON-encoded Probe Hash:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":"sn3tiu84teve2nZzXhq2rq8ud",
   "probe_desc":"MyNewWebsite",
@@ -298,7 +298,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 Response is the newly-created JSON-encoded Probe Hash:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":"dYI0NFrcNC2Szy2pnTzx01wtu",
   "probe_desc":"MyWebsite",
@@ -360,7 +360,7 @@ curl -s -XPUT -H "Content-Type: application/json" https://<APIKEY>:U@api.coppere
 
 Response is the newly-updated JSON-encoded Probe Hash:
 
-{% highlight ruby %}
+{% highlight sh %}
 {
   "id":"fpWTlmwIfVdlhJFGAsCMTZ3az",
   "probe_desc":"MyNewWebsite",
@@ -414,7 +414,7 @@ curl -s -XDELETE https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/probes/<PR
 
 Response is Status 200, empty JSON:
 
-{% highlight ruby %}
+{% highlight sh %}
 {}
 {% endhighlight %}
 
