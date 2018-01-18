@@ -1188,7 +1188,7 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 
 {% highlight sh %}
 {
-    "123456789001|us-east-1|test-elb|us-east-1a|":{
+    "123456789001|us-east-1|test-elb|":{
         "h":{
             "1484844360":[4,0], # [healthy_host_count, unHealthy_Host_Count]
             "1484844420":[4,0],
@@ -1292,94 +1292,95 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
 }
 {% endhighlight %}
 
-### Fetch Samples of specific AWS Account
+---
+
+## Network ELB
+
+This is an API used to get samples of one or more Network load balancers
+
+### Network ELB Sample Keys
+{% highlight sh %}
+Key name                         Valid combinations
+
+New connections                  h
+Elb reset count                  r
+Processed bytes                  b
+Consumed LCUs                    l
+Active connections               c
+{% endhighlight %}
+
+### Fetch Samples from all AWS Accounts
 
 #### Required Parameters:
 
-amazon_account_id
-: ID of an AWS account to which elb belongs
+overview
+: Only existence of key is required
 
 idvs
 : It is a list of ids(unique for every elb)
 
-*idv is a combination of region \| elb name \|
+*idv is a combination of Amazon Account Number \| region \| load balancer arn \|
 
-eg. us-east-1\|test-elb\|
+eg. 123456789001\|us-east-1\|net/test-net-elb/0700f2d0ae4ee1ad\|
 
 #### CURL Command:
 
 {% highlight sh %}
-curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copperegg.com/v2/aws/samples/elb.json -d '{ "amazon_account_id":<Amazon Account ID>,"idvs":["<IDV1>","<IDV2>"] }'
+curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copperegg.com/v2/aws/samples/network_elb.json -d '{ "overview":"overview","idvs":["<IDV1>","<IDV2>"] }'
 {% endhighlight %}
 
 #### CURL Response:
 
 {% highlight sh %}
 {
-    "123456789001|us-east-1|test-elb|us-east-1a|":{
+    "123456789001|us-east-1|net/test-net-elb/0700f2d0ae4ee1ad\|":{
         "h":{
-            "1484844360":[4,0],
-            "1484844420":[4,0],
-            "1484844480":[4,0],
-            "1484844540":[4,0],
-            "1484844600":[4,0],
-            "1484844660":[4,0],
-            "1484844720":[4,0],
-            "1484844780":[4,0],
-            "1484844840":[4,0],
-            "1484844900":[4,0],
-            "1484844960":[4,0],
-            "1484845020":[4,0],
-            "1484845080":[4,0],
-            "1484845140":[4,0],
-            "1484845200":[4,0],
-            "1484845260":[4,0],
-            "1484845320":[4,0],
-            "1484845380":[4,0],
-            "1484845440":[4,0],
-            "1484845500":[4,0],
-            "1484845560":[4,0],
-            "1484845620":[4,0],
-            "1484845680":[4,0],
-            "1484845740":[4,0],
-            "1484845800":[4,0],
-            "1484845860":[4,0],
-            "1484845920":[4,0],
-            "1484845980":[4,0]
+            "1484844360":0, # new connections
+            "1484844420":0,
+            "1484844480":0,
+            "1484844540":0,
+            "1484844600":0,
+            "1484844660":1,
+            "1484844720":0,
+            "1484844780":5,
+            "1484844840":0,
+            "1484844900":0,
+            "1484844960":0,
+            "1484845020":0,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0,
+            "1484845380":0,
+            "1484845440":0,
+            "1484845500":8,
+            "1484845560":0,
+            "1484845620":0,
+            "1484845680":0,
+            "1484845740":0,
+            "1484845800":0,
+            "1484845860":0,
+            "1484845920":10,
+            "1484845980":0
         },
         "r":{
-            "1484844360":[15524,1,27],
-            "1484844420":[14569,null,21],
-            "1484844480":[16429,null,20],
-            "1484844540":[15969,null,23],
-            "1484844600":[14270,null,21],
-            "1484844660":[15146,null,19],
-            "1484844720":[15694,20,22],
-            "1484844780":[16189,null,17],
-            "1484844840":[15088,2,18],
-            "1484844900":[15064,null,22],
-            "1484844960":[16399,null,16],
-            "1484845020":[16037,null,20],
-            "1484845080":[14059,null,61],
-            "1484845140":[14216,null,24],
-            "1484845200":[14174,null,23],
-            "1484845260":[14547,null,20],
-            "1484845320":[15963,null,16],
-            "1484845380":[15281,null,24],
-            "1484845440":[16173,4,23],
-            "1484845500":[15363,null,21],
-            "1484845560":[15661,null,24],
-            "1484845620":[15402,null,23],
-            "1484845680":[14134,null,14],
-            "1484845740":[14129,null,27],
-            "1484845800":[15116,null,24],
-            "1484845860":[14866,null,16],
-            "1484845920":[15430,null,137],
-            "1484845980":[15626,null,19]
+            "1484844660":1, # Elb reset count
+            "1484844720":0,
+            "1484844780":5,
+            "1484844840":0,
+            "1484844900":0,
+            "1484844960":0,
+            "1484845020":0,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0,
         },
-        "b":{},
+        "b":{}, # Processed bytes
         "l":{
-            "1484844360":0,
+            "1484844360":0, # Consumed LCUs
             "1484844420":0,
             "1484844480":0,
             "1484844540":0,
@@ -1408,14 +1409,334 @@ curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copper
             "1484845920":0,
             "1484845980":0
         },
-        "s":{}
+        "c":{
+            "1484844420":0, # Active connections
+            "1484844480":0,
+            "1484844540":0,
+            "1484844600":0,
+            "1484844660":1,
+            "1484844720":0,
+            "1484844780":5,
+            "1484844840":0,
+            "1484844900":0,
+            "1484844960":0,
+            "1484845020":0,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0,
+            "1484845380":0,
+            "1484845440":0,
+            "1484845500":8,
+            "1484845560":0,
+            "1484845620":0,
+            "1484845680":0,
+            "1484845740":0,
+            "1484845800":0,
+            "1484845860":0,
+            "1484845920":10,
+            "1484845980":0
+        }
     },
     "123456789001|us-east-1|test-elb|us-east-1e|":{
         "h":{...},
         "r":{...},
         "b":{},
         "l":{...},
-        "s":{}
+        "c":{}
+    }
+}
+{% endhighlight %}
+
+---
+
+## Application ELB
+
+This is an API used to get samples of one or more Application load balancers
+
+### ELB Sample Keys
+{% highlight sh %}
+Key name                         Valid combinations
+
+New connections                  h
+Total requests                   r
+Processed bytes                  b
+Consumed LCUs                    l
+Active connections               c
+{% endhighlight %}
+
+### Fetch Samples from all AWS Accounts
+
+#### Required Parameters:
+
+overview
+: Only existence of key is required
+
+idvs
+: It is a list of ids(unique for every elb)
+
+*idv is a combination of Amazon Account Number \| region \| load balancer arn \|
+
+eg. 123456789001\|us-east-1\|app/test-app-elb/0700f2d0ae4ee1ad\|
+
+#### CURL Command:
+
+{% highlight sh %}
+curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copperegg.com/v2/aws/samples/application_elb.json -d '{ "overview":"overview","idvs":["<IDV1>","<IDV2>"] }'
+{% endhighlight %}
+
+#### CURL Response:
+
+{% highlight sh %}
+{
+    "123456789001|us-east-1|app/test-app-elb/0700f2d0ae4ee1ad\|":{
+        "h":{
+            "1484844360":0, # new connections
+            "1484844420":0,
+            "1484844480":0,
+            "1484844540":0,
+            "1484844600":0,
+            "1484844660":1,
+            "1484844720":0,
+            "1484844780":5,
+            "1484844840":0,
+            "1484844900":0,
+            "1484844960":0,
+            "1484845020":0,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0,
+            "1484845380":0,
+            "1484845440":0,
+            "1484845500":8,
+            "1484845560":0,
+            "1484845620":0,
+            "1484845680":0,
+            "1484845740":0,
+            "1484845800":0,
+            "1484845860":0,
+            "1484845920":10,
+            "1484845980":0
+        },
+        "r":{
+            "1484844660":1, # Total requests
+            "1484844720":1,
+            "1484844780":1,
+            "1484844840":1,
+            "1484844900":1,
+            "1484844960":1,
+            "1484845020":1,
+            "1484845080":3,
+            "1484845140":3,
+            "1484845200":3,
+            "1484845260":3,
+            "1484845320":3,
+        },
+        "b":{}, # Processed bytes
+        "l":{
+            "1484844360":0, # Consumed LCUs
+            "1484844420":0,
+            "1484844480":0,
+            "1484844540":0,
+            "1484844600":0,
+            "1484844660":0,
+            "1484844720":0,
+            "1484844780":0,
+            "1484844840":0,
+            "1484844900":0,
+            "1484844960":0,
+            "1484845020":0,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0,
+            "1484845380":0,
+            "1484845440":0,
+            "1484845500":0,
+            "1484845560":0,
+            "1484845620":0,
+            "1484845680":0,
+            "1484845740":0,
+            "1484845800":0,
+            "1484845860":0,
+            "1484845920":0,
+            "1484845980":0
+        },
+        "c":{
+            "1484844420":0, # Active connections
+            "1484844480":0,
+            "1484844540":0,
+            "1484844600":0,
+            "1484844660":1,
+            "1484844720":0,
+            "1484844780":5,
+            "1484844840":0,
+            "1484844900":0,
+            "1484844960":0,
+            "1484845020":0,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0,
+            "1484845380":0,
+            "1484845440":0,
+            "1484845500":8,
+            "1484845560":0,
+            "1484845620":0,
+            "1484845680":0,
+            "1484845740":0,
+            "1484845800":0,
+            "1484845860":0,
+            "1484845920":10,
+            "1484845980":0
+        }
+    }
+}
+{% endhighlight %}
+
+---
+
+## Target Groups(HTTP or HTTPS)
+
+This is an API used to get samples of one or more target groups
+
+### Target Group Sample Keys
+{% highlight sh %}
+Key name                         Valid combinations
+
+Healthy hosts                    h
+Unhealthy hosts                  u
+{% endhighlight %}
+
+### Fetch Samples from all AWS Accounts
+
+#### Required Parameters:
+
+overview
+: Only existence of key is required
+
+idvs
+: It is a list of ids(unique for every elb)
+
+*idv is a combination of Amazon Account Number \| region \| target group arn \|
+
+eg. 123456789001\|us-east-1\|targetgroup/test-group/0700f2d0ae4ee1ad\|
+
+#### CURL Command:
+
+{% highlight sh %}
+curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copperegg.com/v2/aws/samples/http_target_group.json -d '{ "overview":"overview","idvs":["<IDV1>","<IDV2>"] }'
+{% endhighlight %}
+
+#### CURL Response:
+
+{% highlight sh %}
+{
+    "123456789001|us-east-1|targetgroup/test-group/0700f2d0ae4ee1ad\|":{
+        "h":{
+            "1484844360":0, # Healthy hosts
+            "1484844720":1,
+            "1484844780":1,
+            "1484844840":1,
+            "1484844900":1,
+            "1484844960":1,
+            "1484845020":1,
+            "1484845080":3,
+            "1484845140":3,
+            "1484845200":3,
+            "1484845260":3,
+            "1484845320":3,
+        },
+        "u":{
+            "1484844660":1, # Unhealthy hosts
+            "1484844720":1,
+            "1484844780":1,
+            "1484844840":1,
+            "1484844900":1,
+            "1484844960":1,
+            "1484845020":1,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0
+        }
+    }
+}
+{% endhighlight %}
+
+---
+
+## Target Groups(TCP)
+
+This is an API used to get samples of one or more target groups
+
+### Target Group Sample Keys
+{% highlight sh %}
+Key name                         Valid combinations
+
+Healthy hosts                    h
+Unhealthy hosts                  u
+{% endhighlight %}
+
+### Fetch Samples from all AWS Accounts
+
+#### Required Parameters:
+
+overview
+: Only existence of key is required
+
+idvs
+: It is a list of ids(unique for every elb)
+
+*idv is a combination of Amazon Account Number \| region \| target group arn \|
+
+eg. 123456789001\|us-east-1\|targetgroup/test-group/0700f2d0ae4ee1ad\|
+
+#### CURL Command:
+
+{% highlight sh %}
+curl -s -XPOST -H "Content-Type: application/json" https://<APIKEY>:U@api.copperegg.com/v2/aws/samples/tcp_target_group.json -d '{ "overview":"overview","idvs":["<IDV1>","<IDV2>"] }'
+{% endhighlight %}
+
+#### CURL Response:
+
+{% highlight sh %}
+{
+    "123456789001|us-east-1|targetgroup/test-group/0700f2d0ae4ee1ad\|":{
+        "h":{
+            "1484844360":0, # Healthy hosts
+            "1484844720":1,
+            "1484844780":1,
+            "1484844840":1,
+            "1484844900":1,
+            "1484844960":1,
+            "1484845020":1,
+            "1484845080":3,
+            "1484845140":3,
+            "1484845200":3,
+            "1484845260":3,
+            "1484845320":3,
+        },
+        "u":{
+            "1484844660":1, # Unhealthy hosts
+            "1484844720":1,
+            "1484844780":1,
+            "1484844840":1,
+            "1484844900":1,
+            "1484844960":1,
+            "1484845020":1,
+            "1484845080":0,
+            "1484845140":0,
+            "1484845200":0,
+            "1484845260":0,
+            "1484845320":0
+        }
     }
 }
 {% endhighlight %}
