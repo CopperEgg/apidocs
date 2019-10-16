@@ -51,9 +51,9 @@ Retrieve an array of all of your Probe Hashes.
 
 #### CURL Command, and variations:
 {% highlight sh %}
-curl -su <APIKEY>:U https://api.copperegg.com/v2/revealuptime/probes.json
+curl -su <APIKEY>:U "https://api.copperegg.com/v2/revealuptime/probes.json?per_page=<PROBES_PER_PAGE>&page_number=<PAGE_NUMBER>"
 
-curl -s https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/probes.json
+curl -s "https://<APIKEY>:U@api.copperegg.com/v2/revealuptime/probes.json?per_page=<PROBES_PER_PAGE>&page_number=<PAGE_NUMBER>"
 {% endhighlight %}
 
 
